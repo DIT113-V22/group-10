@@ -4,7 +4,7 @@ const int TRIGGER_PIN           = 6; // D6
 const int ECHO_PIN              = 7; // D7
 const unsigned int MAX_DISTANCE = 100;
 
-const int fSpeed   = 70;  // 70% of the full speed forward
+const int fSpeed   = 30; //70% of the full speed forward
 
 
 
@@ -30,7 +30,7 @@ void setup()
 
 void loop()
 {
-  if(front.getDistance() >= 50 || front.getDistance() == 0)
+  if(front.getDistance() >= 100 || front.getDistance()==0)
   {
     drive();
   }
@@ -38,5 +38,5 @@ void loop()
     car.setSpeed(0);
   }
   Serial.println(front.getDistance());
-    delay(100);
+    delay(50);
 }
