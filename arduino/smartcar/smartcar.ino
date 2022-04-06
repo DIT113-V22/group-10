@@ -30,7 +30,8 @@ void setup()
 
 void loop()
 {
-  if(front.getDistance() >= 100 || front.getDistance()==0)
+  int currentDistance = front.getDistance();
+  if(currentDistance >= 100 || currentDistance == 0)
   {
     drive();
   }
