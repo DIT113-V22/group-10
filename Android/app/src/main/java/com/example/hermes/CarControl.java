@@ -2,12 +2,9 @@ package com.example.hermes;
 
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-import android.widget.Button;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -15,11 +12,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityCarControlBinding;
+import com.example.hermes.ui.MqttClient;
 
 public class CarControl extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityCarControlBinding binding;
+    private MqttClient mqttClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +47,19 @@ public class CarControl extends AppCompatActivity {
 
 
 
-    public void goUp(View view) {
-        Button b = findViewById(R.id.upButton);
-        System.out.println("go up!");
-    }
+   public void goForward(View v){
+        // drive(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+
+   }
+   public void goBackward(View v){
+        // drive(-MOVEMENT_SPEED, STRAIGHT-ANGLE, "Going backward");
+   }
+   public void goLeft(View v){
+        //drive(MOVEMENT_SPEED, -STEERING_ANGLE,"Going left");
+   }
+   public void goRight(View v){
+        //drive(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
+   }
 
 
     @Override
