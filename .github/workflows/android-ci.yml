@@ -15,5 +15,4 @@ jobs:
       - name: Build Android
         run: |
           cd Android
-          chmod +x ./gradlew
           ./gradlew build --stacktrace
