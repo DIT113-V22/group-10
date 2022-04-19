@@ -68,3 +68,6 @@ google-services.json
 
 # Android Profiling
 *.hprof
+
+# LocalStuff
+Android/local.properties
