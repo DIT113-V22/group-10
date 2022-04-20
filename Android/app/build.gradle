@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdk 32
-    buildToolsVersion '32.0.0'
+    compileSdk 30
+    buildToolsVersion '30.0.1'
 
     defaultConfig {
         applicationId "com.example.hermes"
         minSdk 31
-        targetSdkVersion 32
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
