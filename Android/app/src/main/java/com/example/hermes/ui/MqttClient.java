@@ -9,7 +9,7 @@ import android.nfc.Tag;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Api;
+
 
 
 // Adapted from https://github.com/DIT112-V21/smartcar-mqtt-controller/blob/main/android/SmartcarMqttController/app/src/main/java/platis/solutions/smartcarmqttcontroller/MqttClient.java

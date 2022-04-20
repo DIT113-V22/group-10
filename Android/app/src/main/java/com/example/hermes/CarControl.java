@@ -78,7 +78,7 @@ public class CarControl extends AppCompatActivity {
 
 
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-        mqttClientExternal = new MqttClient(getApplicationContext(),EXTERNAL_MQTT_BROKER,TAG);
+       // mqttClientExternal = new MqttClient(getApplicationContext(),EXTERNAL_MQTT_BROKER,TAG);
         camera = findViewById(R.id.camera);
         connectToMqttBroker();
 
