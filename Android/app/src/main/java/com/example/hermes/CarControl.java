@@ -1,16 +1,17 @@
 package com.example.hermes;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,7 +19,6 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityCarControlBinding;
 import com.example.hermes.ui.MqttClient;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -77,13 +77,58 @@ public class CarControl extends AppCompatActivity {
        */
 
 
+        Button b = findViewById(R.id.backButton);
+        Button f = findViewById(R.id.ForButton);
+        Button l = findViewById(R.id.leftButton);
+        Button r = findViewById(R.id.rightButton);
+        b.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+                    move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                }
+                return false;
+            }
+        });
+        f.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                }
+                return false;
+            }
+        });
+        l.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going left");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                }
+                return false;
+            }
+        });
+        r.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                }
+                return false;
+            }
+        });
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-       // mqttClientExternal = new MqttClient(getApplicationContext(),EXTERNAL_MQTT_BROKER,TAG);
         camera = findViewById(R.id.camera);
         connectToMqttBroker();
-
-
-
+        
    }
 
     @Override
@@ -166,7 +211,7 @@ public class CarControl extends AppCompatActivity {
         }
     }
 
-       public void move(int throttleSpeed, int steeringangle, String actionDescription){
+    public void move(int throttleSpeed, int steeringangle, String actionDescription){
         if(! isConnected){
             final String notConnected = "Not connected";
             Log.e(TAG,notConnected);
@@ -176,14 +221,14 @@ public class CarControl extends AppCompatActivity {
         Log.i(TAG,actionDescription);
         mqttClient.publish(THROTTLE_CONTROL,Integer.toString(throttleSpeed),QOS,null);
         mqttClient.publish(STEERING_CONTROL,Integer.toString(steeringangle),QOS,null);
-       }
+    }
 
-       public void goForward(View v){
-         move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
-
-   }
-   public void goBackward(View v){
-          move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
+    /*
+    public void goForward(View v){
+        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+    }
+    public void goBackward(View v){
+        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
    }
    public void goLeft(View v){
         move(MOVEMENT_SPEED, -STEERING_ANGLE,"Going left");
@@ -191,6 +236,17 @@ public class CarControl extends AppCompatActivity {
    public void goRight(View v){
         move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
    }
+    public void stop(View v) {
+        move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+    }
+
+     */
+
+    public void home(View v){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 
     @Override
