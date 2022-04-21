@@ -30,7 +30,6 @@
             android:layout_height="47dp"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="80dp"
-            android:onClick="goForward"
             android:text="Forward"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -41,7 +40,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginBottom="20dp"
-            android:onClick="goBackward"
             android:text="Backward"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -52,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="80dp"
-            android:onClick="goLeft"
             android:text="LEFT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -63,10 +60,20 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="20dp"
-            android:onClick="goRight"
             android:text="RIGHT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="53dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:onClick="home"
+            app:icon="?attr/actionModeCloseDrawable"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
