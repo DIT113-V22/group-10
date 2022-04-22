@@ -30,6 +30,11 @@ android {
         viewBinding true
     }
 }
+repositories {
+    maven {
+        url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+    }
+}
 
 dependencies {
 
@@ -48,4 +53,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
     implementation 'com.googlecode.json-simple:json-simple:1.1'
+
 }
