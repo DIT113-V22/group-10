@@ -29,7 +29,7 @@ public class JsonManager {
         JSONObject deliveryList = new JSONObject();
         deliveryList.put("deliveries", deliveries);
 
-        try (FileWriter file = new FileWriter(absolutePath + filePath)){
+        try (FileWriter file = new FileWriter(filePath)){
             file.write(deliveries.toJSONString());
             file.flush();
         } catch (IOException e) {
@@ -42,7 +42,7 @@ public class JsonManager {
         JSONObject jsonObject = new JSONObject();
         String absoluteFilePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\hermes\\data\\";
 
-        try (FileReader reader = new FileReader(absoluteFilePath + fileName)){
+        try (FileReader reader = new FileReader(fileName)){
             jsonObject = (JSONObject) jsonParser.parse(reader);
 
         } catch (IOException | ParseException e) {

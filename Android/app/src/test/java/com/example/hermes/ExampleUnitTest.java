@@ -32,7 +32,7 @@ public class ExampleUnitTest {
 
     @Test
     public void gettingJsonObject(){
-        JSONObject actualObject = jManager.readJsonObject("test.Json");
+        JSONObject actualObject = jManager.readJsonObject("src/main/java/com/example/hermes/data/test.Json");
         JSONObject expectedObject = createExpectedObject();
 
         assertEquals(expectedObject.toString(), actualObject.toString());
@@ -41,12 +41,12 @@ public class ExampleUnitTest {
     @Test
     public void writeJson(){
         String absolutePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\hermes\\data\\";
-        jManager.writeDelivery(delivery1, "test.Json");
-        JSONObject jsonObject = jManager.readJsonObject("test.Json");
+        jManager.writeDelivery(delivery1, "src/main/java/com/example/hermes/data/test.Json");
+        JSONObject jsonObject = jManager.readJsonObject("src/main/java/com/example/hermes/data/test.Json");
         JSONArray array = (JSONArray) jsonObject.get("deliveries");
         JSONObject expectedObject = createExpectedObject();
 
-        try (FileWriter file = new FileWriter(absolutePath + "test.Json")){
+        try (FileWriter file = new FileWriter("src/main/java/com/example/hermes/data/test.Json")){
             file.write(expectedObject.toJSONString());
             file.flush();
         } catch (IOException e) {
