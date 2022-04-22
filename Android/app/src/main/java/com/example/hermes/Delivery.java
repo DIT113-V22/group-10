@@ -12,4 +12,10 @@ public class Delivery {
         this.date = LocalDate.now().toString();
         this.time = LocalTime.now().toString();
     }
+
+    public Delivery(String customerID, String date, String time){
+        this.customerID = customerID;
+        this.date = date;
+        this.time = time;
+    }
 }
