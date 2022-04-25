@@ -72,5 +72,9 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(01, builder.build());
     }
 
+    public void showDelivery(View view) {
+        //To implement
+    }
+
 
 }
