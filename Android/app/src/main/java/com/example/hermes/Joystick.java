@@ -1,19 +1,9 @@
 package com.example.hermes;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 
-import com.example.hermes.ui.MqttClient;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,9 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.hermes.databinding.ActivityJoystickBinding;
 import com.zerokol.views.joystickView.JoystickView;
 
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-
-public class Joystick extends CarControl{
+public class Joystick extends AbstractSteering{
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityJoystickBinding binding;
@@ -33,60 +21,31 @@ public class Joystick extends CarControl{
     private TextView powerTextView;
     private TextView directionTextView;
     private JoystickView joystick;
-    private MqttClient mqttClient;
     private ImageView Joystick_camera;
-    private static final String LOCALHOST = "10.0.2.2";
-    private static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
-    private static final String TAG = "MqttController";
-    private static final int QOS = 1;
-    private boolean isConnected = false;
-    private static final String THROTTLE_CONTROL = "/smartcar/control/throttle";
-    private static final String STEERING_CONTROL = "/smartcar/control/steering";
-    private static final int IMAGE_WIDTH = 320;
-    private static final int IMAGE_HEIGHT = 240;
-
     private static final int MOVEMENT_SPEED = 70;
-    private static final int IDLE_SPEED = 0;
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joystick);
-        mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
         Joystick_camera = findViewById(R.id.Joystick_camera);
+        setImageHeight(240);
+        setImageWidth(320);
+        setCamera(Joystick_camera);
+
         angleTextView = (TextView) findViewById(R.id.angleTextView);
         powerTextView = (TextView) findViewById(R.id.powerTextView);
         directionTextView = (TextView) findViewById(R.id.directionTextView);
         joystick = (JoystickView) findViewById(R.id.joystickView);
+
+        initialiseMqttClient(getApplicationContext());
 
         binding = ActivityJoystickBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-     /*   setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_joystick);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-      */
-
-
-      /*  binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-       */
-        angleTextView = (TextView) findViewById(R.id.angleTextView);
-        powerTextView = (TextView) findViewById(R.id.powerTextView);
-        directionTextView = (TextView) findViewById(R.id.directionTextView);
-        //Referencing also other views
-        joystick = (JoystickView) findViewById(R.id.joystickView);
 
         //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
         joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
@@ -99,27 +58,29 @@ public class Joystick extends CarControl{
                 switch (direction) {
                     case JoystickView.FRONT:
                         directionTextView.setText(R.string.front_lab);
-
+                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
 
                         break;
                     case JoystickView.FRONT_RIGHT:
                         directionTextView.setText(R.string.front_right_lab);
-                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
                         break;
                     case JoystickView.RIGHT:
                         directionTextView.setText(R.string.right_lab);
+                        move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
                         break;
                     case JoystickView.RIGHT_BOTTOM:
                         directionTextView.setText(R.string.right_bottom_lab);
                         break;
                     case JoystickView.BOTTOM:
                         directionTextView.setText(R.string.bottom_lab);
+                        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
                         break;
                     case JoystickView.BOTTOM_LEFT:
                         directionTextView.setText(R.string.bottom_left_lab);
                         break;
                     case JoystickView.LEFT:
                         directionTextView.setText(R.string.left_lab);
+                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going left");
                         break;
                     case JoystickView.LEFT_FRONT:
                         directionTextView.setText(R.string.left_front_lab);
@@ -129,47 +90,9 @@ public class Joystick extends CarControl{
                 }
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
-    }
-    public void messageArrived(String topic, MqttMessage message) throws Exception {
-        if (topic.equals("/smartcar/camera")) {
-            final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
 
-            final byte[] payload = message.getPayload();
-            final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
-            for (int ci = 0; ci < colors.length; ++ci) {
-                final byte r = payload[3 * ci];
-                final byte g = payload[3 * ci + 1];
-                final byte b = payload[3 * ci + 2];
-                colors[ci] = Color.rgb(r, g, b);
-            }
-            bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
-            Joystick_camera.setImageBitmap(bm);
-        } else {
-            Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
-        }
+        MqttConnect();
     }
-
-    public void goForward(View v){
-        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
-    }
-    public void goBackward(View v){
-        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
-    }
-    public void goLeft(View v){
-        move(MOVEMENT_SPEED, -STEERING_ANGLE,"Going left");
-    }
-    public void goRight(View v){
-        move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
-    }
-    public void goForwardRight(View view){
-        move(MOVEMENT_SPEED,STEERING_ANGLE,"Going forward right");
-    }
-    public void goForwardLeft(View view){
-        move(MOVEMENT_SPEED,STEERING_ANGLE,"Going forward left");
-    }
-
-
-
 
 
 

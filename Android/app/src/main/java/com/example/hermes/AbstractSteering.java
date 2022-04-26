@@ -22,7 +22,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public abstract class AbstractSteering extends AppCompatActivity {
 
-    private ImageView camera;
+    private ImageView camera ;
     private MqttClient mqttClient;
     private boolean isConnected = false;
     protected AppBarConfiguration appBarConfiguration;
@@ -34,6 +34,13 @@ public abstract class AbstractSteering extends AppCompatActivity {
     private static final String LOCALHOST = "10.0.2.2";
     protected static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
     protected static final String TAG = "MqttController";
+
+
+
+    protected void setCamera(ImageView camera){
+
+        this.camera = camera;
+    }
 
     @Override
     protected void onResume() {
@@ -130,7 +137,10 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
     protected void MqttConnect(){
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-        camera = findViewById(R.id.camera);
+
+        camera = findViewById(R.id.Joystick_camera);
+
+
         connectToMqttBroker();
     }
 
@@ -139,9 +149,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
         startActivity(intent);
     }
 
-    protected void setCamera(ImageView camera){
-        this.camera = camera;
-    }
+
 
     protected void setImageWidth(int width){
         IMAGE_WIDTH = width;

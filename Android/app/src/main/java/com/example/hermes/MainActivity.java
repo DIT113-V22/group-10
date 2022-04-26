@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
       //  startActivity(intent);
 
 
-        Intent intent = new Intent(this, CarControl.class);
+        Intent intent = new Intent(this, Joystick.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 

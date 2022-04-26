@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -38,7 +39,7 @@ public class CarControl extends AbstractSteering {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        setContentView(R.layout.activity_car_control);
         super.onCreate(savedInstanceState);
         initialiseMqttClient(getApplicationContext());
 
