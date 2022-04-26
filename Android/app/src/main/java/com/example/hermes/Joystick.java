@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.example.hermes.ui.MqttClient;
@@ -21,6 +23,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.hermes.databinding.ActivityJoystickBinding;
 import com.zerokol.views.joystickView.JoystickView;
 
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 public class Joystick extends CarControl{
 
     private AppBarConfiguration appBarConfiguration;
@@ -30,7 +34,7 @@ public class Joystick extends CarControl{
     private TextView directionTextView;
     private JoystickView joystick;
     private MqttClient mqttClient;
-    private ImageView camera;
+    private ImageView Joystick_camera;
     private static final String LOCALHOST = "10.0.2.2";
     private static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
     private static final String TAG = "MqttController";
@@ -38,6 +42,8 @@ public class Joystick extends CarControl{
     private boolean isConnected = false;
     private static final String THROTTLE_CONTROL = "/smartcar/control/throttle";
     private static final String STEERING_CONTROL = "/smartcar/control/steering";
+    private static final int IMAGE_WIDTH = 320;
+    private static final int IMAGE_HEIGHT = 240;
 
     private static final int MOVEMENT_SPEED = 70;
     private static final int IDLE_SPEED = 0;
@@ -49,21 +55,22 @@ public class Joystick extends CarControl{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joystick);
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-        camera = findViewById(R.id.Joystick_camera);
+        Joystick_camera = findViewById(R.id.Joystick_camera);
         angleTextView = (TextView) findViewById(R.id.angleTextView);
         powerTextView = (TextView) findViewById(R.id.powerTextView);
         directionTextView = (TextView) findViewById(R.id.directionTextView);
-        //Referencing also other views
         joystick = (JoystickView) findViewById(R.id.joystickView);
 
         binding = ActivityJoystickBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+     /*   setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_joystick);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+      */
 
 
       /*  binding.fab.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +129,24 @@ public class Joystick extends CarControl{
                 }
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
+    }
+    public void messageArrived(String topic, MqttMessage message) throws Exception {
+        if (topic.equals("/smartcar/camera")) {
+            final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
+
+            final byte[] payload = message.getPayload();
+            final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
+            for (int ci = 0; ci < colors.length; ++ci) {
+                final byte r = payload[3 * ci];
+                final byte g = payload[3 * ci + 1];
+                final byte b = payload[3 * ci + 2];
+                colors[ci] = Color.rgb(r, g, b);
+            }
+            bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
+            Joystick_camera.setImageBitmap(bm);
+        } else {
+            Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
+        }
     }
 
     public void goForward(View v){
