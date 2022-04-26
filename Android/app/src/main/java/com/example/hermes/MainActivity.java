@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
       //  startActivity(intent);
 
 
-        Intent intent = new Intent(this, Joystick.class);
+        Intent intent = new Intent(this, CarControl.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
 
