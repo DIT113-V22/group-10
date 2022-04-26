@@ -1,7 +1,7 @@
 package com.example.hermes;
 
-import java.time.*;
-import java.util.Random;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Delivery {
     private final int ID;
@@ -17,7 +17,6 @@ public class Delivery {
     }
 
     public Delivery(String customerID, String date, String time){
-        //needs to be checked. will be updated later.
         this.ID = idGenerator();
         this.customerID = customerID;
         this.date = date;
