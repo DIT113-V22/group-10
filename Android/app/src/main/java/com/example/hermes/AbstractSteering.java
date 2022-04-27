@@ -125,14 +125,13 @@ public abstract class AbstractSteering extends AppCompatActivity {
         }
     }
 
-    public void move(int throttleSpeed, int steeringangle, String actionDescription){
+    public void move(int throttleSpeed, int steeringangle){
         if(! isConnected){
             final String notConnected = "Not connected";
             Log.e(TAG,notConnected);
             Toast.makeText(getApplicationContext(),notConnected,Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.i(TAG,actionDescription);
         mqttClient.publish(THROTTLE_CONTROL,Integer.toString(throttleSpeed),QOS,null);
         mqttClient.publish(STEERING_CONTROL,Integer.toString(steeringangle),QOS,null);
     }

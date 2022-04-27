@@ -15,19 +15,12 @@ import com.zerokol.views.joystickView.JoystickView;
 
 public class Joystick extends AbstractSteering{
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityJoystickBinding binding;
-    private TextView angleTextView;
-    private TextView powerTextView;
-    private TextView directionTextView;
     private JoystickView joystick;
     private ImageView Joystick_camera;
     private static final int MOVEMENT_SPEED = 70;
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +30,7 @@ public class Joystick extends AbstractSteering{
         setImageHeight(240);
         setImageWidth(320);
         setCamera(Joystick_camera);
-
-        angleTextView = (TextView) findViewById(R.id.angleTextView);
-        powerTextView = (TextView) findViewById(R.id.powerTextView);
-        directionTextView = (TextView) findViewById(R.id.directionTextView);
-
-
         initialiseMqttClient(getApplicationContext());
-
         binding = ActivityJoystickBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         MqttConnect();
@@ -56,75 +42,40 @@ public class Joystick extends AbstractSteering{
             @Override
             public void onValueChanged(int angle, int power, int direction) {
                 // TODO Auto-generated method stub
-                angleTextView.setText(" " + String.valueOf(angle) + "°");
-                powerTextView.setText(" " + String.valueOf(power) + "%");
-                int correctAngle= changeAngle(angle);
                 switch (direction) {
                     case JoystickView.FRONT: {
-                        directionTextView.setText(R.string.front_lab);
-                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE);
                     }
-
                         break;
                     case JoystickView.FRONT_RIGHT:
-                        directionTextView.setText(R.string.front_right_lab);
-                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going Front right");
+                        move(MOVEMENT_SPEED, -STEERING_ANGLE);
                         break;
                     case JoystickView.RIGHT: {
-                        directionTextView.setText(R.string.right_lab);
-                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going right");
+                        move(MOVEMENT_SPEED, -STEERING_ANGLE);
                     }
                         break;
                     case JoystickView.RIGHT_BOTTOM:
-                        directionTextView.setText(R.string.right_bottom_lab);
-                        move(-MOVEMENT_SPEED, -STEERING_ANGLE, "Going right");
+                        move(-MOVEMENT_SPEED, -STEERING_ANGLE);
                         break;
                     case JoystickView.BOTTOM: {
-                        directionTextView.setText(R.string.bottom_lab);
-                        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
+                        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE);
                     }
                         break;
                     case JoystickView.BOTTOM_LEFT:
-                        directionTextView.setText(R.string.bottom_left_lab);
-                        move(-MOVEMENT_SPEED,  STEERING_ANGLE, "Going left");
+                        move(-MOVEMENT_SPEED,  STEERING_ANGLE);
                         break;
                     case JoystickView.LEFT: {
-                        directionTextView.setText(R.string.left_lab);
-                        move(MOVEMENT_SPEED,  STEERING_ANGLE, "Going left");
+                        move(MOVEMENT_SPEED,  STEERING_ANGLE);
                     }
                         break;
                     case JoystickView.LEFT_FRONT:
-                        directionTextView.setText(R.string.left_front_lab);
-                        move(MOVEMENT_SPEED, correctAngle, "Going left");
+                        move(MOVEMENT_SPEED, STEERING_ANGLE);
                         break;
                     default:
-                        directionTextView.setText(R.string.center_lab);
-                        move(0, correctAngle, "Stopping");
+                        move(0, 0);
                 }
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
-
-
-    }
-    public int changeAngle(int angle){
-        int correctAngle=0;
-      /*  if(angle>=90 && angle<=180){
-            correctAngle=90-angle;
-        }
-        else if (angle < 90 && angle >= 0){
-            correctAngle = angle;
-        }
-        else if (angle >= 270 && angle < 360)
-        {
-            correctAngle=angle - 270;
-        }
-        else if (angle >= 180 && angle < 270){
-            correctAngle=angle - 180;
-        }
-
-       */
-
-         return  correctAngle;
     }
 
     @Override

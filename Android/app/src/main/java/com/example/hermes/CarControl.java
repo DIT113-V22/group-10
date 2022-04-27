@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ public class CarControl extends AbstractSteering {
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_car_control);
@@ -46,23 +48,6 @@ public class CarControl extends AbstractSteering {
         binding = ActivityCarControlBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       // setSupportActionBar(binding.toolbar);
-
-       // NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_car_control);
-        //appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-      /* binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-       */
-
-
         Button b = findViewById(R.id.backButton);
         Button f = findViewById(R.id.ForButton);
         Button l = findViewById(R.id.leftButton);
@@ -71,9 +56,9 @@ public class CarControl extends AbstractSteering {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
-                    move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
+                    move(-MOVEMENT_SPEED, STRAIGHT_ANGLE);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                    move(IDLE_SPEED, STRAIGHT_ANGLE);
                 }
                 return false;
             }
@@ -82,9 +67,9 @@ public class CarControl extends AbstractSteering {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+                    move(MOVEMENT_SPEED, STRAIGHT_ANGLE);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                    move(IDLE_SPEED, STRAIGHT_ANGLE);
                 }
                 return false;
             }
@@ -93,9 +78,9 @@ public class CarControl extends AbstractSteering {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going left");
+                    move(MOVEMENT_SPEED, -STEERING_ANGLE);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                    move(IDLE_SPEED, STRAIGHT_ANGLE);
                 }
                 return false;
             }
@@ -104,9 +89,9 @@ public class CarControl extends AbstractSteering {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
+                    move(MOVEMENT_SPEED, STEERING_ANGLE);
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    move(IDLE_SPEED, STRAIGHT_ANGLE, "Stopping");
+                    move(IDLE_SPEED, STRAIGHT_ANGLE);
                 }
                 return false;
             }
