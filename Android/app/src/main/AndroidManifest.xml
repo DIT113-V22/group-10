@@ -15,8 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".ControlSelection"
+            android:exported="false" />
+        <activity
             android:name=".Joystick"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
@@ -35,7 +38,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name="org.eclipse.paho.android.service.MqttService"></service>
+        <service android:name="org.eclipse.paho.android.service.MqttService" />
     </application>
 
 </manifest>

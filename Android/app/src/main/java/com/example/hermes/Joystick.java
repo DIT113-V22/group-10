@@ -28,6 +28,7 @@ public class Joystick extends AbstractSteering{
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +41,14 @@ public class Joystick extends AbstractSteering{
         angleTextView = (TextView) findViewById(R.id.angleTextView);
         powerTextView = (TextView) findViewById(R.id.powerTextView);
         directionTextView = (TextView) findViewById(R.id.directionTextView);
-        joystick = (JoystickView) findViewById(R.id.joystickView);
+
 
         initialiseMqttClient(getApplicationContext());
 
         binding = ActivityJoystickBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        MqttConnect();
+        joystick =  findViewById(R.id.joystickView);
 
         //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
         joystick.setOnJoystickMoveListener(new JoystickView.OnJoystickMoveListener() {
@@ -55,32 +58,37 @@ public class Joystick extends AbstractSteering{
                 // TODO Auto-generated method stub
                 angleTextView.setText(" " + String.valueOf(angle) + "°");
                 powerTextView.setText(" " + String.valueOf(power) + "%");
+                int correctAngle= changeAngle(angle);
                 switch (direction) {
-                    case JoystickView.FRONT:
+                    case JoystickView.FRONT: {
                         directionTextView.setText(R.string.front_lab);
-                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
+                        move(MOVEMENT_SPEED, correctAngle, "Going forward");
+                    }
 
                         break;
                     case JoystickView.FRONT_RIGHT:
                         directionTextView.setText(R.string.front_right_lab);
                         break;
-                    case JoystickView.RIGHT:
+                    case JoystickView.RIGHT: {
                         directionTextView.setText(R.string.right_lab);
-                        move(MOVEMENT_SPEED, STEERING_ANGLE, "Going right");
+                        move(MOVEMENT_SPEED, correctAngle, "Going right");
+                    }
                         break;
                     case JoystickView.RIGHT_BOTTOM:
                         directionTextView.setText(R.string.right_bottom_lab);
                         break;
-                    case JoystickView.BOTTOM:
+                    case JoystickView.BOTTOM: {
                         directionTextView.setText(R.string.bottom_lab);
-                        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
+                        move(-MOVEMENT_SPEED, correctAngle, "Going backward");
+                    }
                         break;
                     case JoystickView.BOTTOM_LEFT:
                         directionTextView.setText(R.string.bottom_left_lab);
                         break;
-                    case JoystickView.LEFT:
+                    case JoystickView.LEFT: {
                         directionTextView.setText(R.string.left_lab);
-                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going left");
+                        move(MOVEMENT_SPEED, correctAngle, "Going left");
+                    }
                         break;
                     case JoystickView.LEFT_FRONT:
                         directionTextView.setText(R.string.left_front_lab);
@@ -91,7 +99,24 @@ public class Joystick extends AbstractSteering{
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
 
-        MqttConnect();
+
+    }
+    public int changeAngle(int angle){
+        int correctAngle=0;
+        if(angle>=90 && angle<=180){
+            correctAngle=90-angle;
+        }
+        else if (angle < 90 && angle >= 0){
+            correctAngle=90-angle;
+        }
+        else if (angle > 0 && angle >= 270)
+        {
+            correctAngle=angle - 270;
+        }
+        else{
+            correctAngle=angle-270;
+        }
+         return  correctAngle;
     }
 
 

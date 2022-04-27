@@ -34,12 +34,14 @@ public abstract class AbstractSteering extends AppCompatActivity {
     private static final String LOCALHOST = "10.0.2.2";
     protected static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
     protected static final String TAG = "MqttController";
+    private static boolean joystickenable = false;
 
 
 
     protected void setCamera(ImageView camera){
 
         this.camera = camera;
+        joystickenable=true;
     }
 
     @Override
@@ -137,8 +139,12 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
     protected void MqttConnect(){
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-
-        camera = findViewById(R.id.Joystick_camera);
+        if(joystickenable == true){
+            camera=findViewById(R.id.Joystick_camera);
+        }
+        else {
+            camera = findViewById(R.id.camera);
+        }
 
 
         connectToMqttBroker();

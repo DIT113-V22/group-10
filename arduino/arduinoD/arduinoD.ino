@@ -34,14 +34,7 @@ const auto mqttBrokerUrl = "192.168.0.40";
 #endif
 const auto maxDistance = 400;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
-const auto forwardSpeed =60;
-const auto reverseSpeed = -60;
-const auto degreeLeft = -75; 
-const auto degreeRight = 75;
-const auto diagonalFirst = 80;
-const auto diagonalRight = 15;
-const auto diagonalLeft = -15;
-const auto diagonalDelay = 500;
+
 
 std::vector<char> frameBuffer;
 

@@ -27,4 +27,5 @@
     <string name="left_lab" />
     <string name="left_front_lab" />
     <string name="center_lab" />
+    <string name="title_activity_control_selection">ControlSelection</string>
 </resources>
