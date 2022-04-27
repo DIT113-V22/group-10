@@ -92,9 +92,11 @@ public class Joystick extends AbstractSteering{
                         break;
                     case JoystickView.LEFT_FRONT:
                         directionTextView.setText(R.string.left_front_lab);
+                        move(MOVEMENT_SPEED, correctAngle, "Going left");
                         break;
                     default:
                         directionTextView.setText(R.string.center_lab);
+                        move(0, correctAngle, "Stopping");
                 }
             }
         }, JoystickView.DEFAULT_LOOP_INTERVAL);
@@ -107,20 +109,17 @@ public class Joystick extends AbstractSteering{
             correctAngle=90-angle;
         }
         else if (angle < 90 && angle >= 0){
-            correctAngle=90-angle;
+            correctAngle = angle;
         }
-        else if (angle > 0 && angle >= 270)
+        else if (angle >= 270 && angle < 360)
         {
             correctAngle=angle - 270;
         }
-        else{
-            correctAngle=angle-270;
+        else if (angle >= 180 && angle < 270){
+            correctAngle=angle + 180;
         }
          return  correctAngle;
     }
-
-
-
 
     @Override
     public boolean onSupportNavigateUp() {
