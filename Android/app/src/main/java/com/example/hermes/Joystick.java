@@ -62,32 +62,35 @@ public class Joystick extends AbstractSteering{
                 switch (direction) {
                     case JoystickView.FRONT: {
                         directionTextView.setText(R.string.front_lab);
-                        move(MOVEMENT_SPEED, correctAngle, "Going forward");
+                        move(MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going forward");
                     }
 
                         break;
                     case JoystickView.FRONT_RIGHT:
                         directionTextView.setText(R.string.front_right_lab);
+                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going Front right");
                         break;
                     case JoystickView.RIGHT: {
                         directionTextView.setText(R.string.right_lab);
-                        move(MOVEMENT_SPEED, correctAngle, "Going right");
+                        move(MOVEMENT_SPEED, -STEERING_ANGLE, "Going right");
                     }
                         break;
                     case JoystickView.RIGHT_BOTTOM:
                         directionTextView.setText(R.string.right_bottom_lab);
+                        move(-MOVEMENT_SPEED, -STEERING_ANGLE, "Going right");
                         break;
                     case JoystickView.BOTTOM: {
                         directionTextView.setText(R.string.bottom_lab);
-                        move(-MOVEMENT_SPEED, correctAngle, "Going backward");
+                        move(-MOVEMENT_SPEED, STRAIGHT_ANGLE, "Going backward");
                     }
                         break;
                     case JoystickView.BOTTOM_LEFT:
                         directionTextView.setText(R.string.bottom_left_lab);
+                        move(-MOVEMENT_SPEED,  STEERING_ANGLE, "Going left");
                         break;
                     case JoystickView.LEFT: {
                         directionTextView.setText(R.string.left_lab);
-                        move(MOVEMENT_SPEED, correctAngle, "Going left");
+                        move(MOVEMENT_SPEED,  STEERING_ANGLE, "Going left");
                     }
                         break;
                     case JoystickView.LEFT_FRONT:
@@ -105,7 +108,7 @@ public class Joystick extends AbstractSteering{
     }
     public int changeAngle(int angle){
         int correctAngle=0;
-        if(angle>=90 && angle<=180){
+      /*  if(angle>=90 && angle<=180){
             correctAngle=90-angle;
         }
         else if (angle < 90 && angle >= 0){
@@ -116,8 +119,11 @@ public class Joystick extends AbstractSteering{
             correctAngle=angle - 270;
         }
         else if (angle >= 180 && angle < 270){
-            correctAngle=angle + 180;
+            correctAngle=angle - 180;
         }
+
+       */
+
          return  correctAngle;
     }
 
