@@ -34,14 +34,6 @@ public abstract class AbstractSteering extends AppCompatActivity {
     private static final String LOCALHOST = "10.0.2.2";
     protected static final String MQTT_SERVER = "tcp://" + LOCALHOST + ":1883";
     protected static final String TAG = "MqttController";
-    private static boolean joystickenable = false;
-
-
-
-    protected void setCamera(ImageView camera){
-
-        this.camera = camera;
-    }
 
     @Override
     protected void onResume() {
@@ -135,6 +127,10 @@ public abstract class AbstractSteering extends AppCompatActivity {
         mqttClient.publish(STEERING_CONTROL,Integer.toString(steeringangle),QOS,null);
     }
 
+    protected void initialiseMqttClient(Context context){
+        this.mqttClient = new MqttClient(context, LOCALHOST, TAG);
+    }
+
     protected void MqttConnect(ImageView camera){
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
 
@@ -149,7 +145,15 @@ public abstract class AbstractSteering extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void changeToJoystick(View view){
+        Intent intent = new Intent(this, Joystick.class);
+        startActivity(intent);
+    }
 
+    public void changeToButtons(View view){
+        Intent intent = new Intent(this, CarControl.class);
+        startActivity(intent);
+    }
 
     protected void setImageWidth(int width){
         IMAGE_WIDTH = width;
@@ -159,7 +163,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
         IMAGE_HEIGHT = height;
     }
 
-    protected void initialiseMqttClient(Context context){
-        this.mqttClient = new MqttClient(context, LOCALHOST, TAG);
+    protected void setCamera(ImageView camera){
+        this.camera = camera;
     }
 }

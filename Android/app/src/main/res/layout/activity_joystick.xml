@@ -38,12 +38,22 @@
         android:layout_width="53dp"
         android:layout_height="41dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:onClick="home"
         app:icon="?attr/actionModeCloseDrawable"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/Buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:onClick="changeToButtons"
+        android:text="Buttons"
+        app:layout_anchor="@+id/toolbar"
+        app:layout_anchorGravity="end|center" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

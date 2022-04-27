@@ -45,12 +45,10 @@ public class CarControl extends AbstractSteering {
         setContentView(R.layout.activity_car_control);
         super.onCreate(savedInstanceState);
         initialiseMqttClient(getApplicationContext());
-
         binding = ActivityCarControlBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         camera= findViewById(R.id.camera);
         setCamera(camera);
-
 
         Button b = findViewById(R.id.backButton);
         Button f = findViewById(R.id.ForButton);
