@@ -37,6 +37,7 @@ public class CarControl extends AbstractSteering {
     private static final int IDLE_SPEED = 0;
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
+    private  ImageView camera;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -47,6 +48,9 @@ public class CarControl extends AbstractSteering {
 
         binding = ActivityCarControlBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        camera= findViewById(R.id.camera);
+        setCamera(camera);
+
 
         Button b = findViewById(R.id.backButton);
         Button f = findViewById(R.id.ForButton);
@@ -96,7 +100,7 @@ public class CarControl extends AbstractSteering {
                 return false;
             }
         });
-        MqttConnect();
+        MqttConnect(camera);
    }
 
     @Override

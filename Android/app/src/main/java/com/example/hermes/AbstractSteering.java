@@ -22,7 +22,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public abstract class AbstractSteering extends AppCompatActivity {
 
-    private ImageView camera ;
+    protected ImageView camera ;
     private MqttClient mqttClient;
     private boolean isConnected = false;
     protected AppBarConfiguration appBarConfiguration;
@@ -41,7 +41,6 @@ public abstract class AbstractSteering extends AppCompatActivity {
     protected void setCamera(ImageView camera){
 
         this.camera = camera;
-        joystickenable=true;
     }
 
     @Override
@@ -136,15 +135,11 @@ public abstract class AbstractSteering extends AppCompatActivity {
         mqttClient.publish(STEERING_CONTROL,Integer.toString(steeringangle),QOS,null);
     }
 
-    protected void MqttConnect(){
+    protected void MqttConnect(ImageView camera){
         mqttClient = new MqttClient(getApplicationContext(),MQTT_SERVER, TAG);
-        if(joystickenable == true){
-            camera=findViewById(R.id.Joystick_camera);
-        }
-        else {
-            camera = findViewById(R.id.camera);
-        }
 
+        int cameraId = camera.getId();
+            this.camera = findViewById(cameraId);
 
         connectToMqttBroker();
     }

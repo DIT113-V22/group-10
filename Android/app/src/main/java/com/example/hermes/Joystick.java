@@ -33,7 +33,7 @@ public class Joystick extends AbstractSteering{
         initialiseMqttClient(getApplicationContext());
         binding = ActivityJoystickBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        MqttConnect();
+        MqttConnect(Joystick_camera);
         joystick =  findViewById(R.id.joystickView);
 
         //Event listener that always returns the variation of the angle in degrees, motion power in percentage and direction of movement
