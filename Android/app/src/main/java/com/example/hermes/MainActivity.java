@@ -72,5 +72,15 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(01, builder.build());
     }
 
+    public void openLogin(View view){
+        Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
+    }
+
+    public void createAccount(View view){
+        Intent intent = new Intent(this, RegisterAccount.class);
+        startActivity(intent);
+    }
+
 
 }
