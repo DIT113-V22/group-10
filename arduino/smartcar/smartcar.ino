@@ -20,6 +20,7 @@ BrushedMotor leftMotor(arduinoRuntime, smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
 SimpleCar car(control);
+bool obstacleAhead = false;
 
 #include <Smartcar.h>
 
@@ -39,11 +40,16 @@ SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
 std::vector<char> frameBuffer;
 
-void avoidObstacle(){
+void detectObstacle(){
   int distance = front.getDistance();
   if(distance <= 100 && distance != 0){
-    car.setSpeed(0);
+    obstacleAhead = true;
     }
+  }
+
+void drive(int carSpeed){
+  if(obstacleAhead && carSpeed>0){car.setSpeed(0);}
+  else{car.setSpeed(carSpeed);}
   }
 
 void setup() {
@@ -75,7 +81,7 @@ void setup() {
   mqtt.subscribe("/smartcar/control/#", 1);
   mqtt.onMessage([](String topic, String message) {
     if (topic == "/smartcar/control/throttle") {
-      car.setSpeed(message.toInt());
+      drive(message.toInt());
     } else if (topic == "/smartcar/control/steering") {
       car.setAngle(message.toInt());
     } else {
@@ -97,7 +103,7 @@ void loop() {
                    false, 0);
     }
 #endif
-    avoidObstacle();
+    detectObstacle();
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
