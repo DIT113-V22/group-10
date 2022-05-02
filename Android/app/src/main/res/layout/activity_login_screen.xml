@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/sky"
     tools:context=".LoginScreen">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,16 +16,7 @@
     <include
         android:id="@+id/include"
         layout="@layout/content_login_screen"
-        android:background="@drawable/sky" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_height="522dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -36,13 +26,5 @@
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="top|center"
         app:popupTheme="@style/Theme.Hermes.PopupOverlay" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="181dp"
-        android:text="Don't have an account?"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="16sp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
