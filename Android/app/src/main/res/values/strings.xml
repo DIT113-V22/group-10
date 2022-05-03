@@ -12,6 +12,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="title_activity_register_account">RegisterAccount</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -24,4 +25,21 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_create_account_details">CreateAccountDetails</string>
+
+    <string name="title_activity_joystick">Joystick</string>
+    <string name="angle_lab" />
+    <string name="none" />
+    <string name="power_lab" />
+    <string name="direction_lab" />
+    <string name="rights_lab" />
+    <string name="front_lab" />
+    <string name="front_right_lab" />
+    <string name="right_lab" />
+    <string name="right_bottom_lab" />
+    <string name="bottom_lab" />
+    <string name="bottom_left_lab" />
+    <string name="left_lab" />
+    <string name="left_front_lab" />
+    <string name="center_lab" />
+    <string name="title_activity_control_selection">ControlSelection</string>
 </resources>

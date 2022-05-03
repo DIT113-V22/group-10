@@ -35,6 +35,7 @@ const auto mqttBrokerUrl = "192.168.0.40";
 const auto maxDistance = 400;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
+
 std::vector<char> frameBuffer;
 
 void setup() {

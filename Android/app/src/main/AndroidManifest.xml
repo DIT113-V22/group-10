@@ -28,6 +28,14 @@
             android:name=".LoginScreen"
             android:exported="false"
             android:label="@string/title_activity_login_screen"
+                  
+        <activity      
+            android:name=".ControlSelection"
+            android:exported="false" />
+        <activity
+            android:name=".Joystick"
+            android:exported="true"
+            android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".CarControl"

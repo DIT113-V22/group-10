@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class JsonManager {
 
-    public void writeDelivery(Delivery delivery, String filePath){
+    public void writeDelivery(Delivery delivery, String filePath) throws JSONException {
         String absolutePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\hermes\\data\\";
 
         JSONObject jsonDeliveryDetails = new JSONObject();
