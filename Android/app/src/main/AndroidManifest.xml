@@ -27,7 +27,7 @@
         <activity
             android:name=".LoginScreen"
             android:exported="false"
-            android:label="@string/title_activity_login_screen"
+            android:label="@string/title_activity_login_screen" />
                   
         <activity      
             android:name=".ControlSelection"
