@@ -21,7 +21,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
-        layout="@layout/content_register_account"
-        android:layout_height="372dp" />
+        layout="@layout/content_register_account" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -20,10 +20,6 @@
             android:label="@string/title_activity_create_account_details"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:exported="false"
-            android:label="@string/title_activity_login" />
-        <activity
             android:name=".RegisterAccount"
             android:exported="false"
             android:label="@string/title_activity_register_account"

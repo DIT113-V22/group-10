@@ -15,8 +15,7 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_login_screen"
-        android:layout_height="522dp" />
+        layout="@layout/content_login_screen" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
