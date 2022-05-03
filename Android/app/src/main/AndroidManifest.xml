@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".CreateAccountDetails"
+            android:exported="false"
+            android:label="@string/title_activity_create_account_details"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".RegisterAccount"
+            android:exported="false"
+            android:label="@string/title_activity_register_account"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".LoginScreen"
+            android:exported="false"
+            android:label="@string/title_activity_login_screen" />
+                  
+        <activity      
             android:name=".ControlSelection"
             android:exported="false" />
         <activity
