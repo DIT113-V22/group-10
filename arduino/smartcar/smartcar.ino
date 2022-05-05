@@ -1,4 +1,3 @@
-//Adapted from: https://github.com/DIT112-V21/smartcar-mqtt-controller/blob/main/arduino/smartcar_mqtt/smartcar_mqtt.ino
 #include <vector>
 
 #include <MQTT.h>
@@ -21,6 +20,7 @@ BrushedMotor rightMotor(arduinoRuntime, smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
 SimpleCar car(control);
 bool obstacleAhead = false;
+bool messageFlag = false;
 
 #include <Smartcar.h>
 
@@ -34,6 +34,10 @@ const auto triggerPin = 33;
 const auto echoPin = 32;
 const auto mqttBrokerUrl = "192.168.0.40";
 #endif
+const int fSpeed = 50;    // 50% of the full speed forward
+const int bSpeed = -40;   // 40% of the full speed backward
+const int lDegrees = -75; // degrees to turn left
+const int rDegrees = 75;  // degrees to turn right
 const auto maxDistance = 400;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 
@@ -41,16 +45,35 @@ SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
 std::vector<char> frameBuffer;
 
 void detectObstacle(){
-  int distance = front.getDistance();
-  if(distance <= 100 && distance != 0){
-    obstacleAhead = true;
+     int distance = front.getDistance();
+     int distanceToObstacle = 100;
+     
+
+    if (distance !=0 && distance <= distanceToObstacle)
+    {
+        
+        obstacleAhead=true;
+        
+    }
+    else{
+      obstacleAhead=false;
     }
   }
+  String obstacleDetectionMessage(){
+    String msg = "obstacle warning";
+    if (obstacleAhead){
+        return msg;
+    }
+    return "";
+   }
+
 
 void drive(int carSpeed){
   if(obstacleAhead && carSpeed>0){car.setSpeed(0);}
-  else{car.setSpeed(carSpeed);}
+  else{car.setSpeed(carSpeed);
   }
+  
+}
 
 void setup() {
   Serial.begin(9600);
@@ -84,6 +107,7 @@ void setup() {
       drive(message.toInt());
     } else if (topic == "/smartcar/control/steering") {
       car.setAngle(message.toInt());
+  
     } else {
       Serial.println(topic + " " + message);
     }
@@ -91,6 +115,7 @@ void setup() {
 }
 
 void loop() {
+ // detectObstacle();
   if (mqtt.connected()) {
     mqtt.loop();
     const auto currentTime = millis();
@@ -109,6 +134,10 @@ void loop() {
       previousTransmission = currentTime;
       const auto distance = String(front.getDistance());
       mqtt.publish("/smartcar/ultrasound/front", distance);
+      if(messageFlag!= obstacleAhead){
+      mqtt.publish("/smartcar/control/obstacleMsg", String(obstacleDetectionMessage()));
+      messageFlag=obstacleAhead;
+      }
     }
   }
 #ifdef __SMCE__
