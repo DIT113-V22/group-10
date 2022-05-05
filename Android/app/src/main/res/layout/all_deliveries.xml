@@ -50,12 +50,11 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/container"
-        android:layout_width="409dp"
-        android:layout_height="541dp"
+        android:layout_width="407dp"
+        android:layout_height="637dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabs" />
 </androidx.constraintlayout.widget.ConstraintLayout>

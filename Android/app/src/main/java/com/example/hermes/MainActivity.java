@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view) {
         //Intent intent = new Intent(this, CarControl.class);
-      //  startActivity(intent);
-
+        //startActivity(intent);
 
         Intent intent = new Intent(this, ControlSelection.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

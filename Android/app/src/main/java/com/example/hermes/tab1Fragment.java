@@ -5,29 +5,59 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import androidx.fragment.app.Fragment;
-import com.example.hermes.databinding.FragmentHomeBinding;
+
 import com.example.hermes.ui.CustomListAdapter;
 import com.mongodb.lang.Nullable;
+
 import java.util.ArrayList;
 
 public class tab1Fragment extends Fragment {
     public static final String TAG = "Tab1Fragment";
 
-    private tab1ViewModel tab1ViewModel;
-    private FragmentHomeBinding binding;
+
     private ListView ongoingL;
     private DatabaseManager db = new DatabaseManager();
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@Nullable LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.tab1fragment, container, false);
 
         ongoingL = (ListView) view.findViewById(R.id.ongoingList);
 
 
+        /*
+        ArrayList<String> nameList = new ArrayList<>();
+        nameList.add("amin");
+        nameList.add("daniel");
+        nameList.add("yasamin");
+        nameList.add("amin");
+        nameList.add("daniel");
+        nameList.add("yasamin");
+        nameList.add("amin");
+        nameList.add("daniel");
+        nameList.add("yasamin");
+        nameList.add("amin");
+        nameList.add("daniel");
+        nameList.add("yasamin");
+        ArrayList<String> infoList = new ArrayList<>();
+        infoList.add("smart");
+        infoList.add("very smart");
+        infoList.add("super smart");
+        infoList.add("smart");
+        infoList.add("very smart");
+        infoList.add("super smart");
+        infoList.add("smart");
+        infoList.add("very smart");
+        infoList.add("super smart");
+        infoList.add("smart");
+        infoList.add("very smart");
+        infoList.add("super smart");
+
+         */
         ArrayList<String> nameList = getDeliveryNames();
         ArrayList<String> infoList = getDeliveryInfos();
         int imageID = R.drawable.box;
@@ -65,5 +95,7 @@ public class tab1Fragment extends Fragment {
         }
         return result;
     }
+
+
 
 }

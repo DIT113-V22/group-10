@@ -8,12 +8,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+
 // Adapted from https://github.com/mitchtabian/TabFragments
 
 public class deliveryTabs extends AppCompatActivity {
 
     private static final String TAG = "deliveryTabs";
-
+    private DatabaseManager db = new DatabaseManager();
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
@@ -25,23 +26,21 @@ public class deliveryTabs extends AppCompatActivity {
         setContentView(R.layout.all_deliveries);
         Log.d(TAG, "onCreate: Starting.");
 
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        mSectionsPageAdapter = new SectionsPageAdapter(this, getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        mViewPager.setAdapter(mSectionsPageAdapter);
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-    }
 
-    private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new tab1Fragment(), "TAB1");
-        adapter.addFragment(new tab2Fragment(), "TAB2");
-        viewPager.setAdapter(adapter);
-    }
 
+        Delivery test = new Delivery("1234");
+        db.storeDelivery(test);
+
+    }
 
 }
 

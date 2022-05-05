@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import com.example.hermes.R;
+import com.example.hermes.TermsandConditions;
 import com.example.hermes.deliveryTabs;
 
 public class HomeFragment extends Fragment {
@@ -23,6 +24,14 @@ public class HomeFragment extends Fragment {
 
         allDeliveriesB.setOnClickListener(view1 -> {
             Intent intent = new Intent(getActivity(), deliveryTabs.class);
+            startActivity(intent);
+        });
+
+
+
+        Button b = (Button) view.findViewById(R.id.button11);
+        b.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), TermsandConditions.class);
             startActivity(intent);
         });
         return view;
