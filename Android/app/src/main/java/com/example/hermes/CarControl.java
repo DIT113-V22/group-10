@@ -99,6 +99,7 @@ public class CarControl extends AbstractSteering {
             }
         });
         MqttConnect(camera);
+
    }
 
     @Override

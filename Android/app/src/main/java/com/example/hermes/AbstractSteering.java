@@ -70,6 +70,8 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
                     mqttClient.subscribe("/smartcar/ultrasound/front", QOS, null);
                     mqttClient.subscribe("/smartcar/camera", QOS, null);
+                    mqttClient.subscribe("/smartcar/control/obstacleMsg",QOS,null);
+
                 }
 
                 @Override
@@ -94,6 +96,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
 
                         final byte[] payload = message.getPayload();
+
                         final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
                         for (int ci = 0; ci < colors.length; ++ci) {
                             final byte r = payload[3 * ci];
@@ -103,7 +106,32 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         }
                         bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
                         camera.setImageBitmap(bm);
-                    } else {
+
+                    }
+                   /* else if(topic.equals("/smartcar/ultrasound/front")) {
+                        String distance = (String) message.toString();
+                        String d = distance.substring(0,1);
+                        String s= distance.substring(2,3);
+                        int dis = Integer.parseInt(d);
+                        int dist= Integer.parseInt(s);
+                        if ( (dis==0 && dist <9) ||(dis==1 && dist<5)) {
+                            final String obstacleWarning= "Obstacle warning";
+                            Log.i(TAG, obstacleWarning);
+                            Toast.makeText(getApplicationContext(), obstacleWarning, Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    */
+                    else if(topic.equals("/smartcar/control/obstacleMsg")){
+                        String m= message.toString();
+                        if(!m.isEmpty()) {
+                            Log.i(TAG, message.toString());
+                            Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                        else {
                         Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
                     }
                 }
@@ -112,6 +140,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
                 public void deliveryComplete(IMqttDeliveryToken token) {
                     Log.d(TAG, "Message delivered");
                 }
+
             });
         }
     }
