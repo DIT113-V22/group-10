@@ -1,62 +1,31 @@
 package com.example.hermes.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import com.example.hermes.JsonManager;
 import com.example.hermes.R;
-import com.example.hermes.databinding.FragmentHomeBinding;
-
-import org.json.JSONArray;
-import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
+import com.example.hermes.deliveryTabs;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
-    private JsonManager jsonManager;
-
+    private Button allDeliveriesB;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        allDeliveriesB = (Button) view.findViewById(R.id.allDeliveriesB);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        ListView deliveryList = root.findViewById(R.id.DList);
-
-        //only fo the functionality. it'll be changed with the data_base
-        ArrayList<String> list = new ArrayList<>();
-        list.add("Amin");
-        list.add("Daniel");
-
-        jsonManager = new JsonManager();
-        JSONObject j = jsonManager.readJsonObject("com/example/hermes/data/deliveries.Json");
-        JSONArray array = (JSONArray) j.get("deliveries");
-
-        //ArrayAdapter<Delivery> arrayAdapter = new ArrayAdapter<Delivery>(getContext(), android.R.layout.simple_list_item_1, (List<Delivery>) array);
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list);
-        
-        deliveryList.setAdapter(arrayAdapter);
-
-
-
-        return root;
-
+        allDeliveriesB.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(), deliveryTabs.class);
+            startActivity(intent);
+        });
+        return view;
     }
 
     private void setContentView(ConstraintLayout root) {

@@ -10,20 +10,24 @@ import android.widget.TextView;
 
 import com.example.hermes.R;
 
+import java.util.ArrayList;
+
 public class CustomListAdapter extends ArrayAdapter {
 
     private final Activity context;
-    private final Integer[] imageIDarray;
-    private final String[] nameArray;
-    private final String[] infoArray;
+    private final Integer imageID;
+    private final ArrayList<String> nameList;
+    private final ArrayList<String> infoList;
 
-    public CustomListAdapter(Activity context, String[] nameArrayParam, String[] infoArrayParam, Integer[] imageIDArrayParam){
+    public CustomListAdapter(Activity context, ArrayList<String> nameList, ArrayList<String> infoList, Integer imageID){
 
-        super(context, R.layout.listview_done, nameArrayParam);
+        super(context, R.layout.listview_done, nameList);
+
+
         this.context=context;
-        this.imageIDarray = imageIDArrayParam;
-        this.nameArray = nameArrayParam;
-        this.infoArray = infoArrayParam;
+        this.imageID = imageID;
+        this.nameList = nameList;
+        this.infoList = infoList;
 
     }
 
@@ -37,9 +41,9 @@ public class CustomListAdapter extends ArrayAdapter {
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imageView1ID);
 
         //this code sets the values of the objects to values from the arrays
-        nameTextField.setText(nameArray[position]);
-        infoTextField.setText(infoArray[position]);
-        imageView.setImageResource(imageIDarray[position]);
+        nameTextField.setText(nameList.get(position));
+        infoTextField.setText(infoList.get(position));
+        imageView.setImageResource(imageID);
 
         return rowView;
 

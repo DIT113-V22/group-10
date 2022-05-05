@@ -16,6 +16,7 @@ public class JsonManager {
         String absolutePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\hermes\\data\\";
 
         JSONObject jsonDeliveryDetails = new JSONObject();
+        jsonDeliveryDetails.put("ID", delivery.getID());
         jsonDeliveryDetails.put("customerID", delivery.getCustomerID());
         jsonDeliveryDetails.put("time", delivery.getTime());
         jsonDeliveryDetails.put("date", delivery.getDate());
