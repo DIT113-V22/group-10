@@ -35,16 +35,25 @@ const auto echoPin = 32;
 const auto mqttBrokerUrl = "192.168.0.40";
 #endif
 const auto maxDistance = 400;
+const auto SIDE_LEFT_PIN = 1;
+const auto SIDE_RIGHT_PIN = 2;
 SR04 front(arduinoRuntime, triggerPin, echoPin, maxDistance);
+GP2Y0A02 leftSide(arduinoRuntime, SIDE_LEFT_PIN);
+GP2Y0A02 rightSide(arduinoRuntime, SIDE_RIGHT_PIN);
 
 
 std::vector<char> frameBuffer;
 
-void detectObstacle(){
-  int distance = front.getDistance();
-  if(distance <= 100 && distance != 0){
-    obstacleAhead = true;
-    }
+bool detectObstacle(){
+  auto distance = front.getDistance();
+  if(distance <= 100 && distance != 0)
+    return true;
+  auto leftDistance = leftSide.getDistance();
+  auto rightDistance = rightSide.getDistance();
+  if(leftDistance > 0 || rightDistance > 0)
+    return true;
+
+  return false;
   }
 
 void drive(int carSpeed){
@@ -103,7 +112,7 @@ void loop() {
                    false, 0);
     }
 #endif
-    detectObstacle();
+    obstacleAhead = detectObstacle();
     static auto previousTransmission = 0UL;
     if (currentTime - previousTransmission >= oneSecond) {
       previousTransmission = currentTime;
