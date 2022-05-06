@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,6 +29,12 @@ public class RegisterAccount extends AppCompatActivity {
     private EditText editTextTextEmailAddress3;
     private EditText editTextTextPassword2;
     private EditText editTextTextPassword3;
+    private ImageView emailWarning;
+    private ImageView passwordWarning;
+    private ImageView passwordMatchWarning;
+    private TextView emailWarningText;
+    private TextView passwordWarningText;
+    private TextView passwordMatchWarningText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +58,7 @@ public class RegisterAccount extends AppCompatActivity {
         });
 
        */
-    }
-    public void accountDetails(View view){
-        Intent intent = new Intent(this, CreateAccountDetails.class);
-        startActivity(intent);
+
     }
 
     @Override
@@ -71,15 +76,46 @@ public class RegisterAccount extends AppCompatActivity {
         String password2 = editTextTextPassword2.getText().toString();
         String password3 = editTextTextPassword3.getText().toString();
 
-        if(password2.equals(password3)){
+        if(passwordMatch(password2, password3) && validateEmail(email) && validatePassword(password2)){
             Account account = new Account(email, password2);
+            Intent intent = new Intent(this, CreateAccountDetails.class);
+            startActivity(intent);
+
         }
 
+    }
+    public boolean passwordMatch(String password, String password2){
+        if(password.equals(password2)){
+            passwordMatchWarning = (ImageView) findViewById(R.id.imageView8);
+            passwordMatchWarning.setVisibility(View.INVISIBLE);
+            passwordMatchWarningText = (TextView) findViewById(R.id.textView5);
+            passwordMatchWarningText.setVisibility(View.INVISIBLE);
+            return true;
+        }else{
+            passwordMatchWarning = (ImageView) findViewById(R.id.imageView8);
+            passwordMatchWarning.setVisibility(View.VISIBLE);
+            passwordMatchWarningText = (TextView) findViewById(R.id.textView5);
+            passwordMatchWarningText.setVisibility(View.VISIBLE);
+
+            return false;
+        }
     }
     public boolean validateEmail(String email){
         Pattern checkPattern = Pattern.compile("^[\\w-\\.+]*[\\w-\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher match = checkPattern.matcher(email);
-        return match.find();
+        if(match.find()){
+            emailWarning = (ImageView) findViewById(R.id.imageView6);
+            emailWarning.setVisibility(View.INVISIBLE);
+            emailWarningText = (TextView) findViewById(R.id.textView2);
+            emailWarningText.setVisibility(View.INVISIBLE);
+            return true;
+        }else{
+            emailWarning = (ImageView) findViewById(R.id.imageView6);
+            emailWarning.setVisibility(View.VISIBLE);
+            emailWarningText = (TextView) findViewById(R.id.textView2);
+            emailWarningText.setVisibility(View.VISIBLE);
+            return false;
+        }
     }
     public boolean validatePassword(String password){
         Pattern checkPattern = Pattern.compile("[^a-zA-Z0-9]"); //regex, checks everything that is not a special case character
@@ -87,8 +123,16 @@ public class RegisterAccount extends AppCompatActivity {
         Matcher match = checkPattern.matcher(password);
         Matcher matchNumber = checkNumberPattern.matcher(password);
         if(!password.isEmpty() && password.length() >= 8 && !password.toUpperCase().equals(password) && !password.toLowerCase().equals(password) && match.find() && matchNumber.find()){
+            passwordWarning = (ImageView) findViewById(R.id.imageView9);
+            passwordWarning.setVisibility(View.INVISIBLE);
+            passwordWarningText = (TextView) findViewById(R.id.textView4);
+            passwordWarningText.setVisibility(View.INVISIBLE);
             return true;
         }else{
+            passwordWarning = (ImageView) findViewById(R.id.imageView9);
+            passwordWarning.setVisibility(View.VISIBLE);
+            passwordWarningText = (TextView) findViewById(R.id.textView4);
+            passwordWarningText.setVisibility(View.VISIBLE);
             return false;
         }
     }
