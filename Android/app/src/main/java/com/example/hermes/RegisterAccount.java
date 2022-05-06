@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -15,6 +16,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityRegisterAccountBinding;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterAccount extends AppCompatActivity {
 
@@ -47,6 +51,10 @@ public class RegisterAccount extends AppCompatActivity {
 
        */
     }
+    public void accountDetails(View view){
+        Intent intent = new Intent(this, CreateAccountDetails.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -64,8 +72,24 @@ public class RegisterAccount extends AppCompatActivity {
         String password3 = editTextTextPassword3.getText().toString();
 
         if(password2.equals(password3)){
-            Account account = new Account(email, password2, 0);
+            Account account = new Account(email, password2);
         }
 
+    }
+    public boolean validateEmail(String email){
+        Pattern checkPattern = Pattern.compile("^[\\w-\\.+]*[\\w-\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+        Matcher match = checkPattern.matcher(email);
+        return match.find();
+    }
+    public boolean validatePassword(String password){
+        Pattern checkPattern = Pattern.compile("[^a-zA-Z0-9]"); //regex, checks everything that is not a special case character
+        Pattern checkNumberPattern = Pattern.compile("[0-9]"); //check numbers
+        Matcher match = checkPattern.matcher(password);
+        Matcher matchNumber = checkNumberPattern.matcher(password);
+        if(!password.isEmpty() && password.length() >= 8 && !password.toUpperCase().equals(password) && !password.toLowerCase().equals(password) && match.find() && matchNumber.find()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

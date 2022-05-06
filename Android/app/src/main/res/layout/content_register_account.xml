@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
+    android:onClick="accountDetails"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <EditText
@@ -62,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:backgroundTint="#2E6EEA"
+        android:onClick="accountDetails"
         android:text="NEXT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -24,15 +24,15 @@ public class DatabaseManager {
     public void storeAccount(Account account){      //Stores the created account in the database
         MongoCollection<Document> accounts = database.getCollection("accounts"); //retrieves the collection from the database called "accounts", or creates it if it doesn't exist
         Document databaseAccount = new Document();
-        databaseAccount.append("ID", account.getAccountID())
+        databaseAccount.append("Email", account.getEmail())
                 .append("Account", account); //adds key value pair of the accountID and account to the document
         accounts.insertOne(databaseAccount); //adds the document to the database
 
     }
 
-    public Account loadAccount(int accountID){
+    public Account loadAccount(String email){
         MongoCollection<Document> accounts = database.getCollection("accounts");
-        Document account = accounts.find(eq("ID", accountID)).first(); //retrieves the account with the given accountID
+        Document account = accounts.find(eq("Email", email)).first(); //retrieves the account with the given accountID
         return (Account) account.get("Account"); //returns the account stored in the database
     }
 

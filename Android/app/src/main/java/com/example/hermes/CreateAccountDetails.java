@@ -15,6 +15,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityCreateAccountDetailsBinding;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class CreateAccountDetails extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -27,13 +30,13 @@ public class CreateAccountDetails extends AppCompatActivity {
         binding = ActivityCreateAccountDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+     /*   setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_create_account_details);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-     /*   binding.fab.setOnClickListener(new View.OnClickListener() {
+        binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -52,4 +55,14 @@ public class CreateAccountDetails extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    public boolean validateName(String name){
+        Pattern checkPattern = Pattern.compile("[a-zA-Z]");
+        Matcher match = checkPattern.matcher(name);
+        return match.find();
+    }
+    /* public boolean validateAdress(){
+
+    }
+
+     */
 }
