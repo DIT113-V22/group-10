@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="nav_host_fragment_content_create_account_details" type="id" />
+    <item name="nav_host_fragment_content_login_screen" type="id" />
+    <item name="nav_host_fragment_content_register_account" type="id" />
+</resources>
