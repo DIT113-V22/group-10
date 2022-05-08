@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public abstract class AbstractSteering extends AppCompatActivity {
 
     protected ImageView camera ;
+    protected TextView textView;
     private MqttClient mqttClient;
     private boolean isConnected = false;
     protected AppBarConfiguration appBarConfiguration;
@@ -126,9 +130,12 @@ public abstract class AbstractSteering extends AppCompatActivity {
                     else if(topic.equals("/smartcar/control/obstacleMsg")){
                         String m= message.toString();
                         if(!m.isEmpty()) {
-                            Log.i(TAG, message.toString());
-                            Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+                          //  Log.i(TAG, message.toString());
+                           // Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+                            textView.setText(m);
+                            textView.setTextColor(Color.parseColor("#f00"));
                         }
+                        textView.setText(" ");
                     }
 
                         else {
@@ -194,5 +201,8 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
     protected void setCamera(ImageView camera){
         this.camera = camera;
+    }
+    protected void setTextView(TextView t){
+        this.textView=t;
     }
 }
