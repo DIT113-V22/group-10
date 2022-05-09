@@ -1,6 +1,6 @@
 package com.example.hermes;
 
-/*import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.eq;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -38,4 +38,4 @@ public class DatabaseManager {
 
 }
 
- */
+ 
