@@ -15,7 +15,7 @@ public class DatabaseManager {
 
     private DatabaseManager(){
         try {                                                       //attempts to connect to the database
-            MongoClient client = MongoClients.create();
+            MongoClient client = MongoClients.create("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/test");
             database = client.getDatabase("database");
         } catch(Exception e){                                       //if connection fails, prints error message
             e.printStackTrace();
