@@ -112,26 +112,13 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         camera.setImageBitmap(bm);
 
                     }
-                   /* else if(topic.equals("/smartcar/ultrasound/front")) {
-                        String distance = (String) message.toString();
-                        String d = distance.substring(0,1);
-                        String s= distance.substring(2,3);
-                        int dis = Integer.parseInt(d);
-                        int dist= Integer.parseInt(s);
-                        if ( (dis==0 && dist <9) ||(dis==1 && dist<5)) {
-                            final String obstacleWarning= "Obstacle warning";
-                            Log.i(TAG, obstacleWarning);
-                            Toast.makeText(getApplicationContext(), obstacleWarning, Toast.LENGTH_SHORT).show();
+                  
 
-                        }
-                    }
-
-                    */
+                    
                     else if(topic.equals("/smartcar/control/obstacleMsg")){
                         String m= message.toString();
                         if(!m.isEmpty()) {
-                          //  Log.i(TAG, message.toString());
-                           // Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+                          
                             textView.setText(m);
                             textView.setTextColor(Color.parseColor("#f00"));
                         }
