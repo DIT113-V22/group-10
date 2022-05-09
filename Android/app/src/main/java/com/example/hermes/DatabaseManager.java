@@ -10,15 +10,27 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class DatabaseManager {
+    private static DatabaseManager manager;
     MongoDatabase database;
 
-    public DatabaseManager(){
+    private DatabaseManager(){
         try {                                                       //attempts to connect to the database
             MongoClient client = MongoClients.create();
             database = client.getDatabase("database");
         } catch(Exception e){                                       //if connection fails, prints error message
             e.printStackTrace();
         }
+    }
+
+    public static DatabaseManager getDatabaseManager(){ // implemented using the singleton pattern
+        if (manager == null){
+            synchronized(DatabaseManager.class){
+                if (manager == null){
+                    manager = new DatabaseManager();
+                }
+            }
+        }
+        return manager;
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
