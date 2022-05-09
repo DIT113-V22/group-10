@@ -11,10 +11,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityJoystickBinding;
-import com.zerokol.views.joystickView.JoystickView;
 
 public class Joystick extends AbstractSteering{
-
+/*
     private ActivityJoystickBinding binding;
     private JoystickView joystick;
     private ImageView Joystick_camera;
@@ -84,4 +83,6 @@ public class Joystick extends AbstractSteering{
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+ */
 }

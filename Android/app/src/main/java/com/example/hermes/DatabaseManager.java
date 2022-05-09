@@ -2,6 +2,8 @@ package com.example.hermes;
 
 import static com.mongodb.client.model.Filters.eq;
 
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -15,11 +17,24 @@ public class DatabaseManager {
 
     private DatabaseManager(){
         try {                                                       //attempts to connect to the database
-            MongoClient client = MongoClients.create("mongodb://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/test");
-            database = client.getDatabase("database");
+
+            ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+            MongoClientSettings settings = MongoClientSettings.builder()
+                    .applyConnectionString(connectionString)
+                    .build();
+            MongoClient mongoClient = MongoClients.create(settings);
+            database = mongoClient.getDatabase("test");
+
         } catch(Exception e){                                       //if connection fails, prints error message
             e.printStackTrace();
         }
+
+        MongoCollection collection = database.getCollection("test");
+        Document doc = new Document();
+        doc.append("id", "thing");
+        collection.insertOne(doc);
+
+        System.out.println("fin");
     }
 
     public static DatabaseManager getDatabaseManager(){ // implemented using the singleton pattern
