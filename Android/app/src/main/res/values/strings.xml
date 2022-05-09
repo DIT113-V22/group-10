@@ -42,4 +42,6 @@
     <string name="left_front_lab" />
     <string name="center_lab" />
     <string name="title_activity_control_selection">ControlSelection</string>
+    <string name="tab_text_1">Ongoing</string>
+    <string name="tab_text_2">Done</string>
 </resources>
