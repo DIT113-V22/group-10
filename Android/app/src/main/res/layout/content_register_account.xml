@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    android:onClick="accountDetails"
+    android:onClick="createAccount"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <TextView
@@ -112,16 +112,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hermes_lego_no_background_small" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="30dp"
-        android:layout_height="141dp"
-        android:layout_marginTop="524dp"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/patrik_angry"
-        tools:layout_editor_absoluteX="-2dp" />
 
     <ImageView
         android:id="@+id/imageView8"
