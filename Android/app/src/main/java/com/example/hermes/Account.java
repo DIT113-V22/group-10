@@ -8,7 +8,7 @@ public class Account {
     private String DOB;
     private String password;
 
-    public Account(String firstName, String lastName, String address, String email, String DOB, String password){
+    /*public Account(String firstName, String lastName, String address, String email, String DOB, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -19,7 +19,7 @@ public class Account {
     public Account(String email, String password){
         this.email = email;
         this.password = password;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName; }

@@ -14,7 +14,7 @@ import com.google.android.material.tabs.TabLayout;
 public class deliveryTabs extends AppCompatActivity {
 
     private static final String TAG = "deliveryTabs";
-    private DatabaseManager db = new DatabaseManager();
+    private DatabaseManager db = DatabaseManager.getDatabaseManager();
 
     private SectionsPageAdapter mSectionsPageAdapter;
 
@@ -37,7 +37,8 @@ public class deliveryTabs extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        Delivery test = new Delivery("1234");
+        Delivery test = new Delivery();
+        test.setCustomerID("1234");
         db.storeDelivery(test);
 
     }
