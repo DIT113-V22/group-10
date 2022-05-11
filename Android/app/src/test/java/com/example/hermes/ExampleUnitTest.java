@@ -24,7 +24,8 @@ import java.io.IOException;
 public class ExampleUnitTest {
 
     JsonManager jManager = new JsonManager();
-    Delivery delivery1 = new Delivery("Emrik", "2022-11-04", "12:45");
+    Delivery delivery1 = new Delivery();
+        //delivery1.setCustomerID("Emrik") "2022-11-04", "12:45");
 
     @Test
     public void addition_isCorrect() {
