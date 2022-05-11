@@ -19,13 +19,22 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.hermes.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import io.realm.Realm;
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    private String appid = "hermesapp-mrlcy";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Realm.init(this);
+        App app =  new App(new AppConfiguration.Builder(appid).build());
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

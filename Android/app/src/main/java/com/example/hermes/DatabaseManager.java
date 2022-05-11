@@ -2,7 +2,6 @@ package com.example.hermes;
 
 import static com.mongodb.client.model.Filters.eq;
 
-
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
@@ -25,9 +24,9 @@ import java.util.ArrayList;
 
 public class DatabaseManager {
     private static DatabaseManager manager;
-    MongoDatabase database;
-    MongoCollection<Account> accounts;
-    MongoCollection<Delivery> deliveries;
+    private static MongoDatabase database;
+    private static MongoCollection<Account> accounts;
+    private static MongoCollection<Delivery> deliveries;
 
     private DatabaseManager(){
         ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
@@ -39,9 +38,9 @@ public class DatabaseManager {
                 .build();
 
         try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
-            MongoDatabase db = mongoClient.getDatabase("database");
-            accounts = db.getCollection("accounts", Account.class);
-            deliveries = db.getCollection("deliveries", Delivery.class);
+            database = mongoClient.getDatabase("database");
+            accounts = database.getCollection("accounts", Account.class);
+            deliveries = database.getCollection("deliveries", Delivery.class);
         }
     }
 
