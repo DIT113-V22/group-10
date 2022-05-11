@@ -18,7 +18,7 @@ public class tab1Fragment extends Fragment {
 
 
     private ListView ongoingL;
-    private DatabaseManager db = new DatabaseManager();
+    private DatabaseManager db = DatabaseManager.getDatabaseManager();
 
     @Nullable
     @Override

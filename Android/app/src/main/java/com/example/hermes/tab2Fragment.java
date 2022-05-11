@@ -17,7 +17,7 @@ public class tab2Fragment extends Fragment {
     public static final String TAG = "Tab2Fragment";
 
     private ListView doneL;
-    private DatabaseManager db = new DatabaseManager();
+    private DatabaseManager db = DatabaseManager.getDatabaseManager();
 
     @Nullable
     @Override

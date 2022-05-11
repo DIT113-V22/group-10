@@ -4,13 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Delivery {
-    private final int ID;
-    private final String date;
-    private final String time;
-    private final String customerID; //Change later to customer object
+    private int ID;
+    private String date;
+    private String time;
+    private String customerID; //Change later to customer object
     private boolean isReady;
     private boolean isDone;
 
+    /*
     public Delivery(String customerID){
         this.customerID = customerID;
         this.date = LocalDate.now().toString();
@@ -28,8 +29,15 @@ public class Delivery {
         this.ID = idGenerator();
     }
 
+     */
+
     public String getCustomerID(){
         return customerID;
+    }
+    public void setCustomerID(String ID){
+        if (customerID == null){
+            this.customerID = ID;
+        }
     }
     public String getDate(){
         return date;
