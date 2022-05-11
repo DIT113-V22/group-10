@@ -1,12 +1,13 @@
 package com.example.hermes;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
+import java.util.Date;
 
 public class Delivery {
     private int ID;
-    private String date;
-    private String time;
+    private Date date;
+    private LocalTime time;
     private String customerID; //Change later to customer object
     private boolean isReady;
     private boolean isDone;
@@ -39,10 +40,10 @@ public class Delivery {
             this.customerID = ID;
         }
     }
-    public String getDate(){
+    public Date getDate(){
         return date;
     }
-    public String getTime(){ return time; }
+    public LocalTime getTime(){ return time; }
     public int getID() { return ID; }
     public boolean getReady() { return isReady; }
     public void setReady(boolean value) { this.isReady = value; }
@@ -51,5 +52,31 @@ public class Delivery {
 
     public int idGenerator(){
         return (int) this.customerID.hashCode() * this.time.hashCode() * this.date.hashCode();
+    }
+
+    public static final Comparator<Delivery> byDate = new Comparator<Delivery>() {
+        @Override
+        public int compare(Delivery delivery1, Delivery delivery2) {
+            return delivery1.compareDelivery(delivery2);
+        }
+    };
+
+    public static final Comparator<Delivery> byReverseDate = new Comparator<Delivery>() {
+        @Override
+        public int compare(Delivery delivery1, Delivery delivery2) {
+            return delivery2.compareDelivery(delivery1);
+        }
+    };
+
+    public int compareDelivery(Delivery anotherDelivery){
+        Date anotherDate = anotherDelivery.date;
+        LocalTime anotherTime = anotherDelivery.time;
+        int date = this.date.compareTo(anotherDate);
+        int time = this.time.compareTo(anotherTime);
+
+        if(date != 0)
+            return date;
+
+        return time;
     }
 }
