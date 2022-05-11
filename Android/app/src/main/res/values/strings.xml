@@ -44,4 +44,5 @@
     <string name="title_activity_control_selection">ControlSelection</string>
     <string name="tab_text_1">Ongoing</string>
     <string name="tab_text_2">Done</string>
+    <string name="id">Id</string>
 </resources>
