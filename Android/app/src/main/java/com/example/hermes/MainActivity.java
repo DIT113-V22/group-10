@@ -27,14 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private String appid = "hermesapp-mrlcy";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Realm.init(this);
-        App app =  new App(new AppConfiguration.Builder(appid).build());
+        Realm.init(this); //Initialise mongo realm
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());

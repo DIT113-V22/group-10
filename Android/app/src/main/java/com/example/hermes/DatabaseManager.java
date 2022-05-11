@@ -5,6 +5,8 @@ import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import android.content.Context;
+
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 
@@ -22,13 +24,22 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.ArrayList;
 
+import io.realm.Realm;
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+
 public class DatabaseManager {
+
     private static DatabaseManager manager;
     private static MongoDatabase database;
     private static MongoCollection<Account> accounts;
     private static MongoCollection<Delivery> deliveries;
 
+    private String appid = "hermesapp-mrlcy";
+    private static App app;
+
     private DatabaseManager(){
+        /*
         ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
         CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
         CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
@@ -42,6 +53,9 @@ public class DatabaseManager {
             accounts = database.getCollection("accounts", Account.class);
             deliveries = database.getCollection("deliveries", Delivery.class);
         }
+
+         */
+        app =  new App(new AppConfiguration.Builder(appid).build());
     }
 
     public static DatabaseManager getDatabaseManager(){ // implemented using the singleton pattern
@@ -53,6 +67,10 @@ public class DatabaseManager {
             }
         }
         return manager;
+    }
+
+    public static App getApp() {
+        return app;
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
