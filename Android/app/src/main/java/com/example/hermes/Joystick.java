@@ -7,16 +7,17 @@ import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityJoystickBinding;
 
 public class Joystick extends AbstractSteering{
-/*
+
+/*  
     private ActivityJoystickBinding binding;
     private JoystickView joystick;
     private ImageView Joystick_camera;
+    private TextView joystickTextView;
     private static final int MOVEMENT_SPEED = 70;
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
@@ -26,12 +27,14 @@ public class Joystick extends AbstractSteering{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_joystick);
         Joystick_camera = findViewById(R.id.Joystick_camera);
+        joystickTextView= findViewById(R.id.Joystick_text);
         setImageHeight(240);
         setImageWidth(320);
         setCamera(Joystick_camera);
+        setTextView(joystickTextView);
         initialiseMqttClient(getApplicationContext());
-        binding = ActivityJoystickBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+       // binding = ActivityJoystickBinding.inflate(getLayoutInflater());
+       // setContentView(binding.getRoot());
         MqttConnect(Joystick_camera);
         joystick =  findViewById(R.id.joystickView);
 

@@ -65,7 +65,6 @@ public class DatabaseManager {
         return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
     }
 
-
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         deliveries.insertOne(delivery); //adds the document to the database
     }
