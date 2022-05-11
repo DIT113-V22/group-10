@@ -1,4 +1,4 @@
-package com.example.hermes;
+/*ckage com.example.hermes;
 
 import org.json.JSONException;
 import org.json.simple.JSONArray;
@@ -22,6 +22,7 @@ import java.io.IOException;
  */
 
 public class ExampleUnitTest {
+    /*
 
     JsonManager jManager = new JsonManager();
     Delivery delivery1 = new Delivery();
@@ -71,4 +72,6 @@ public class ExampleUnitTest {
         expectedObject.put("deliveries", array);
         return expectedObject;
     }
+    
+     */
 }
