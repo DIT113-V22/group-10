@@ -11,7 +11,7 @@ public class Delivery {
     private boolean isReady;
     private boolean isDone;
 
-    /*
+
     public Delivery(String customerID){
         this.customerID = customerID;
         this.date = LocalDate.now().toString();
@@ -29,7 +29,7 @@ public class Delivery {
         this.ID = idGenerator();
     }
 
-     */
+
 
     public String getCustomerID(){
         return customerID;
