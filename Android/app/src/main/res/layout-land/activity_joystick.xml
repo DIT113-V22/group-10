@@ -13,13 +13,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.zerokol.views.joystickView.JoystickView
-        android:id="@+id/joystickView"
-        android:layout_width="282dp"
-        android:layout_height="236dp"
-        android:translationX="85dp"
-        android:translationY="500dp" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -29,9 +22,19 @@
 
     <ImageView
         android:id="@+id/Joystick_camera"
-        android:layout_width="match_parent"
-        android:layout_height="498dp"
+        android:layout_width="732dp"
+        android:layout_height="354dp"
+        android:scaleX="2.07"
+        android:translationX="0dp"
+        android:translationY="56dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <com.zerokol.views.joystickView.JoystickView
+        android:id="@+id/joystickView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:translationX="560dp"
+        android:translationY="230dp" />
 
     <Button
         android:id="@+id/Back"
