@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public abstract class AbstractSteering extends AppCompatActivity {
 
     protected ImageView camera ;
+    protected TextView textView;
     private MqttClient mqttClient;
     private boolean isConnected = false;
     protected AppBarConfiguration appBarConfiguration;
@@ -108,27 +112,17 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         camera.setImageBitmap(bm);
 
                     }
-                   /* else if(topic.equals("/smartcar/ultrasound/front")) {
-                        String distance = (String) message.toString();
-                        String d = distance.substring(0,1);
-                        String s= distance.substring(2,3);
-                        int dis = Integer.parseInt(d);
-                        int dist= Integer.parseInt(s);
-                        if ( (dis==0 && dist <9) ||(dis==1 && dist<5)) {
-                            final String obstacleWarning= "Obstacle warning";
-                            Log.i(TAG, obstacleWarning);
-                            Toast.makeText(getApplicationContext(), obstacleWarning, Toast.LENGTH_SHORT).show();
+                  
 
-                        }
-                    }
-
-                    */
+                    
                     else if(topic.equals("/smartcar/control/obstacleMsg")){
                         String m= message.toString();
                         if(!m.isEmpty()) {
-                            Log.i(TAG, message.toString());
-                            Toast.makeText(getApplicationContext(), message.toString(), Toast.LENGTH_SHORT).show();
+                          
+                            textView.setText(m);
+                            textView.setTextColor(Color.parseColor("#f00"));
                         }
+                        textView.setText(" ");
                     }
 
                         else {
@@ -194,5 +188,8 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
     protected void setCamera(ImageView camera){
         this.camera = camera;
+    }
+    protected void setTextView(TextView t){
+        this.textView=t;
     }
 }

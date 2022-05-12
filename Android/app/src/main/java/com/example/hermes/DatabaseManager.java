@@ -98,7 +98,6 @@ public class DatabaseManager {
         //return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
     }
 
-
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
                 .append("ID", delivery.getID())
