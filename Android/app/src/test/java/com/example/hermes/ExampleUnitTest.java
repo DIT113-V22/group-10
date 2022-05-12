@@ -1,4 +1,4 @@
-/*ckage com.example.hermes;
+package com.example.hermes;/*ckage com.example.hermes;
 
 import org.json.JSONException;
 import org.json.simple.JSONArray;
@@ -21,12 +21,30 @@ import java.io.IOException;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 
+import static junit.framework.Assert.assertEquals;
+
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.junit.Before;
+import org.junit.Test;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.ParseException;
+
 public class ExampleUnitTest {
-    /*
 
     JsonManager jManager = new JsonManager();
     Delivery delivery1 = new Delivery();
-        //delivery1.setCustomerID("Emrik") "2022-11-04", "12:45");
+    Delivery delivery2 = new Delivery();
+
+    @Before
+    public void setUp() throws ParseException {
+        delivery1.setCustomerID("Emrik");
+        delivery1.setDate("20221104 13:45:00");
+        delivery2.setCustomerID("Erik");
+        delivery2.setDate();
+    }
 
     @Test
     public void addition_isCorrect() {
@@ -43,7 +61,6 @@ public class ExampleUnitTest {
 
     @Test
     public void writeJson() throws JSONException {
-        String absolutePath = System.getProperty("user.dir") + "\\src\\main\\java\\com\\example\\hermes\\data\\";
         jManager.writeDelivery(delivery1, "src/main/java/com/example/hermes/data/test.Json");
         JSONObject jsonObject = jManager.readJsonObject("src/main/java/com/example/hermes/data/test.Json");
         JSONArray array = (JSONArray) jsonObject.get("deliveries");
@@ -64,14 +81,12 @@ public class ExampleUnitTest {
         JSONObject delivery = new JSONObject();
         JSONArray array = new JSONArray();
 
-        deliveryDetails.put("date", "2022-11-04");
+        deliveryDetails.put("date", "2022 Nov 04");
         deliveryDetails.put("customerID", "Emrik");
-        deliveryDetails.put("time", "12:45");
+        deliveryDetails.put("time", "13:45:00");
         delivery.put("delivery", deliveryDetails);
         array.add(delivery);
         expectedObject.put("deliveries", array);
         return expectedObject;
     }
-    
-     */
 }

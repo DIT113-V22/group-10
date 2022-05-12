@@ -1,13 +1,17 @@
 package com.example.hermes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class Delivery {
     private int ID;
     private Date date;
-    private LocalTime time;
     private String customerID; //Change later to customer object
     private boolean isReady;
     private boolean isDone;
@@ -40,43 +44,56 @@ public class Delivery {
             this.customerID = ID;
         }
     }
-    public Date getDate(){
-        return date;
+
+    public String getDate(){
+        String[] splitted = date.toString().split(" ");
+        return splitted[5] + " " + splitted[1] + " " + splitted[2];
     }
-    public LocalTime getTime(){ return time; }
+
+    public void setDate(String yyyymmdd_hhmmss) throws ParseException {
+        date = new SimpleDateFormat("yyyyMMdd hh:mm:ss").parse(yyyymmdd_hhmmss);
+    }
+
+    public void setDate(){
+        date = new Date();
+    }
+
+    public String getTime() {
+        String[] splitted = date.toString().split(" ");
+        return splitted[3];
+    }
+
     public int getID() { return ID; }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public boolean getReady() { return isReady; }
     public void setReady(boolean value) { this.isReady = value; }
     public boolean getDone() { return this.isDone; }
     public void setDone(boolean value) { this.isDone = value; }
 
     public int idGenerator(){
-        return (int) this.customerID.hashCode() * this.time.hashCode() * this.date.hashCode();
+        return (int) this.customerID.hashCode() * this.date.hashCode();
     }
 
     public static final Comparator<Delivery> byDate = new Comparator<Delivery>() {
         @Override
         public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery1.compareDelivery(delivery2);
+            return delivery1.compareDeliveryDates(delivery2);
         }
     };
 
     public static final Comparator<Delivery> byReverseDate = new Comparator<Delivery>() {
         @Override
         public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery2.compareDelivery(delivery1);
+            return delivery2.compareDeliveryDates(delivery1);
         }
     };
 
-    public int compareDelivery(Delivery anotherDelivery){
+    public int compareDeliveryDates(Delivery anotherDelivery){
         Date anotherDate = anotherDelivery.date;
-        LocalTime anotherTime = anotherDelivery.time;
-        int date = this.date.compareTo(anotherDate);
-        int time = this.time.compareTo(anotherTime);
-
-        if(date != 0)
-            return date;
-
-        return time;
+        return this.date.compareTo(anotherDate);
     }
 }
