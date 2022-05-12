@@ -79,9 +79,7 @@ public class RegisterAccount extends AppCompatActivity {
         String password3 = editTextTextPassword3.getText().toString();
 
         if(passwordMatch(password2, password3) && validateEmail(email) && validatePassword(password2)){
-            Account account = new Account();
-            account.setEmail(email);
-            account.setPassword(password2);
+            Account account = new Account(email, password2);
 
             DatabaseManager manager = DatabaseManager.getDatabaseManager();
             App app = manager.getApp();
