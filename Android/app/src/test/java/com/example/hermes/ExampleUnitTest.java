@@ -1,19 +1,4 @@
-package com.example.hermes;/*ckage com.example.hermes;
-
-import org.json.JSONException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
-
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+package com.example.hermes;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

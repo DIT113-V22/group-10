@@ -18,7 +18,7 @@ public class tab1Fragment extends Fragment {
 
 
     private ListView ongoingL;
-    private DatabaseManager db = DatabaseManager.getDatabaseManager();
+    //private DatabaseManager db = DatabaseManager.getDatabaseManager();
 
     @Nullable
     @Override
@@ -60,6 +60,7 @@ public class tab1Fragment extends Fragment {
          */
         ArrayList<String> nameList = getDeliveryNames();
         ArrayList<String> infoList = getDeliveryInfos();
+
         int imageID = R.drawable.box;
 
         CustomListAdapter myAdapter = new CustomListAdapter(getActivity(), nameList, infoList, imageID);
@@ -72,7 +73,8 @@ public class tab1Fragment extends Fragment {
 
     public ArrayList<String> getDeliveryNames() {
         ArrayList<String> result = new ArrayList<>();
-        ArrayList<Delivery> deliveries = db.allDeliveries();
+        ArrayList<Delivery> deliveries = deliveryTabs.deliveries;
+
         String id;
         for (Delivery delivey : deliveries) {
             if (!delivey.getDone()) {
@@ -85,7 +87,7 @@ public class tab1Fragment extends Fragment {
 
     public ArrayList<String> getDeliveryInfos() {
         ArrayList<String> result = new ArrayList<>();
-        ArrayList<Delivery> deliveries = db.allDeliveries();
+        ArrayList<Delivery> deliveries = deliveryTabs.deliveries;
         String info;
         for (Delivery delivey : deliveries) {
             if (!delivey.getDone()) {
@@ -95,7 +97,5 @@ public class tab1Fragment extends Fragment {
         }
         return result;
     }
-
-
 
 }
