@@ -16,6 +16,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.hermes.databinding.ActivityLoginScreenBinding;
 
+import java.util.ArrayList;
+
 public class LoginScreen extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;

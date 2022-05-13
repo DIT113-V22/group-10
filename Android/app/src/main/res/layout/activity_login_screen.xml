@@ -17,13 +17,4 @@
         android:id="@+id/include"
         layout="@layout/content_login_screen" />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#2E6EEA"
-        app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="top|center"
-        app:popupTheme="@style/Theme.Hermes.PopupOverlay" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

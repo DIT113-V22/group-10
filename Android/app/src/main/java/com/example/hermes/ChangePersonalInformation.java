@@ -27,7 +27,7 @@ public class ChangePersonalInformation extends AppCompatActivity {
         binding = ActivityChangePersonalInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(binding.toolbar);
+       /* setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_change_personal_information);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -40,6 +40,10 @@ public class ChangePersonalInformation extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
+
+
     }
 
     @Override
@@ -47,5 +51,11 @@ public class ChangePersonalInformation extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_change_personal_information);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+
+        */
+
+
     }
+
 }
+

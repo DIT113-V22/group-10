@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view){
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        //manager.storeAccount(new Account("n", "n", "n", "n", "n", "n"));
         Intent intent = new Intent(this, RegisterAccount.class);
         startActivity(intent);
     }
