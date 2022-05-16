@@ -70,9 +70,11 @@ public class DatabaseManager {
             }
         }
         User user = app.currentUser();
-        client = user.getMongoClient("mongodb-atlas");
+/*        client = user.getMongoClient("mongodb-atlas");
         database = client.getDatabase("database");
         accounts = database.getCollection("accounts");
+        @
+ */
         return manager;
     }
 
