@@ -112,76 +112,55 @@ public class ExampleUnitTest {
         ArrayList<Delivery> z_a = new ArrayList<>(deliveries);
         z_a.sort(Delivery.byNameReverse);
 
-        String expectedOldest = "Sven Fri Jun 27 16:00:17 EET 1980 " +
-                "Julia Sun Jun 12 08:23:55 EEST 2011 " +
-                "Erik Mon Sep 12 08:23:55 EEST 2011 " +
-                "Daniel Thu Jan 13 00:11:56 EET 2022 " +
-                "Yasamin Thu Jan 13 12:11:56 EET 2022 " +
-                "Björn Thu May 12 23:13:44 EEST 2022 " +
-                "Emrik Fri Nov 04 13:45:00 EET 2022 " +
-                "nihiliss Sun Nov 20 09:15:02 EET 2022 " +
-                "Amin Mon Sep 04 13:45:00 EEST 2023 " +
-                "Karl Mon May 20 09:35:08 EEST 2024 ";
+        ArrayList<Delivery> expectedOldest = new ArrayList<>();
+        expectedOldest.add(deliveries.get(7));
+        expectedOldest.add(deliveries.get(4));
+        expectedOldest.add(deliveries.get(1));
+        expectedOldest.add(deliveries.get(6));
+        expectedOldest.add(deliveries.get(5));
+        expectedOldest.add(deliveries.get(9));
+        expectedOldest.add(deliveries.get(0));
+        expectedOldest.add(deliveries.get(3));
+        expectedOldest.add(deliveries.get(2));
+        expectedOldest.add(deliveries.get(8));
+        ArrayList<Delivery> expectedNewest = new ArrayList<>();
+        expectedNewest.add(deliveries.get(8));
+        expectedNewest.add(deliveries.get(2));
+        expectedNewest.add(deliveries.get(3));
+        expectedNewest.add(deliveries.get(0));
+        expectedNewest.add(deliveries.get(9));
+        expectedNewest.add(deliveries.get(5));
+        expectedNewest.add(deliveries.get(6));
+        expectedNewest.add(deliveries.get(1));
+        expectedNewest.add(deliveries.get(4));
+        expectedNewest.add(deliveries.get(7));
+        ArrayList<Delivery> expectedByName = new ArrayList<>();
+        expectedByName.add(deliveries.get(2));
+        expectedByName.add(deliveries.get(9));
+        expectedByName.add(deliveries.get(6));
+        expectedByName.add(deliveries.get(0));
+        expectedByName.add(deliveries.get(1));
+        expectedByName.add(deliveries.get(4));
+        expectedByName.add(deliveries.get(8));
+        expectedByName.add(deliveries.get(3));
+        expectedByName.add(deliveries.get(7));
+        expectedByName.add(deliveries.get(5));
+        ArrayList<Delivery> expectedByReverseName = new ArrayList<>();
+        expectedByReverseName.add(deliveries.get(5));
+        expectedByReverseName.add(deliveries.get(7));
+        expectedByReverseName.add(deliveries.get(3));
+        expectedByReverseName.add(deliveries.get(8));
+        expectedByReverseName.add(deliveries.get(4));
+        expectedByReverseName.add(deliveries.get(1));
+        expectedByReverseName.add(deliveries.get(0));
+        expectedByReverseName.add(deliveries.get(6));
+        expectedByReverseName.add(deliveries.get(9));
+        expectedByReverseName.add(deliveries.get(2));
 
-        String expectedNewest = "Karl Mon May 20 09:35:08 EEST 2024\n" +
-                "Amin Mon Sep 04 13:45:00 EEST 2023\n" +
-                "nihiliss Sun Nov 20 09:15:02 EET 2022\n" +
-                "Emrik Fri Nov 04 13:45:00 EET 2022\n" +
-                "Björn Thu May 12 23:13:44 EEST 2022\n" +
-                "Yasamin Thu Jan 13 12:11:56 EET 2022\n" +
-                "Daniel Thu Jan 13 00:11:56 EET 2022\n" +
-                "Erik Mon Sep 12 08:23:55 EEST 2011\n" +
-                "Julia Sun Jun 12 08:23:55 EEST 2011\n" +
-                "Sven Fri Jun 27 16:00:17 EET 1980\n";
-
-        String expectedByName = "Amin Mon Sep 04 13:45:00 EEST 2023\n" +
-                "Björn Thu May 12 23:13:44 EEST 2022\n" +
-                "Daniel Thu Jan 13 00:11:56 EET 2022\n" +
-                "Emrik Fri Nov 04 13:45:00 EET 2022\n" +
-                "Erik Mon Sep 12 08:23:55 EEST 2011\n" +
-                "Julia Sun Jun 12 08:23:55 EEST 2011\n" +
-                "Karl Mon May 20 09:35:08 EEST 2024\n" +
-                "nihiliss Sun Nov 20 09:15:02 EET 2022\n" +
-                "Sven Fri Jun 27 16:00:17 EET 1980\n" +
-                "Yasamin Thu Jan 13 12:11:56 EET 2022\n";
-
-        String expectedByReverseName = "Yasamin Thu Jan 13 12:11:56 EET 2022\n" +
-                "Sven Fri Jun 27 16:00:17 EET 1980\n" +
-                "nihiliss Sun Nov 20 09:15:02 EET 2022\n" +
-                "Karl Mon May 20 09:35:08 EEST 2024\n" +
-                "Julia Sun Jun 12 08:23:55 EEST 2011\n" +
-                "Erik Mon Sep 12 08:23:55 EEST 2011\n" +
-                "Emrik Fri Nov 04 13:45:00 EET 2022\n" +
-                "Daniel Thu Jan 13 00:11:56 EET 2022\n" +
-                "Björn Thu May 12 23:13:44 EEST 2022\n" +
-                "Amin Mon Sep 04 13:45:00 EEST 2023\n";
-
-        String actualOldest = "";
-        ArrayList<Delivery> actualNewest = new ArrayList<>();
-        actualNewest.add(deliveries.get(8));
-        actualNewest.add(deliveries.get(2));
-        actualNewest.add(deliveries.get(3));
-        actualNewest.add(deliveries.get(0));
-        actualNewest.add(deliveries.get(9));
-        actualNewest.add(deliveries.get(5));
-        actualNewest.add(deliveries.get(6));
-        actualNewest.add(deliveries.get(1));
-        actualNewest.add(deliveries.get(4));
-        actualNewest.add(deliveries.get(7));
-
-        String actualByName = "";
-        String actualByReverseName = "";
-
-        for (int i =0; i<10; i++){
-            actualOldest += oldest.get(i).toString()+ " ";
-            //actualNewest += newest.get(i).toString()+ "\n";
-            actualByName += a_z.get(i).toString()+ "\n";
-            actualByReverseName += z_a.get(i).toString()+ "\n";
-        }
-        assertEquals(expectedOldest, actualOldest);
-        assertEquals(actualNewest, newest);
-        assertEquals(expectedByName, actualByName);
-        assertEquals(expectedByReverseName, actualByReverseName);
+        assertEquals(expectedOldest, oldest);
+        assertEquals(expectedNewest, newest);
+        assertEquals(expectedByName, a_z);
+        assertEquals(expectedByReverseName, z_a);
     }
 
     private JSONObject createExpectedObject(){
