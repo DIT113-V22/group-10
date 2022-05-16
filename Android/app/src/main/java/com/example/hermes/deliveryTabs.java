@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,6 +81,7 @@ public class deliveryTabs extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    @SuppressLint("NonConstantResourceId")
     public void filter(View view) {
         boolean checked = ((CheckBox) view).isChecked();
         ArrayList<Delivery> deliveriesCopy = new ArrayList<>();
