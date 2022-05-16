@@ -40,6 +40,7 @@ public class DatabaseManager {
 
     private String appid = "hermesapp-mrlcy";
     private static App app;
+    private static User user;
 
     private DatabaseManager(){
         /*
@@ -69,12 +70,13 @@ public class DatabaseManager {
                 }
             }
         }
-        User user = app.currentUser();
-/*        client = user.getMongoClient("mongodb-atlas");
-        database = client.getDatabase("database");
-        accounts = database.getCollection("accounts");
-        @
- */
+        user = app.currentUser();
+        if(user != null) {
+            client = user.getMongoClient("mongodb-atlas");
+            database = client.getDatabase("database");
+            accounts = database.getCollection("accounts");
+            deliveries = database.getCollection("deliveries");
+        }
         return manager;
     }
 
@@ -103,8 +105,8 @@ public class DatabaseManager {
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
                 .append("ID", delivery.getID())
-                .append("date", delivery.getDate())
-                .append("time", delivery.getTime())
+                //.append("date", delivery.getDate())
+                //.append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
                 .append("isDone", delivery.getDone());
         deliveries.insertOne(doc); //adds the document to the database
@@ -113,7 +115,7 @@ public class DatabaseManager {
     public Delivery loadDelivery(int deliveryID){
         Document queryFilter = new Document().append("ID", deliveryID);
         Document doc = deliveries.findOne(queryFilter).get();
-        return new Delivery(doc.getString("ID"));
+        return new Delivery();
     }
 
     public ArrayList<Delivery> allDeliveries() {
@@ -132,5 +134,9 @@ public class DatabaseManager {
         }
          */
         return result;
+    }
+
+    public void updateUser(){
+        user = app.currentUser();
     }
 }

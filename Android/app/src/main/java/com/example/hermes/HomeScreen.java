@@ -28,6 +28,9 @@ public class HomeScreen extends AppCompatActivity {
         binding = ActivityHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        manager.storeDelivery(new Delivery());
+
       /*  setSupportActionBar(binding.toolbar);
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_screen);
