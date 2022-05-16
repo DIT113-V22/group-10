@@ -10,6 +10,9 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.Spinner;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.hermes.ui.CustomListAdapter;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -18,17 +21,18 @@ import java.util.Comparator;
 
 public class deliveryTabs extends AppCompatActivity {
 
-
     /*
     Uncomment when database works
     public static DatabaseManager db = DatabaseManager.getDatabaseManager();
     public static ArrayList<Delivery> deliveries = db.allDeliveries();
      */
     private static final String TAG = "deliveryTabs";
-    private ArrayAdapter<Delivery> adapter;
+    private CustomListAdapter adapter;
     private ListView listView;
-    String[] categories = {"Descending Alphabetical", "Ascending Alphabetical", "Oldest", "Newest"};
-    public static ArrayList<Delivery> deliveries = new ArrayList<>();
+    private int imageId = R.drawable.box;
+    private String[] categories = {"Descending Alphabetical", "Ascending Alphabetical", "Oldest", "Newest"};
+    private ArrayList<Delivery> deliveries = new ArrayList<>();
+    private ArrayList<String> nameList = new ArrayList<>();
     private boolean showOngoing = true;
     private boolean showCompleted = true;
 
@@ -41,7 +45,7 @@ public class deliveryTabs extends AppCompatActivity {
         addDeliveries();
 
         listView = findViewById(R.id.listView);
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deliveries));
+        listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
 
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, categories));
@@ -75,12 +79,15 @@ public class deliveryTabs extends AppCompatActivity {
         });
     }
 
+    //sorts deliveries with comparator
     private void updateList(Comparator<Delivery> comparator){
         deliveries.sort(comparator);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deliveries);
+        updateNameList(deliveries);
+        adapter = new CustomListAdapter(this, deliveries, nameList, imageId);
         listView.setAdapter(adapter);
     }
 
+    //filters deliveries when checkbox is checked or unchecked
     @SuppressLint("NonConstantResourceId")
     public void filter(View view) {
         boolean checked = ((CheckBox) view).isChecked();
@@ -95,12 +102,15 @@ public class deliveryTabs extends AppCompatActivity {
                 break;
         }
         for(Delivery delivery : deliveries){
-            if(showOngoing && !delivery.getDone())
+            if(showOngoing && !delivery.getDone()) {
                 deliveriesCopy.add(delivery);
-            if(showCompleted && delivery.getDone())
+            }
+            if(showCompleted && delivery.getDone()) {
                 deliveriesCopy.add(delivery);
+            }
         }
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, deliveriesCopy);
+        updateNameList(deliveriesCopy);
+        adapter = new CustomListAdapter(this, deliveriesCopy, nameList, imageId);
         listView.setAdapter(adapter);
     }
 
@@ -158,6 +168,12 @@ public class deliveryTabs extends AppCompatActivity {
             deliveries.add(delivery10);
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+    }
+    private void updateNameList(ArrayList<Delivery> updatedDeliveries){
+        nameList.clear();
+        for (Delivery delivery : updatedDeliveries){
+            nameList.add(delivery.getCustomerID());
         }
     }
 }
