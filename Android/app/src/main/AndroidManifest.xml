@@ -15,8 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".ChangePersonalInformation"
+            android:exported="false"
+            android:label="@string/title_activity_change_personal_information"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
             android:name=".ShoppingScreen"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Shopping"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".Settings"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".CreateAccountDetails"
             android:exported="false"

@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
 import com.example.hermes.ui.home.HomeFragment;
 
 
 public class ShoppingScreen extends AppCompatActivity {
- private Delivery delivery = new Delivery();
-   // private DatabaseManager db = DatabaseManager.getDatabaseManager();
+
+    private DatabaseManager db = DatabaseManager.getDatabaseManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,47 +28,51 @@ public class ShoppingScreen extends AppCompatActivity {
         EditText id = findViewById(R.id.editTextTextPassword4);
         EditText date = findViewById(R.id.editTextDate2);
         EditText time = findViewById(R.id.editTextTime);
+        String Date= date.getText().toString();
+        String Time=time.getText().toString();
+        String Id = id.getText().toString();
+        Delivery delivery= new Delivery(Id,Date,Time);
         addRapidTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.addItem("Rapid Test ");
+                delivery.addItem("Rapid Test "+"\n");
             }
         });
         addGelofen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.addItem("Gelofen");
+                delivery.addItem("Gelofen"+"\n");
             }
         });
         addAlvedon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.addItem("Alvedon");
+                delivery.addItem("Alvedon"+"\n");
             }
         });
         addSpray.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.addItem("Spray");
+                delivery.addItem("Spray"+"\n");
             }
         });
         addSyrup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.addItem("Syrup");
+                delivery.addItem("Syrup"+"\n");
             }
         });
         submitDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                delivery.setCustomerID(id.getText().toString());
-                delivery.setDate(date.getText().toString());
-                delivery.setTime(date.getText().toString());
-               // db.storeDelivery(delivery);
-               /*Intent home = new Intent(this,HomeFragment.class);
+
+                 db.storeDelivery(delivery);
+               /* Intent home = new Intent(this,HomeFragment.class);
                 startActivity(home);
 
                 */
+
+
 
             }
         });

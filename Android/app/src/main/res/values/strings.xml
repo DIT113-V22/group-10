@@ -42,7 +42,13 @@
     <string name="left_front_lab" />
     <string name="center_lab" />
     <string name="title_activity_control_selection">ControlSelection</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_change_personal_information">ChangePersonalInformation</string>
     <string name="tab_text_1">Ongoing</string>
     <string name="tab_text_2">Done</string>
+
     <string name="id">Id</string>
+
+
+
 </resources>

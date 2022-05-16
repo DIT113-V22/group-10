@@ -22,6 +22,8 @@ import com.example.hermes.databinding.ActivityRegisterAccountBinding;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import io.realm.mongodb.App;
+
 public class RegisterAccount extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -77,15 +79,22 @@ public class RegisterAccount extends AppCompatActivity {
         String password3 = editTextTextPassword3.getText().toString();
 
         if(passwordMatch(password2, password3) && validateEmail(email) && validatePassword(password2)){
-            Account account = new Account();
-            account.setEmail(email);
-            account.setPassword(password2);
-            Intent intent = new Intent(this, CreateAccountDetails.class);
-            startActivity(intent);
+            Account account = new Account(email, password2);
 
+            DatabaseManager manager = DatabaseManager.getDatabaseManager();
+            App app = manager.getApp();
+
+            app.getEmailPassword().registerUserAsync(email, password2, it->{
+                if(it.isSuccess()){
+                    Intent intent = new Intent(this, CreateAccountDetails.class);
+                    startActivity(intent);
+                } else {
+                    //if registration fails
+                }
+            });
         }
-
     }
+
     public boolean passwordMatch(String password, String password2){
         if(password.equals(password2)){
             passwordMatchWarning = (ImageView) findViewById(R.id.imageView8);
@@ -102,6 +111,7 @@ public class RegisterAccount extends AppCompatActivity {
             return false;
         }
     }
+
     public boolean validateEmail(String email){
         Pattern checkPattern = Pattern.compile("^[\\w-\\.+]*[\\w-\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
         Matcher match = checkPattern.matcher(email);
@@ -119,6 +129,7 @@ public class RegisterAccount extends AppCompatActivity {
             return false;
         }
     }
+
     public boolean validatePassword(String password){
         Pattern checkPattern = Pattern.compile("[^a-zA-Z0-9]"); //regex, checks everything that is not a special case character
         Pattern checkNumberPattern = Pattern.compile("[0-9]"); //check numbers

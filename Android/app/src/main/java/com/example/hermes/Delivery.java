@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+import android.os.Build;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,17 +15,21 @@ public class Delivery {
     private boolean isDone;
     private ArrayList<String> items= new ArrayList();
 
-    /*
+
     public Delivery(String customerID){
         this.customerID = customerID;
-        this.date = LocalDate.now().toString();
-        this.time = LocalTime.now().toString();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.date = LocalDate.now().toString();
+            this.time = LocalTime.now().toString();
+        }
         this.ID = idGenerator();
         this.isReady = false;
         this.isDone = false;
     }
 
-    public Delivery(String customerID, String date, String time){
+
+
+   public Delivery(String customerID,String date, String time){
 
         this.customerID = customerID;
         this.date = date;
@@ -31,7 +37,9 @@ public class Delivery {
         this.ID = idGenerator();
     }
 
-     */
+
+
+
 
     public String getCustomerID(){
         return customerID;
