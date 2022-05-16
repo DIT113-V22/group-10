@@ -13,7 +13,7 @@ public class Delivery {
     private String customerID; //Change later to customer object
     private boolean isReady;
     private boolean isDone;
-    private ArrayList<String> items= new ArrayList();
+    private ArrayList<String> items;
 
 
     public Delivery(String customerID){
@@ -25,16 +25,21 @@ public class Delivery {
         this.ID = idGenerator();
         this.isReady = false;
         this.isDone = false;
+        this.items= new ArrayList<>();
     }
 
 
 
-   public Delivery(String customerID,String date, String time){
 
+
+   public Delivery(String customerID,String date, String time){
         this.customerID = customerID;
         this.date = date;
         this.time = time;
-        this.ID = idGenerator();
+        this.ID=idGenerator();
+        this.isReady=false;
+        this.isDone=false;
+        this.items= new ArrayList<>();
     }
 
 
@@ -67,6 +72,9 @@ public class Delivery {
     public void setDone(boolean value) { this.isDone = value; }
    public void addItem(String ItemName){
         items.add(ItemName);
+   }
+   public ArrayList <String> getItems(){
+        return  items;
    }
 
     public int idGenerator(){

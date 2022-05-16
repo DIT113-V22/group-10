@@ -70,11 +70,11 @@ public class DatabaseManager {
             }
         }
         User user = app.currentUser();
-/*        client = user.getMongoClient("mongodb-atlas");
-        database = client.getDatabase("database");
-        accounts = database.getCollection("accounts");
-        @
- */
+        if(user != null) {
+            client = user.getMongoClient("mongodb-atlas");
+            database = client.getDatabase("database");
+            accounts = database.getCollection("accounts");
+        }
         return manager;
     }
 
@@ -106,7 +106,8 @@ public class DatabaseManager {
                 .append("date", delivery.getDate())
                 .append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
-                .append("isDone", delivery.getDone());
+                .append("isDone", delivery.getDone())
+                .append("Items",delivery.getItems());
         deliveries.insertOne(doc); //adds the document to the database
     }
 
