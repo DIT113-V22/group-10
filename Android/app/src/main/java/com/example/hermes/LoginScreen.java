@@ -79,7 +79,7 @@ public class LoginScreen extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.loginPassword);
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, HomeScreen.class);
         Credentials credentials = Credentials.emailPassword(email.getText().toString(), password.getText().toString());
         app.loginAsync(credentials, new App.Callback<User>() {
             @Override

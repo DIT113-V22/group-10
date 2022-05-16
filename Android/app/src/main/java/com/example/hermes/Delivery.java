@@ -14,7 +14,7 @@ public class Delivery {
     private boolean isDone;
 
 
-    public Delivery(String customerID){
+    public Delivery(){
         this.customerID = customerID;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.date = LocalDate.now().toString();
@@ -54,6 +54,7 @@ public class Delivery {
     public void setDone(boolean value) { this.isDone = value; }
 
     public int idGenerator(){
-        return (int) this.customerID.hashCode() * this.time.hashCode() * this.date.hashCode();
+        //return (int) this.time.hashCode() * this.date.hashCode();
+        return 1;
     }
 }
