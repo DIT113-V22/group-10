@@ -1,6 +1,5 @@
 package com.example.hermes;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -8,9 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -18,7 +15,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
 import com.example.hermes.databinding.ActivityMainBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view) {
         //Intent intent = new Intent(this, CarControl.class);
-      //  startActivity(intent);
-
+        //startActivity(intent);
 
         Intent intent = new Intent(this, ControlSelection.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -71,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         notificationManager.notify(01, builder.build());
     }
 
+//<<<<<<< HEAD
+    public void showDelivery(View view) {
+        //To implement
+//=======
+    }
     public void openLogin(View view){
         Intent intent = new Intent(this, LoginScreen.class);
         startActivity(intent);
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
     public void createAccount(View view){
         Intent intent = new Intent(this, RegisterAccount.class);
         startActivity(intent);
+//>>>>>>> origin/master
     }
 
 

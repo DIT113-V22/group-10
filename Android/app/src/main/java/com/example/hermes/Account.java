@@ -4,25 +4,22 @@ public class Account {
     private String firstName;
     private String lastName;
     private String address;
-    private final int accountId;
     private String email;
     private String DOB;
     private String password;
 
-    public Account(String firstName, String lastName, String address, int accountId, String email, String DOB, String password){
+    /*public Account(String firstName, String lastName, String address, String email, String DOB, String password){
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.accountId = accountId;
         this.email = email;
         this.DOB = DOB;
         this.password = password;
     }
-    public Account(String email, String password, int accountId){
+    public Account(String email, String password){
         this.email = email;
         this.password = password;
-        this.accountId = accountId;
-    }
+    }*/
 
     public String getFirstName() {
         return firstName; }
@@ -37,9 +34,6 @@ public class Account {
     }
     public void setAddress(String address){
         this.address = address;
-    }
-    public int getAccountID(){
-        return accountId;
     }
     public String getDOB(){
         return DOB;
