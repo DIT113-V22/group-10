@@ -49,4 +49,8 @@
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_activity_save_updates">SaveUpdates</string>
 
+    <string name="id">Id</string>
+
+
+
 </resources>
