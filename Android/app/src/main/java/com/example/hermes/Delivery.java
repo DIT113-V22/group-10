@@ -16,7 +16,7 @@ public class Delivery {
     private ArrayList<String> items;
 
 
-    public Delivery(String customerID){
+    public Delivery(){
         this.customerID = customerID;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.date = LocalDate.now().toString();
@@ -78,6 +78,7 @@ public class Delivery {
    }
 
     public int idGenerator(){
-        return (int) this.customerID.hashCode() * this.time.hashCode() * this.date.hashCode();
+        //return (int) this.time.hashCode() * this.date.hashCode();
+        return 1;
     }
 }

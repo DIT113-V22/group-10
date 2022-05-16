@@ -203,9 +203,8 @@ public class CreateAccountDetails extends AppCompatActivity {
         String townString = town.getText().toString();
 
         if (validateName(nameString) && validateLastName(lastNameString) && validateStreetName(streetNameString) && validateDOB(DOBString) && validatePostalCode(postalCodeString) && validateTown(townString)) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, HomeScreen.class);
             startActivity(intent);
-
         }
     }
 }
