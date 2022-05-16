@@ -58,5 +58,14 @@
         app:layout_anchor="@+id/toolbar"
         app:layout_anchorGravity="end|center" />
 
+    <TextView
+        android:id="@+id/joystick_text"
+        android:layout_width="339dp"
+        android:layout_height="130dp"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:translationX="200dp"
+        android:translationY="60dp" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
