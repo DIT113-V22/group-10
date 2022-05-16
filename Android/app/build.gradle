@@ -2,13 +2,15 @@ plugins {
     id 'com.android.application'
 }
 
+apply plugin: 'realm-android'
+
 android {
     compileSdk 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.hermes"
-        minSdkVersion 30
+        minSdkVersion 25
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -34,6 +36,10 @@ repositories {
     maven {
         url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
     }
+}
+
+realm {
+    syncEnabled = true;
 }
 
 dependencies {

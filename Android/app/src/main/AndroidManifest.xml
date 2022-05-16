@@ -15,6 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".ChangePersonalInformation"
+            android:exported="false"
+            android:label="@string/title_activity_change_personal_information"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".Settings"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
             android:name=".CreateAccountDetails"
             android:exported="false"
             android:label="@string/title_activity_create_account_details"
@@ -33,8 +43,7 @@
             android:name=".LoginScreen"
             android:exported="false"
             android:label="@string/title_activity_login_screen" />
-                  
-        <activity      
+        <activity
             android:name=".ControlSelection"
             android:exported="false" />
         <activity
