@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
         //Button startButton = findViewById(R.id.button2);
+
+        Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
     }
 
     public void start(View view) {
@@ -86,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view){
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        //manager.storeAccount(new Account("n", "n", "n", "n", "n", "n"));
         Intent intent = new Intent(this, RegisterAccount.class);
         startActivity(intent);
 //>>>>>>> origin/master

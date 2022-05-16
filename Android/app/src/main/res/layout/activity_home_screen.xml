@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginScreen">
+    tools:context=".HomeScreen">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Hermes.AppBarOverlay">
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:theme="@style/Theme.Hermes.AppBarOverlay"/>
 
     <include
-        android:id="@+id/include"
-        layout="@layout/content_login_screen" />
+        android:id="@+id/settingsButton"
+        layout="@layout/content_home_screen"
+        android:onClick="openSettings" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

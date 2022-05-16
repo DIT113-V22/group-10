@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+import android.os.Build;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -12,10 +14,12 @@ public class Delivery {
     private boolean isDone;
 
 
-    public Delivery(String customerID){
+    public Delivery(){
         this.customerID = customerID;
-        this.date = LocalDate.now().toString();
-        this.time = LocalTime.now().toString();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.date = LocalDate.now().toString();
+            this.time = LocalTime.now().toString();
+        }
         this.ID = idGenerator();
         this.isReady = false;
         this.isDone = false;
@@ -50,6 +54,7 @@ public class Delivery {
     public void setDone(boolean value) { this.isDone = value; }
 
     public int idGenerator(){
-        return (int) this.customerID.hashCode() * this.time.hashCode() * this.date.hashCode();
+        //return (int) this.time.hashCode() * this.date.hashCode();
+        return 1;
     }
 }

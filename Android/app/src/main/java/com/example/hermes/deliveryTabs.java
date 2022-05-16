@@ -37,7 +37,7 @@ public class deliveryTabs extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
-        Delivery test = new Delivery("1234");
+        Delivery test = new Delivery();
         db.storeDelivery(test);
     }
 }
