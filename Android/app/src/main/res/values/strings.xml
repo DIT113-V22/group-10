@@ -46,5 +46,6 @@
     <string name="title_activity_change_personal_information">ChangePersonalInformation</string>
     <string name="tab_text_1">Ongoing</string>
     <string name="tab_text_2">Done</string>
-
+    <string name="ongoing">Ongoing</string>
+    <string name="completed">completed</string>
 </resources>
