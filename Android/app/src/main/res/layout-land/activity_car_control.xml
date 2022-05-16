@@ -9,14 +9,21 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Hermes.AppBarOverlay"/>
+        android:theme="@style/Theme.Hermes.AppBarOverlay">
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
         android:id="@+id/camera"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="650dp"
+        android:layout_height="342dp"
+        android:layout_marginTop="70dp"
         app:layout_anchor="@+id/frameLayout"
         app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -97,8 +104,9 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.057"
-            tools:visibility="visible" />
+            app:layout_constraintVertical_bias="0.02"
+            tools:text="test" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/Joystick_camera"
-        android:layout_width="732dp"
-        android:layout_height="354dp"
-        android:scaleX="2.07"
-        android:translationX="0dp"
-        android:translationY="56dp"
+        android:layout_width="650dp"
+        android:layout_height="342dp"
+        android:scaleX="1"
+        android:translationX="40dp"
+        android:translationY="70dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <com.zerokol.views.joystickView.JoystickView
@@ -60,11 +60,11 @@
 
     <TextView
         android:id="@+id/joystick_text"
-        android:layout_width="339dp"
-        android:layout_height="130dp"
+        android:layout_width="196dp"
+        android:layout_height="255dp"
         android:textAlignment="center"
         android:textSize="48sp"
-        android:translationX="200dp"
+        android:translationX="0dp"
         android:translationY="60dp" />
 
 
