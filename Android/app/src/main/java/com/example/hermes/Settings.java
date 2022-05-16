@@ -1,5 +1,6 @@
 package com.example.hermes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -53,6 +54,14 @@ public class Settings extends AppCompatActivity {
                 || super.onSupportNavigateUp();
 
        */
+    }
+    public void changeAccountDetails(View view){
+        Intent intent = new Intent(this, ChangePersonalInformation.class);
+        startActivity(intent);
+    }
+    public void goBack(View view){
+        Intent intent = new Intent(this, HomeScreen.class);
+        startActivity(intent);
     }
 
 
