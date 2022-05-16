@@ -1,11 +1,12 @@
 package com.example.hermes;
 
-import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
+import android.os.Build;
+import java.util.Locale;
 
 public class Delivery {
     private int ID;
@@ -13,6 +14,25 @@ public class Delivery {
     private String customerID; //Change later to customer object
     private boolean isReady;
     private boolean isDone;
+
+    public Delivery(String customerID){
+        this.customerID = customerID;
+        Date date = new Date();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            this.date = date;
+        }
+        this.ID = idGenerator(customerID, date);
+        this.isReady = false;
+        this.isDone = false;
+    }
+
+    public Delivery(String customerID, String date) throws ParseException {
+
+        this.customerID = customerID;
+        Date d = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(date);
+        this.date = d;
+        this.ID = idGenerator(customerID, d);
+    }
 
     public String getCustomerID(){
         return customerID;
@@ -33,9 +53,8 @@ public class Delivery {
         return split[3];
     }
 
-    @SuppressLint("SimpleDateFormat")
     public void setDate(String yyyymmdd_hhmmss) throws ParseException {
-        date = new SimpleDateFormat("yyyyMMdd HH:mm:ss").parse(yyyymmdd_hhmmss);
+        date = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(yyyymmdd_hhmmss);
     }
 
     public void setDate(){
@@ -56,8 +75,8 @@ public class Delivery {
 
     public void setDone(boolean value) { this.isDone = value; }
 
-    public int idGenerator(){
-        return this.customerID.hashCode() * this.date.hashCode();
+    public int idGenerator(String customerID, Date date){
+        return customerID.hashCode() * date.hashCode();
     }
 
     public int getId(){

@@ -22,51 +22,41 @@ public class ExampleUnitTest {
 
     JsonManager jManager = new JsonManager();
     ArrayList<Delivery> deliveries = new ArrayList<>();
-    Delivery delivery1 = new Delivery();
-    Delivery delivery2 = new Delivery();
-    Delivery delivery3 = new Delivery();
-    Delivery delivery4 = new Delivery();
-    Delivery delivery5 = new Delivery();
-    Delivery delivery6 = new Delivery();
-    Delivery delivery7 = new Delivery();
-    Delivery delivery8 = new Delivery();
-    Delivery delivery9 = new Delivery();
-    Delivery delivery10 = new Delivery();
+    Delivery delivery1 = new Delivery("Emrik");
+    Delivery delivery2 = new Delivery("Erik");
+    Delivery delivery3 = new Delivery("Amin");
+    Delivery delivery4 = new Delivery("nihiliss");
+    Delivery delivery5 = new Delivery("Julia");
+    Delivery delivery6 = new Delivery("Yasamin");
+    Delivery delivery7 = new Delivery("Daniel");
+    Delivery delivery8 = new Delivery("Sven");
+    Delivery delivery9 = new Delivery("Karl");
+    Delivery delivery10 = new Delivery("Björn");
 
     @Before
     public void setUp() throws ParseException {
 
         //Setup for Json tests
-        delivery1.setCustomerID("Emrik");
         delivery1.setDate("20221104 13:45:00");
 
         //Setup for sorting tests
         deliveries.add(delivery1);
-        delivery2.setCustomerID("Erik");
         delivery2.setDate("20110912 08:23:55");
         deliveries.add(delivery2);
-        delivery3.setCustomerID("Amin");
         delivery3.setDate("20222104 13:45:00");
         deliveries.add(delivery3);
-        delivery4.setCustomerID("nihiliss");
         delivery4.setDate("20221120 09:15:02");
         deliveries.add(delivery4);
-        delivery5.setCustomerID("Julia");
         delivery5.setDate("20110612 08:23:55");
         deliveries.add(delivery5);
-        delivery6.setCustomerID("Yasamin");
         delivery6.setDate("20220113 12:11:56");
         deliveries.add(delivery6);
-        delivery7.setCustomerID("Daniel");
         delivery7.setDate("20220113 00:11:56");
         deliveries.add(delivery7);
-        delivery8.setCustomerID("Sven");
         delivery8.setDate("19800627 16:00:17");
         deliveries.add(delivery8);
-        delivery9.setCustomerID("Karl");
         delivery9.setDate("20240520 09:35:08");
         deliveries.add(delivery9);
-        delivery10.setCustomerID("Björn");
         delivery10.setDate("20220512 23:13:44");
         deliveries.add(delivery10);
 

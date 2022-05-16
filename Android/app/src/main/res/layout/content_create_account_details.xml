@@ -10,7 +10,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="-28dp"
         tools:layout_editor_absoluteY="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,47 +20,70 @@
 
             <EditText
                 android:id="@+id/editTextTextPersonName4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#CC3A95DD"
+                android:drawableLeft="@drawable/ic_baseline_map_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Town"
                 android:inputType="textPersonName"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
 
             <Button
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="60dp"
-                android:backgroundTint="#2E6EEA"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="100dp"
+                android:backgroundTint="#3A95DD"
                 android:onClick="createAccount"
                 android:text="CREATE ACCOUNT"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <EditText
                 android:id="@+id/editTextDate"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#1AFFFFFF"
+                android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="DD/MM/YYYY"
                 android:inputType="date"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName3"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#993A95DD"
+                android:drawableLeft="@drawable/ic_baseline_map_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Postal code"
                 android:inputType="textPersonName"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPostalAddress" />
@@ -83,9 +106,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="145dp"
-                android:layout_height="118dp"
-                android:layout_marginTop="50dp"
+                android:layout_width="99dp"
+                android:layout_height="81dp"
+                android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -93,120 +116,130 @@
 
             <EditText
                 android:id="@+id/editTextTextPostalAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#4D3A95DD"
+                android:drawableLeft="@drawable/ic_baseline_house_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Street adress"
                 android:inputType="textPostalAddress"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="40dp"
+                android:background="#66FFFFFF"
+                android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="First name"
                 android:inputType="textPersonName"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:background="#4DFFFFFF"
+                android:drawableLeft="@drawable/ic_baseline_account_circle_24"
+                android:drawablePadding="20dp"
                 android:ems="10"
                 android:hint="Last name"
                 android:inputType="textPersonName"
+                android:padding="18dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
             <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="23dp"
-                android:layout_height="31dp"
-                android:layout_marginTop="300dp"
-                android:layout_marginEnd="8dp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/error_red" />
-
-            <ImageView
                 android:id="@+id/imageView7"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="300dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName2"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
                 android:id="@+id/imageView10"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName3"
-                app:layout_constraintTop_toBottomOf="@+id/imageView12"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName3"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName3"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextDate"
-                app:layout_constraintTop_toBottomOf="@+id/imageView13"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextDate"
+                app:layout_constraintEnd_toEndOf="@+id/editTextDate"
+                app:layout_constraintTop_toTopOf="@+id/editTextDate"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
                 android:id="@+id/imageView12"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPostalAddress"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPostalAddress"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPostalAddress"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPostalAddress"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
                 android:id="@+id/imageView13"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
                 android:id="@+id/imageView14"
                 android:layout_width="23dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="13dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName4"
-                app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName4"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName4"
+                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName4"
                 app:srcCompat="@drawable/error_red" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter a name"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -219,7 +252,7 @@
                 android:id="@+id/textView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter a last name"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -232,7 +265,7 @@
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter a valid date of birth"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -245,7 +278,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter an address"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -258,7 +291,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter a postal code"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -271,7 +304,7 @@
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="40dp"
                 android:text="Please enter a town"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
@@ -279,6 +312,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
