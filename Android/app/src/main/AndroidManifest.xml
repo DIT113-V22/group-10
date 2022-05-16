@@ -30,6 +30,11 @@
             android:label="@string/title_activity_create_account_details"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
+            android:name=".deliveryTabs"
+            android:exported="false"
+            android:label="deliveryTabs"
+            android:theme="@style/Theme.Hermes.NoActionBar"/>
+        <activity
             android:name=".RegisterAccount"
             android:exported="false"
             android:label="@string/title_activity_register_account"
@@ -52,6 +57,10 @@
             android:label="@string/title_activity_car_control"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
+            android:name=".TermsandConditions"
+            android:exported="false"
+            android:label="termsAndConditions"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">
@@ -63,6 +72,9 @@
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

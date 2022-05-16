@@ -16,6 +16,7 @@ public class Account {
         this.DOB = DOB;
         this.password = password;
     }
+
     public Account(String email, String password){
         this.email = email;
         this.password = password;

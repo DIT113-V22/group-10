@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +9,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public abstract class AbstractSteering extends AppCompatActivity {
 
     protected ImageView camera ;
+    protected TextView textView;
     private MqttClient mqttClient;
     private boolean isConnected = false;
     protected AppBarConfiguration appBarConfiguration;
@@ -70,6 +74,8 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
                     mqttClient.subscribe("/smartcar/ultrasound/front", QOS, null);
                     mqttClient.subscribe("/smartcar/camera", QOS, null);
+                    mqttClient.subscribe("/smartcar/control/obstacleMsg",QOS,null);
+
                 }
 
                 @Override
@@ -94,6 +100,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         final Bitmap bm = Bitmap.createBitmap(IMAGE_WIDTH, IMAGE_HEIGHT, Bitmap.Config.ARGB_8888);
 
                         final byte[] payload = message.getPayload();
+
                         final int[] colors = new int[IMAGE_WIDTH * IMAGE_HEIGHT];
                         for (int ci = 0; ci < colors.length; ++ci) {
                             final byte r = payload[3 * ci];
@@ -103,7 +110,22 @@ public abstract class AbstractSteering extends AppCompatActivity {
                         }
                         bm.setPixels(colors, 0, IMAGE_WIDTH, 0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
                         camera.setImageBitmap(bm);
-                    } else {
+
+                    }
+                  
+
+                    
+                    else if(topic.equals("/smartcar/control/obstacleMsg")){
+                        String m= message.toString();
+                        if(!m.isEmpty()) {
+                          
+                            textView.setText(m);
+                            textView.setTextColor(Color.parseColor("#f00"));
+                        }
+                        textView.setText(" ");
+                    }
+
+                        else {
                         Log.i(TAG, "[MQTT] Topic: " + topic + " | Message: " + message.toString());
                     }
                 }
@@ -112,6 +134,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
                 public void deliveryComplete(IMqttDeliveryToken token) {
                     Log.d(TAG, "Message delivered");
                 }
+
             });
         }
     }
@@ -165,5 +188,8 @@ public abstract class AbstractSteering extends AppCompatActivity {
 
     protected void setCamera(ImageView camera){
         this.camera = camera;
+    }
+    protected void setTextView(TextView t){
+        this.textView=t;
     }
 }

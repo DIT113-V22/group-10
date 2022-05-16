@@ -7,7 +7,11 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -18,10 +22,19 @@ import com.example.hermes.databinding.ActivityLoginScreenBinding;
 
 import java.util.ArrayList;
 
+import io.realm.mongodb.App;
+import io.realm.mongodb.Credentials;
+import io.realm.mongodb.User;
+
+
 public class LoginScreen extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityLoginScreenBinding binding;
+
+    private EditText email;
+    private EditText password;
+    private TextView loginFailWarning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,5 +71,27 @@ public class LoginScreen extends AppCompatActivity {
     public void createAccount(View view){
         Intent intent = new Intent(this, RegisterAccount.class);
         startActivity(intent);
+    }
+
+    public void login(View view){
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        App app = manager.getApp();
+
+        email = (EditText) findViewById(R.id.loginEmail);
+        password = (EditText) findViewById(R.id.loginPassword);
+        Intent intent = new Intent(this, MainActivity.class);
+        Credentials credentials = Credentials.emailPassword(email.getText().toString(), password.getText().toString());
+        app.loginAsync(credentials, new App.Callback<User>() {
+            @Override
+            public void onResult(App.Result<User> result) {
+                if(result.isSuccess()){
+                    startActivity(intent);
+                } else {
+                    loginFailWarning = (TextView) findViewById(R.id.textView17);
+                    loginFailWarning.setVisibility(View.VISIBLE);
+
+                }
+            }
+        });
     }
 }

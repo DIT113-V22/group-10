@@ -30,7 +30,7 @@
     <ImageView
         android:id="@+id/Joystick_camera"
         android:layout_width="match_parent"
-        android:layout_height="498dp"
+        android:layout_height="match_parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
@@ -54,6 +54,22 @@
         android:text="Buttons"
         app:layout_anchor="@+id/toolbar"
         app:layout_anchorGravity="end|center" />
+
+    <FrameLayout
+        android:layout_width="371dp"
+        android:layout_height="235dp"
+        android:translationX="20dp"
+        android:translationY="20dp">
+
+        <TextView
+            android:id="@+id/Joystick_text"
+            android:layout_width="339dp"
+            android:layout_height="130dp"
+            android:textAlignment="center"
+            android:textSize="48sp"
+            android:translationX="20dp"
+            android:translationY="60dp" />
+    </FrameLayout>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

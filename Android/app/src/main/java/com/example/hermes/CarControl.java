@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +39,7 @@ public class CarControl extends AbstractSteering {
     private static final int STRAIGHT_ANGLE = 0;
     private static final int STEERING_ANGLE = 50;
     private  ImageView camera;
+    private TextView textView;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -49,7 +51,8 @@ public class CarControl extends AbstractSteering {
         setContentView(binding.getRoot());
         camera= findViewById(R.id.camera);
         setCamera(camera);
-
+        textView=findViewById(R.id.buttonText);
+        setTextView(textView);
         Button b = findViewById(R.id.backButton);
         Button f = findViewById(R.id.ForButton);
         Button l = findViewById(R.id.leftButton);
@@ -99,6 +102,7 @@ public class CarControl extends AbstractSteering {
             }
         });
         MqttConnect(camera);
+
    }
 
     @Override
