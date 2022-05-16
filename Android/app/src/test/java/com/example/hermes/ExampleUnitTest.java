@@ -112,16 +112,16 @@ public class ExampleUnitTest {
         ArrayList<Delivery> z_a = new ArrayList<>(deliveries);
         z_a.sort(Delivery.byNameReverse);
 
-        String expectedOldest = "Sven Fri Jun 27 16:00:17 EET 1980\n" +
-                "Julia Sun Jun 12 08:23:55 EEST 2011\n" +
-                "Erik Mon Sep 12 08:23:55 EEST 2011\n" +
-                "Daniel Thu Jan 13 00:11:56 EET 2022\n" +
-                "Yasamin Thu Jan 13 12:11:56 EET 2022\n" +
-                "Björn Thu May 12 23:13:44 EEST 2022\n" +
-                "Emrik Fri Nov 04 13:45:00 EET 2022\n" +
-                "nihiliss Sun Nov 20 09:15:02 EET 2022\n" +
-                "Amin Mon Sep 04 13:45:00 EEST 2023\n" +
-                "Karl Mon May 20 09:35:08 EEST 2024\n";
+        String expectedOldest = "Sven Fri Jun 27 16:00:17 EET 1980 " +
+                "Julia Sun Jun 12 08:23:55 EEST 2011 " +
+                "Erik Mon Sep 12 08:23:55 EEST 2011 " +
+                "Daniel Thu Jan 13 00:11:56 EET 2022 " +
+                "Yasamin Thu Jan 13 12:11:56 EET 2022 " +
+                "Björn Thu May 12 23:13:44 EEST 2022 " +
+                "Emrik Fri Nov 04 13:45:00 EET 2022 " +
+                "nihiliss Sun Nov 20 09:15:02 EET 2022 " +
+                "Amin Mon Sep 04 13:45:00 EEST 2023 " +
+                "Karl Mon May 20 09:35:08 EEST 2024 ";
 
         String expectedNewest = "Karl Mon May 20 09:35:08 EEST 2024\n" +
                 "Amin Mon Sep 04 13:45:00 EEST 2023\n" +
@@ -157,18 +157,29 @@ public class ExampleUnitTest {
                 "Amin Mon Sep 04 13:45:00 EEST 2023\n";
 
         String actualOldest = "";
-        String actualNewest = "";
+        ArrayList<Delivery> actualNewest = new ArrayList<>();
+        actualNewest.add(deliveries.get(8));
+        actualNewest.add(deliveries.get(2));
+        actualNewest.add(deliveries.get(3));
+        actualNewest.add(deliveries.get(0));
+        actualNewest.add(deliveries.get(9));
+        actualNewest.add(deliveries.get(5));
+        actualNewest.add(deliveries.get(6));
+        actualNewest.add(deliveries.get(1));
+        actualNewest.add(deliveries.get(4));
+        actualNewest.add(deliveries.get(7));
+
         String actualByName = "";
         String actualByReverseName = "";
 
         for (int i =0; i<10; i++){
-            actualOldest += oldest.get(i).toString()+ "\n";
-            actualNewest += newest.get(i).toString()+ "\n";
+            actualOldest += oldest.get(i).toString()+ " ";
+            //actualNewest += newest.get(i).toString()+ "\n";
             actualByName += a_z.get(i).toString()+ "\n";
             actualByReverseName += z_a.get(i).toString()+ "\n";
         }
         assertEquals(expectedOldest, actualOldest);
-        assertEquals(expectedNewest, actualNewest);
+        assertEquals(actualNewest, newest);
         assertEquals(expectedByName, actualByName);
         assertEquals(expectedByReverseName, actualByReverseName);
     }
