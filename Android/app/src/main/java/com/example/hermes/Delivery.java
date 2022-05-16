@@ -1,15 +1,11 @@
 package com.example.hermes;
 
+import android.annotation.SuppressLint;
 import androidx.annotation.NonNull;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
 
 public class Delivery {
     private int ID;
@@ -18,52 +14,32 @@ public class Delivery {
     private boolean isReady;
     private boolean isDone;
 
-    /*
-    public Delivery(String customerID){
-        this.customerID = customerID;
-        this.date = LocalDate.now().toString();
-        this.time = LocalTime.now().toString();
-        this.ID = idGenerator();
-        this.isReady = false;
-        this.isDone = false;
-    }
-
-    public Delivery(String customerID, String date, String time){
-
-        this.customerID = customerID;
-        this.date = date;
-        this.time = time;
-        this.ID = idGenerator();
-    }
-
-     */
-
     public String getCustomerID(){
         return customerID;
     }
 
     public void setCustomerID(String ID){
-        if (customerID == null){
+        if (customerID == null)
             this.customerID = ID;
-        }
     }
 
     public String getDate(){
-        String[] splitted = date.toString().split(" ");
-        return splitted[5] + " " + splitted[1] + " " + splitted[2];
+        String[] split = date.toString().split(" ");
+        return split[5] + " " + split[1] + " " + split[2];
     }
 
+    public String getTime() {
+        String[] split = date.toString().split(" ");
+        return split[3];
+    }
+
+    @SuppressLint("SimpleDateFormat")
     public void setDate(String yyyymmdd_hhmmss) throws ParseException {
         date = new SimpleDateFormat("yyyyMMdd HH:mm:ss").parse(yyyymmdd_hhmmss);
     }
 
     public void setDate(){
         date = new Date();
-    }
-
-    public String getTime() {
-        String[] splitted = date.toString().split(" ");
-        return splitted[3];
     }
 
     public int getID() { return ID; }
@@ -73,45 +49,32 @@ public class Delivery {
     }
 
     public boolean getReady() { return isReady; }
+
     public void setReady(boolean value) { this.isReady = value; }
+
     public boolean getDone() { return this.isDone; }
+
     public void setDone(boolean value) { this.isDone = value; }
 
     public int idGenerator(){
-        return (int) this.customerID.hashCode() * this.date.hashCode();
+        return this.customerID.hashCode() * this.date.hashCode();
     }
 
-    public static final Comparator<Delivery> byOldest = new Comparator<Delivery>() {
-        @Override
-        public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery1.date.compareTo(delivery2.date);
-        }
-    };
-
-    public static final Comparator<Delivery> byNewest = new Comparator<Delivery>() {
-        @Override
-        public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery2.date.compareTo(delivery1.date);
-        }
-    };
-
-    public static final Comparator<Delivery> byName = new Comparator<Delivery>() {
-        @Override
-        public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery1.customerID.compareToIgnoreCase(delivery2.customerID);
-        }
-    };
-
-    public static final Comparator<Delivery> byNameReverse = new Comparator<Delivery>() {
-        @Override
-        public int compare(Delivery delivery1, Delivery delivery2) {
-            return delivery2.customerID.compareToIgnoreCase(delivery1.customerID);
-        }
-    };
+    public int getId(){
+        return this.ID;
+    }
 
     @NonNull
     @Override
     public String toString(){
         return this.customerID + " " + this.date;
     }
+
+    public static final Comparator<Delivery> byOldest = Comparator.comparing(delivery -> delivery.date);
+
+    public static final Comparator<Delivery> byNewest = (delivery1, delivery2) -> delivery2.date.compareTo(delivery1.date);
+
+    public static final Comparator<Delivery> byName = (delivery1, delivery2) -> delivery1.customerID.compareToIgnoreCase(delivery2.customerID);
+
+    public static final Comparator<Delivery> byNameReverse = (delivery1, delivery2) -> delivery2.customerID.compareToIgnoreCase(delivery1.customerID);
 }
