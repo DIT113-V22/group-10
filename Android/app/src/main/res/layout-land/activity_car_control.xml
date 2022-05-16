@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".CarControl">
 
-    <TextView
-        android:id="@+id/buttonText"
-        android:layout_width="358dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="190dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="200dp"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/camera"
-        app:layout_constraintEnd_toStartOf="@+id/camera"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
-
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -99,6 +85,20 @@
             android:onClick="changeToJoystick"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/buttonText"
+            android:layout_width="358dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="190dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="200dp"
+            android:textAlignment="center"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toTopOf="@+id/camera"
+            app:layout_constraintEnd_toStartOf="@+id/camera"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
