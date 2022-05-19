@@ -133,14 +133,14 @@
         app:layout_constraintVertical_bias="0.162" />
 
     <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="53dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="4dp"
-        android:onClick="home"
+        android:id="@+id/shoppingBack"
+        android:layout_width="61dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="2dp"
+        android:rotationY="-21"
+        app:cornerRadius="20dp"
         app:icon="?attr/actionModeCloseDrawable"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

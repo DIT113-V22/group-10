@@ -1,34 +1,18 @@
 package com.example.hermes;
 
-import static com.mongodb.client.model.Filters.eq;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
-import android.content.Context;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-
-import io.realm.mongodb.mongo.iterable.FindIterable;
-
-import io.realm.mongodb.RealmResultTask;
-import io.realm.mongodb.mongo.MongoClient;
-import com.mongodb.client.MongoClients;
-import io.realm.mongodb.mongo.MongoCollection;
-import io.realm.mongodb.mongo.iterable.MongoCursor;
-import io.realm.mongodb.mongo.MongoDatabase;
-
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.FindIterable;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class DatabaseManager {
 
@@ -114,11 +98,13 @@ public class DatabaseManager {
         deliveries.insertOne(doc); //adds the document to the database
     }
 
-    public Delivery loadDelivery(int deliveryID){
+   /* public Delivery loadDelivery(int deliveryID){
         Document queryFilter = new Document().append("ID", deliveryID);
         Document doc = deliveries.findOne(queryFilter).get();
         return new Delivery();
     }
+
+    */
 
     public ArrayList<Delivery> allDeliveries() {
 

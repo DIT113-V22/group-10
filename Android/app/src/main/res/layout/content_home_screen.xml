@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/ShoppingB"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="90dp"
@@ -56,13 +56,13 @@
         android:text="Feedback"
         android:textColor="@color/black"
         app:cornerRadius="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/button11"
+        app:layout_constraintEnd_toStartOf="@+id/termsB"
         app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/ShoppingB" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/termsB"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="36dp"
@@ -121,7 +121,7 @@
         android:text="Activities"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/ShoppingB"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
         tools:layout_editor_absoluteX="16dp" />
 

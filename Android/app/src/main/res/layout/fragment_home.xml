@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/ShoppingB"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:backgroundTint="#D5C7C1"
@@ -59,12 +59,12 @@
         android:text="Feedback"
         android:textColor="@color/black"
         app:cornerRadius="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/button11"
+        app:layout_constraintEnd_toStartOf="@+id/termsB"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/ShoppingB" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/termsB"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="15dp"

@@ -1,20 +1,19 @@
 package com.example.hermes;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
-import com.example.hermes.ui.home.HomeFragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ShoppingScreen extends AppCompatActivity {
 
     private DatabaseManager db = DatabaseManager.getDatabaseManager();
+    private Button goBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +30,7 @@ public class ShoppingScreen extends AppCompatActivity {
         String Date= date.getText().toString();
         String Time=time.getText().toString();
         String Id = id.getText().toString();
-        Delivery delivery= new Delivery(Id,Date,Time);
+        Delivery delivery= new Delivery(Id);
 
         addRapidTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +77,11 @@ public class ShoppingScreen extends AppCompatActivity {
             }
         });
 
+        goBack = (Button) findViewById(R.id.shoppingBack);
+        goBack.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, HomeScreen.class);
+            startActivity(intent);
+        });
 
 
     }

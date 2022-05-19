@@ -3,6 +3,7 @@ package com.example.hermes;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,9 @@ public class HomeScreen extends AppCompatActivity {
 
     //private AppBarConfiguration appBarConfiguration;
     private ActivityHomeScreenBinding binding;
+    private Button allDeliveriesB;
+    private Button b;
+    private Button shopping;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +38,28 @@ public class HomeScreen extends AppCompatActivity {
 
  */
 
-        DatabaseManager manager = DatabaseManager.getDatabaseManager();
-        manager.storeDelivery(new Delivery());
+        //DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        //manager.storeDelivery(new Delivery());
+
+
+        allDeliveriesB = (Button) findViewById(R.id.allDeliveriesB);
+
+        allDeliveriesB.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, deliveryTabs.class);
+            startActivity(intent);
+        });
+
+        b = (Button) findViewById(R.id.termsB);
+        b.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, TermsandConditions.class);
+            startActivity(intent);
+        });
+
+        shopping = (Button) findViewById(R.id.ShoppingB);
+        shopping.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, ShoppingScreen.class);
+            startActivity(intent);
+        });
 
     }
 /*
