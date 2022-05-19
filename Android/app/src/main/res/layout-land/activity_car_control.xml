@@ -15,10 +15,10 @@
 
     <ImageView
         android:id="@+id/camera"
-        android:layout_width="604dp"
-        android:layout_height="342dp"
-        android:layout_marginHorizontal="64dp"
-        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         app:layout_anchor="@+id/frameLayout"
         app:layout_anchorGravity="center"
@@ -106,7 +106,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.233"
+            app:layout_constraintVertical_bias="0.1"
             tools:text="test"
             tools:visibility="visible" />
 

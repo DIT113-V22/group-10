@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/Joystick_camera"
-        android:layout_width="650dp"
-        android:layout_height="342dp"
+        android:layout_width="640dp"
+        android:layout_height="355dp"
         android:scaleX="1"
         android:translationX="40dp"
-        android:translationY="70dp"
+        android:translationY="55dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <com.zerokol.views.joystickView.JoystickView
