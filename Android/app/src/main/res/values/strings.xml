@@ -50,4 +50,8 @@
     <string name="title_activity_save_updates">SaveUpdates</string>
     <string name="third_fragment_label">third_fragment_label</string>
 
+    <string name="id">Id</string>
+
+
+
 </resources>

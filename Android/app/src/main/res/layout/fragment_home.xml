@@ -28,6 +28,7 @@
         android:layout_height="170dp"
         android:backgroundTint="#D5C7C1"
         android:drawableTop="@drawable/stall"
+        android:onClick="setDelivery"
         android:text="Shope-in-Shope"
         android:textColor="@color/black"
         app:cornerRadius="20sp"

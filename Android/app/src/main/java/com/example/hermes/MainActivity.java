@@ -92,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 //>>>>>>> origin/master
     }
+    public void setDelivery(View view){
+        Intent intent = new Intent(this, ShoppingScreen.class);
+        startActivity(intent);
+    }
 
 
 }
