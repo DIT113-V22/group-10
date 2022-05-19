@@ -15,6 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".activity_change_personal_information_svenska"
+            android:exported="false" />
+        <activity
+            android:name=".register_account_svenska"
+            android:exported="false" />
+        <activity
+            android:name=".test_swedish"
+            android:exported="false"
+            android:label="@string/title_activity_test_swedish"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
             android:name=".SaveUpdates"
             android:exported="false"
             android:label="@string/title_activity_save_updates"

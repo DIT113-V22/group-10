@@ -3,8 +3,6 @@ package com.example.hermes;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
@@ -188,7 +186,7 @@ public class CreateAccountDetails extends AppCompatActivity {
         }
     }
     public void createAccount(View view) {
-        name = (EditText) findViewById(R.id.editTextTextPersonName2);
+        name = (EditText) findViewById(R.id.firstname);
         lastName = (EditText) findViewById(R.id.editTextTextPersonName);
         DOB = (EditText) findViewById(R.id.editTextDate);
         streetName = (EditText) findViewById(R.id.editTextTextPostalAddress);

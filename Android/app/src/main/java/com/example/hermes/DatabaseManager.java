@@ -99,7 +99,9 @@ public class DatabaseManager {
     public Account loadAccount(){
         Document queryFilter = new Document().append("userId", app.currentUser().getId());
         Document doc = accounts.findOne(queryFilter).get();
-        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
+
+        //TODO add postalcode and town properly;
+        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), "", "", doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
         //return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
     }
 
