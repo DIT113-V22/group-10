@@ -14,8 +14,9 @@ public class HomeScreen extends AppCompatActivity {
     //private AppBarConfiguration appBarConfiguration;
     private ActivityHomeScreenBinding binding;
     private Button allDeliveriesB;
-    private Button b;
+    private Button termsAndConditions;
     private Button shopping;
+    private Button feedback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,8 @@ public class HomeScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
-        b = (Button) findViewById(R.id.termsB);
-        b.setOnClickListener(view1 -> {
+        termsAndConditions = (Button) findViewById(R.id.termsB);
+        termsAndConditions.setOnClickListener(view1 -> {
             Intent intent = new Intent(this, TermsandConditions.class);
             startActivity(intent);
         });
@@ -58,6 +59,12 @@ public class HomeScreen extends AppCompatActivity {
         shopping = (Button) findViewById(R.id.ShoppingB);
         shopping.setOnClickListener(view1 -> {
             Intent intent = new Intent(this, ShoppingScreen.class);
+            startActivity(intent);
+        });
+
+        feedback = (Button) findViewById(R.id.feedbackButton);
+        shopping.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, FeedBackView.class);
             startActivity(intent);
         });
 
