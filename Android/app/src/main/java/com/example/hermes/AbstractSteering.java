@@ -115,7 +115,7 @@ public abstract class AbstractSteering extends AppCompatActivity {
                   
 
                     
-                    else if(topic.equals("/smartcar/control/obstacleMsg")){
+                    if(topic.equals("/smartcar/control/obstacleMsg")){
                         String m= message.toString();
                         if(!m.isEmpty()) {
                           

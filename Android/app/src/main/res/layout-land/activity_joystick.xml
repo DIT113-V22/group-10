@@ -13,25 +13,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/Joystick_camera"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <com.zerokol.views.joystickView.JoystickView
-        android:id="@+id/joystickView"
-        android:layout_width="282dp"
-        android:layout_height="236dp"
-        android:translationX="85dp"
-        android:translationY="500dp" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/Theme.Hermes.PopupOverlay" />
+
+    <ImageView
+        android:id="@+id/Joystick_camera"
+        android:layout_width="640dp"
+        android:layout_height="355dp"
+        android:scaleX="1"
+        android:translationX="40dp"
+        android:translationY="55dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <com.zerokol.views.joystickView.JoystickView
+        android:id="@+id/joystickView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:translationX="560dp"
+        android:translationY="230dp" />
 
     <Button
         android:id="@+id/Back"
@@ -55,21 +58,15 @@
         app:layout_anchor="@+id/toolbar"
         app:layout_anchorGravity="end|center" />
 
-    <FrameLayout
-        android:layout_width="371dp"
-        android:layout_height="235dp"
-        android:translationX="20dp"
-        android:translationY="20dp">
-
-        <TextView
-            android:id="@+id/Joystick_text"
-            android:layout_width="339dp"
-            android:layout_height="130dp"
-            android:textAlignment="center"
-            android:textSize="48sp"
-            android:translationX="20dp"
-            android:translationY="60dp" />
-    </FrameLayout>
+    <TextView
+        android:id="@+id/Joystick_text"
+        android:layout_width="389dp"
+        android:layout_height="134dp"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        android:translationX="170dp"
+        android:translationY="70dp"
+        tools:text="test" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
