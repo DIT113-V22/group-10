@@ -2,7 +2,6 @@ package com.example.hermes;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,7 @@ public class FeedBackView extends AppCompatActivity {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feedback);
         Log.d(TAG, "onCreate: Starting.");
@@ -43,7 +42,7 @@ public class FeedBackView extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(view.getContext(), HomeFragment.class);
+                Intent home = new Intent(view.getContext(), HomeScreen.class);
                 startActivity(home);
             }
         });

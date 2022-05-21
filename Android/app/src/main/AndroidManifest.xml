@@ -25,6 +25,11 @@
             android:label="@string/title_activity_home_screen"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
+            android:name=".Thanks"
+            android:exported="false"
+            android:label="Thanks"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
             android:name=".ChangePersonalInformation"
             android:exported="false"
             android:label="@string/title_activity_change_personal_information"

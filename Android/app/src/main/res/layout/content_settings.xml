@@ -78,12 +78,13 @@
         app:srcCompat="@drawable/hermes_lego_no_background_small" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/rapidTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:onClick="changeAccountDetails"
         android:text="change personal information"
+        app:cornerRadius="20dp"
         app:iconTint="#CDA8A8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

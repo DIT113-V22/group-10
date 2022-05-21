@@ -1,17 +1,22 @@
 package com.example.hermes;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.hermes.databinding.ActivityHomeScreenBinding;
 
 public class HomeScreen extends AppCompatActivity {
 
-    //private AppBarConfiguration appBarConfiguration;
     private ActivityHomeScreenBinding binding;
     private Button allDeliveriesB;
     private Button termsAndConditions;
@@ -25,26 +30,16 @@ public class HomeScreen extends AppCompatActivity {
         binding = ActivityHomeScreenBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-       //BottomNavigationView bottomNav = findViewById(R.id.nav_view2);
-       //bottomNav.setOnNavigationItemSelectedListener(navListener);
-/*
-        BottomNavigationView navView = findViewById(R.id.nav_view2);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_screen);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        //NavigationUI.setupWithNavController(binding.navView, navController);
-
-
- */
-
         //DatabaseManager manager = DatabaseManager.getDatabaseManager();
         //manager.storeDelivery(new Delivery());
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationChannel channel = new NotificationChannel("Notification","Notification", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
 
         allDeliveriesB = (Button) findViewById(R.id.allDeliveriesB);
-
         allDeliveriesB.setOnClickListener(view1 -> {
             Intent intent = new Intent(this, deliveryTabs.class);
             startActivity(intent);
@@ -63,45 +58,34 @@ public class HomeScreen extends AppCompatActivity {
         });
 
         feedback = (Button) findViewById(R.id.feedbackButton);
-        shopping.setOnClickListener(view1 -> {
+        feedback.setOnClickListener(view1 -> {
             Intent intent = new Intent(this, FeedBackView.class);
             startActivity(intent);
         });
 
     }
-/*
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.bottom_navi_home:
-                            selectedFragment = new HomeFragment();
-                            break;
-                        case R.id.bottom_navi_notification:
-                            selectedFragment = new NotificationsFragment();
-                            break;
-                        case R.id.bottom_navi_dashboard:
-                            selectedFragment = new DashboardFragment();
-                            break;
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_home_screen, selectedFragment).commit();
-                    return true;
-                }
 
-    };
-/*
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_home_screen);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    public void start(View view) {
+        //Intent intent = new Intent(this, CarControl.class);
+        //startActivity(intent);
+
+        Intent intent = new Intent(this, ControlSelection.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "Notification")
+                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                .setContentTitle("HERMES")
+                .setContentText("Your car is ready! Please take over control.")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.notify(01, builder.build());
     }
-
- */
-
 
 
     public void openSettings(View view){
