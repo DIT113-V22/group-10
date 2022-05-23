@@ -39,6 +39,7 @@ The system consists of two parts, a delivery car and a smartphone application, c
 * Mosquitto borker
 * MongoDB database
 * Zerokol JoystickView library
+* Smartcar shield
 * github
 * Java 
 * C++
@@ -46,7 +47,7 @@ The system consists of two parts, a delivery car and a smartphone application, c
 * Diagrams.net
 ## ![icons8-broken-computer-50](https://user-images.githubusercontent.com/95288826/169870606-79afd88d-8d2d-49ac-a70c-87d25689ee3c.png) Installation
 ### Get started
-For more information about installation of the app go to [Get Started]() on wiki page.
+For more information about installation of the app go to [Get Started](https://github.com/DIT113-V22/group-10/wiki/Get-Started) on wiki page.
 ## ![icons8-pixel-man-64](https://user-images.githubusercontent.com/95288826/169869731-943f6d3c-f965-4809-ae08-e884f56e74ff.png)Contributors
 * [Yasamin Fazelidehkordi](https://github.com/YasaminFazeli)
 * [Julia Ayvazian](https://github.com/juliaayvazian)
