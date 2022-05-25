@@ -24,7 +24,7 @@
         android:layout_marginTop="90dp"
         android:backgroundTint="#96CBEF"
         android:drawableTop="@drawable/pharmacy"
-        android:text="Shope-in-Shope"
+        android:text="Shop-in-Shop"
         android:textColor="@color/black"
         app:cornerRadius="20sp"
         app:layout_constraintEnd_toStartOf="@+id/allDeliveriesB"
