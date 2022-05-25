@@ -13,10 +13,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.hermes.databinding.ActivityTestSwedishBinding;
 
 public class test_swedish extends AppCompatActivity {
 
+    /*
     private AppBarConfiguration appBarConfiguration;
     private ActivityTestSwedishBinding binding;
 
@@ -47,5 +47,5 @@ public class test_swedish extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_test_swedish);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
+    }*/
 }

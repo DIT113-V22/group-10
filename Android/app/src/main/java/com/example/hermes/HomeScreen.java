@@ -29,7 +29,6 @@ public class HomeScreen extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         DatabaseManager manager = DatabaseManager.getDatabaseManager();
-        manager.storeDelivery(new Delivery());
 
       /*  setSupportActionBar(binding.toolbar);
 

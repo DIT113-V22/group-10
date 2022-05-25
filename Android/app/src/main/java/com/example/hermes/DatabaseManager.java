@@ -1,27 +1,17 @@
 package com.example.hermes;
 
-import static com.mongodb.client.model.Filters.eq;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
 import android.content.Context;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
+import android.util.Log;
 
 import io.realm.mongodb.mongo.iterable.FindIterable;
 
 import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.mongo.MongoClient;
-import com.mongodb.client.MongoClients;
 import io.realm.mongodb.mongo.MongoCollection;
 import io.realm.mongodb.mongo.iterable.MongoCursor;
 import io.realm.mongodb.mongo.MongoDatabase;
 
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
 import java.util.ArrayList;
 
@@ -43,22 +33,6 @@ public class DatabaseManager {
     private static User user;
 
     private DatabaseManager(){
-        /*
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
-        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-        MongoClientSettings clientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .codecRegistry(codecRegistry)
-                .build();
-
-        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
-            database = mongoClient.getDatabase("database");
-            accounts = database.getCollection("accounts", Account.class);
-            deliveries = database.getCollection("deliveries", Delivery.class);
-        }
-
-         */
         app =  new App(new AppConfiguration.Builder(appid).build());
     }
 
@@ -93,7 +67,13 @@ public class DatabaseManager {
                 .append("dob", account.getDOB())
                 .append("email", account.getEmail())
                 .append("password", account.getPassword());
-        accounts.insertOne(doc); //adds the document to the database
+        accounts.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
     }
 
     public Account loadAccount(){
@@ -107,13 +87,18 @@ public class DatabaseManager {
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
-                .append("ID", delivery.getID())
                 //.append("date", delivery.getDate())
                 //.append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
                 .append("isDone", delivery.getDone())
                 .append("Items",delivery.getItems());
-        deliveries.insertOne(doc); //adds the document to the database
+        deliveries.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
     }
 
     public Delivery loadDelivery(int deliveryID){
