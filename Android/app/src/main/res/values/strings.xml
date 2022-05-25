@@ -58,5 +58,6 @@
 
     <string name="ongoing">Ongoing</string>
     <string name="completed">completed</string>
+    <string name="night_mode">Night mode</string>
 
 </resources>
