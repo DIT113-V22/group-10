@@ -30,7 +30,7 @@ The system consists of two parts, a delivery car and a smartphone application, c
 * Demo
 ## ![icons8-book-stack-64](https://user-images.githubusercontent.com/95288826/169868931-c062e87f-4d79-4a07-a3ec-6e965de978df.png) Documents
 * User Manual
-* Use case diagram
+* [Use case diagram](https://github.com/DIT113-V22/group-10/wiki/Use-Case-Diagram)
 * [Class diagram](https://github.com/DIT113-V22/group-10/wiki/Class-Diagram)
 ## ![icons8-tools-64](https://user-images.githubusercontent.com/95288826/169868576-7a9f1868-598f-4dd8-bcc4-990196ec8004.png) Technologies & resources
 * Arduino IDE
