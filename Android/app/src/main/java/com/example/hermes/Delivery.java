@@ -91,6 +91,13 @@ public class Delivery {
     public int idGenerator(String customerID, Date date){
         return customerID.hashCode() * date.hashCode();
     }
+    public String itemList(){
+        String result = "";
+        for(String item : items){
+            result += item + ",";
+        }
+        return result;
+    }
 
     public int getId(){
         return this.ID;
