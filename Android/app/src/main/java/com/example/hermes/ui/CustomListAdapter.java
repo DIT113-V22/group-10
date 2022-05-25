@@ -23,6 +23,13 @@ public class CustomListAdapter extends ArrayAdapter {
     public CustomListAdapter(Activity context, ArrayList<Delivery> deliveries, ArrayList<String> nameList, int imageID){
 
         super(context, R.layout.listview_done, nameList);
+        /*for(Delivery delivery : deliveries){
+            nameList.add(delivery.getDate());
+        }
+
+         */
+
+
         for(Delivery delivery : deliveries){
             infoList.add(delivery.getDate());
         }
@@ -42,8 +49,8 @@ public class CustomListAdapter extends ArrayAdapter {
         ImageView imageView = rowView.findViewById(R.id.imageView1ID);
 
         //this code sets the values of the objects to values from the arrays
-        nameTextField.setText(nameList.get(position));
-        infoTextField.setText(infoList.get(position));
+        nameTextField.setText(infoList.get(position));
+        infoTextField.setText(nameList.get(position));
         imageView.setImageResource(imageID);
 
         return rowView;
