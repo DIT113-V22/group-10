@@ -26,11 +26,7 @@ public class Delivery {
         this.items= new ArrayList<>();
     }
 
-
-
-
-
-   public Delivery(String customerID,String date, String time){
+   public Delivery(String customerID, String date, String time){
         this.date = date;
         this.time = time;
         this.ID=idGenerator();

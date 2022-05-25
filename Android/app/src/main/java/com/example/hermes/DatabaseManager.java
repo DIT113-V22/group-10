@@ -26,6 +26,7 @@ public class DatabaseManager {
     private static MongoDatabase database;
     private static MongoCollection<Document> accounts;
     private static MongoCollection<Document> deliveries;
+    private static MongoCollection<Document> reviews;
     private static MongoClient client;
 
     private String appid = "hermesapp-mrlcy";
@@ -51,6 +52,7 @@ public class DatabaseManager {
             database = client.getDatabase("database");
             accounts = database.getCollection("accounts");
             deliveries = database.getCollection("deliveries");
+            reviews = database.getCollection("reviews");
         }
         return manager;
     }
@@ -87,12 +89,25 @@ public class DatabaseManager {
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
-                //.append("date", delivery.getDate())
-                //.append("time", delivery.getTime())
+                .append("date", delivery.getDate())
+                .append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
                 .append("isDone", delivery.getDone())
                 .append("Items",delivery.getItems());
         deliveries.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
+    }
+
+    public void storeFeedback(Feedback feedback){
+        Document doc = new Document("userId", app.currentUser().getId())
+                .append("Rating", feedback.getRating())
+                .append("Message", feedback.getMessage());
+        reviews.insertOne(doc).getAsync(result -> {
             if (result.isSuccess()) {
                 Log.v("success", "success");
             } else {
