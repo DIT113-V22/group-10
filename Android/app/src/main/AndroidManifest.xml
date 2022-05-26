@@ -78,6 +78,11 @@
             android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
+            android:name=".FeedBackView"
+            android:exported="false"
+            android:label="FeedBackView"
+            android:theme="@style/Theme.Hermes.NoActionBar"/>
+        <activity
             android:name=".CarControl"
             android:exported="false"
             android:label="@string/title_activity_car_control"
