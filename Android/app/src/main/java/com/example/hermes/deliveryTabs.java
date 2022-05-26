@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,12 +34,13 @@ public class deliveryTabs extends AppCompatActivity {
     private CustomListAdapter adapter;
     private ListView listView;
     private int imageId = R.drawable.newpackage;
-    private String[] categories = {"Descending Alphabetical", "Ascending Alphabetical", "Oldest", "Newest"};
+    private String[] categories = {"Filter","Newest", "Oldest"};
     private ArrayList<Delivery> deliveries = new ArrayList<>();
     private ArrayList<String> nameList = new ArrayList<>();
     private boolean showOngoing = true;
     private boolean showCompleted = true;
     private Button goBack;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,9 @@ public class deliveryTabs extends AppCompatActivity {
         addDeliveries();
 
         listView = findViewById(R.id.listView);
-        listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
+        adapter = new CustomListAdapter(this, deliveries, nameList, imageId); 
+        listView.setAdapter(adapter);
+        //listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
 
         goBack = (Button) findViewById(R.id.alldeliBack);
         goBack.setOnClickListener(view1 -> {
@@ -68,16 +72,14 @@ public class deliveryTabs extends AppCompatActivity {
                 if (i >= 0 && i < categories.length) {
                     switch (i) {
                         case 0:
-                            updateList(Delivery.byName);
+                            updateNameList(deliveries);
+                            listView.setAdapter(adapter);
                             break;
                         case 1:
-                            updateList(Delivery.byNameReverse);
+                            updateList(Delivery.byNewest);
                             break;
                         case 2:
                             updateList(Delivery.byOldest);
-                            break;
-                        case 3:
-                            updateList(Delivery.byNewest);
                             break;
                     }
                 }
@@ -86,6 +88,20 @@ public class deliveryTabs extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
             }
         });
     }
@@ -138,11 +154,11 @@ public class deliveryTabs extends AppCompatActivity {
         Delivery delivery10 = new Delivery("Björn");
         try {
             delivery1.setDate("20221104 13:45:00");
-            delivery1.addItem("pain");
+            delivery1.addItem("pain killer");
             delivery1.setDone(true);
             deliveries.add(delivery1);
             delivery2.setDate("20110912 08:23:55");
-            delivery2.addItem("pain");
+            delivery2.addItem("covid");
             delivery2.setDone(true);
             deliveries.add(delivery2);
             delivery3.setDate("20222104 13:45:00");
@@ -150,31 +166,31 @@ public class deliveryTabs extends AppCompatActivity {
             delivery3.setDone(true);
             deliveries.add(delivery3);
             delivery4.setDate("20221120 09:15:02");
-            delivery4.addItem("pain");
+            delivery4.addItem("health");
             delivery4.setDone(true);
             deliveries.add(delivery4);
             delivery5.setDate("20110612 08:23:55");
-            delivery5.addItem("pain");
+            delivery5.addItem("amin");
             delivery5.setDone(true);
             deliveries.add(delivery5);
             delivery6.setDate("20220113 12:11:56");
-            delivery6.addItem("pain");
+            delivery6.addItem("patrick");
             delivery6.setDone(false);
             deliveries.add(delivery6);
             delivery7.setDate("20220113 00:11:56");
-            delivery7.addItem("pain");
+            delivery7.addItem("omg");
             delivery7.setDone(false);
             deliveries.add(delivery7);
             delivery8.setDate("19800627 16:00:17");
-            delivery8.addItem("pain");
+            delivery8.addItem("death");
             delivery8.setDone(false);
             deliveries.add(delivery8);
             delivery9.setDate("20240520 09:35:08");
-            delivery9.addItem("pain");
+            delivery9.addItem("hospital");
             delivery9.setDone(false);
             deliveries.add(delivery9);
             delivery10.setDate("20220512 23:13:44");
-            delivery10.addItem("pain");
+            delivery10.addItem("nothing");
             delivery10.setDone(false);
             deliveries.add(delivery10);
         } catch (ParseException e) {

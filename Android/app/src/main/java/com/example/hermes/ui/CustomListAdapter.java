@@ -20,15 +20,9 @@ public class CustomListAdapter extends ArrayAdapter {
     private final ArrayList<String> nameList;
     private final ArrayList<String> infoList = new ArrayList<>();
 
-    public CustomListAdapter(Activity context, ArrayList<Delivery> deliveries, ArrayList<String> nameList, int imageID){
+    public CustomListAdapter(Activity context,ArrayList<Delivery> deliveries, ArrayList<String> nameList, int imageID){
 
         super(context, R.layout.listview_done, nameList);
-        /*for(Delivery delivery : deliveries){
-            nameList.add(delivery.getDate());
-        }
-
-         */
-
 
         for(Delivery delivery : deliveries){
             infoList.add(delivery.getDate());

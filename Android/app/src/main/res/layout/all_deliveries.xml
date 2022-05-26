@@ -30,11 +30,11 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="410dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="3dp"
+        android:layout_width="400dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="6dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -42,24 +42,21 @@
         android:id="@+id/listView"
         android:layout_width="412dp"
         android:layout_height="526dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="205dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_completed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
         android:id="@+id/checkbox_completed"
         android:layout_width="204dp"
         android:layout_height="40dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="3dp"
         android:layout_weight="1"
         android:checked="true"
         android:onClick="filter"
         android:text="Completed"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBox_ongoing"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -68,12 +65,12 @@
         android:id="@+id/checkBox_ongoing"
         android:layout_width="204dp"
         android:layout_height="40dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="1dp"
         android:layout_weight="1"
         android:checked="true"
         android:onClick="filter"
         android:text="@string/ongoing"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
