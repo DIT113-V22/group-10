@@ -12,6 +12,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.hermes.databinding.ActivityChangePersonalInformationBinding;
 
+import io.realm.Realm;
+
 public class ChangePersonalInformation extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
@@ -32,11 +34,12 @@ public class ChangePersonalInformation extends AppCompatActivity {
 
         binding = ActivityChangePersonalInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        Realm.init(this);
         DatabaseManager databaseManager = DatabaseManager.getDatabaseManager();
         Account account = databaseManager.loadAccount();
 
         fullName = (TextView) findViewById(R.id.fullname);
-        DOB = (TextView) findViewById(R.id.DOB);
+        DOB = (TextView) findViewById(R.id.changeDOB);
         address = (TextView) findViewById(R.id.address);
         postalCode = (TextView) findViewById(R.id.postalcode);
         town = (TextView) findViewById(R.id.town);
@@ -47,7 +50,7 @@ public class ChangePersonalInformation extends AppCompatActivity {
         address.setText(account.getAddress());
         postalCode.setText(account.getPostalCode());
         town.setText(account.getTown());
-        password.setText(account.getPassword());
+        password.setText("********");
 
 
        /* setSupportActionBar(binding.toolbar);

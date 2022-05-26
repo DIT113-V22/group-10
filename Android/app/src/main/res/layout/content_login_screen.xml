@@ -8,7 +8,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/ShoppingB"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
         android:text="Sign in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/ShoppingB" />
 
     <Button
         android:id="@+id/button3"
@@ -124,8 +124,8 @@
         android:text="Invalid email address or password. Please check your credentials and try again."
         android:textColor="#D10000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
-        app:layout_constraintStart_toStartOf="@+id/loginPassword"
+        app:layout_constraintEnd_toStartOf="@+id/ShoppingB"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
     <ImageButton

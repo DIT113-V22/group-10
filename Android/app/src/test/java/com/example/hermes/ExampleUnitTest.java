@@ -67,10 +67,6 @@ public class ExampleUnitTest {
         oldest.sort(Delivery.byOldest);
         ArrayList<Delivery> newest = new ArrayList<>(deliveries);
         newest.sort(Delivery.byNewest);
-        ArrayList<Delivery> a_z = new ArrayList<>(deliveries);
-        a_z.sort(Delivery.byName);
-        ArrayList<Delivery> z_a = new ArrayList<>(deliveries);
-        z_a.sort(Delivery.byNameReverse);
 
         ArrayList<Delivery> expectedOldest = new ArrayList<>();
         expectedOldest.add(deliveries.get(7));
@@ -119,7 +115,5 @@ public class ExampleUnitTest {
 
         assertEquals(expectedOldest, oldest);
         assertEquals(expectedNewest, newest);
-        assertEquals(expectedByName, a_z);
-        assertEquals(expectedByReverseName, z_a);
     }
 }

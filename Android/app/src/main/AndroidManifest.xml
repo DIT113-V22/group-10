@@ -15,9 +15,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
-            android:name=".activity_change_personal_information_svenska"
-            android:exported="false" />
-        <activity
             android:name=".register_account_svenska"
             android:exported="false" />
         <activity
@@ -34,6 +31,11 @@
             android:name=".HomeScreen"
             android:exported="false"
             android:label="@string/title_activity_home_screen"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".Thanks"
+            android:exported="false"
+            android:label="Thanks"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".ChangePersonalInformation"
@@ -77,6 +79,11 @@
             android:exported="true"
             android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".FeedBackView"
+            android:exported="false"
+            android:label="FeedBackView"
+            android:theme="@style/Theme.Hermes.NoActionBar"/>
         <activity
             android:name=".CarControl"
             android:exported="false"

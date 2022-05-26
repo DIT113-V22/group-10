@@ -2,16 +2,13 @@ package com.example.hermes;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +20,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.realm.mongodb.App;
+import io.realm.mongodb.Credentials;
+import io.realm.mongodb.User;
 
 public class RegisterAccount extends AppCompatActivity {
 
@@ -45,22 +44,6 @@ public class RegisterAccount extends AppCompatActivity {
         binding = ActivityRegisterAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-     /*   setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_register_account);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-       */
-
     }
 
     @Override
@@ -79,7 +62,6 @@ public class RegisterAccount extends AppCompatActivity {
         String password3 = editTextTextPassword3.getText().toString();
 
         if(passwordMatch(password2, password3) && validateEmail(email) && validatePassword(password2)){
-            Account account = new Account(email, password2);
 
             DatabaseManager manager = DatabaseManager.getDatabaseManager();
             App app = manager.getApp();
@@ -87,9 +69,18 @@ public class RegisterAccount extends AppCompatActivity {
             app.getEmailPassword().registerUserAsync(email, password2, it->{
                 if(it.isSuccess()){
                     Intent intent = new Intent(this, CreateAccountDetails.class);
-                    startActivity(intent);
+                    Credentials credentials = Credentials.emailPassword(email, password2);
+                    app.loginAsync(credentials, new App.Callback<User>() {
+                        @Override
+                        public void onResult(App.Result<User> result) {
+                            if(result.isSuccess()){
+                                startActivity(intent);
+                            } else {
+                            }
+                        }
+                    });
                 } else {
-                    //if registration fails
+                    Log.v("Registration", "failed" + it.getError().toString());
                 }
             });
         }

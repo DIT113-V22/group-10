@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -97,6 +98,7 @@ public class CreateAccountDetails extends AppCompatActivity {
         }
 
     }
+
     public boolean validateLastName(String lastName){
         Pattern checkPattern = Pattern.compile("[a-zA-Z]");
         Matcher match = checkPattern.matcher(lastName);
@@ -114,6 +116,7 @@ public class CreateAccountDetails extends AppCompatActivity {
             return false;
         }
     }
+
     public boolean validateStreetName(String streetName) {
         Pattern checkPattern = Pattern.compile("[a-zA-Z]");
         Matcher match = checkPattern.matcher(streetName);
@@ -152,6 +155,7 @@ public class CreateAccountDetails extends AppCompatActivity {
         }
 
     }
+
     public boolean validatePostalCode(String postalCode) {
         Pattern checkPattern = Pattern.compile("[0-9]");
         Matcher match = checkPattern.matcher(postalCode);
@@ -169,6 +173,7 @@ public class CreateAccountDetails extends AppCompatActivity {
             return false;
         }
     }
+
     public boolean validateTown(String town) {
 
         if (town.equals("Göteborg") || town.equals("Gothenburg") || town.equals("Borås") || town.equals("Malmö") || town.equals("Stockholm")) {
@@ -185,6 +190,7 @@ public class CreateAccountDetails extends AppCompatActivity {
             return false;
         }
     }
+
     public void createAccount(View view) {
         name = (EditText) findViewById(R.id.firstname);
         lastName = (EditText) findViewById(R.id.editTextTextPersonName);
@@ -201,6 +207,10 @@ public class CreateAccountDetails extends AppCompatActivity {
         String townString = town.getText().toString();
 
         if (validateName(nameString) && validateLastName(lastNameString) && validateStreetName(streetNameString) && validateDOB(DOBString) && validatePostalCode(postalCodeString) && validateTown(townString)) {
+            Account account = new Account(nameString, lastNameString, streetNameString, postalCodeString, townString, DOBString);
+            DatabaseManager manager = DatabaseManager.getDatabaseManager();
+            manager.storeAccount(account);
+
             Intent intent = new Intent(this, HomeScreen.class);
             startActivity(intent);
         }

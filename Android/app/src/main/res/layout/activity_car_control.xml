@@ -72,6 +72,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:onClick="home"
+            app:cornerRadius="20dp"
             app:icon="?attr/actionModeCloseDrawable"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -84,6 +85,7 @@
             android:layout_marginEnd="20dp"
             android:onClick="changeToJoystick"
             android:text="Joystick"
+            app:cornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -6,26 +6,18 @@ public class Account {
     private String address;
     private String postalCode;
     private String town;
-    private String email;
     private String DOB;
-    private String password;
     private String language;
 
-    public Account(String firstName, String lastName, String address, String postalCode, String town, String email, String DOB, String password){
+    public Account(String firstName, String lastName, String address, String postalCode, String town, String DOB){
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.postalCode = postalCode;
         this.town = town;
-        this.email = email;
         this.DOB = DOB;
-        this.password = password;
     }
 
-    public Account(String email, String password){
-        this.email = email;
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName; }
@@ -60,21 +52,5 @@ public class Account {
 
     public void setDOB(String DOB){
         this.DOB = DOB;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public void setEmail(String email){
-        this.email = email;
-    }
-
-    public String getPassword(){
-        return password;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
     }
 }

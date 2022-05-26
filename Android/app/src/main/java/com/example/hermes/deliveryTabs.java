@@ -1,14 +1,18 @@
 package com.example.hermes;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hermes.ui.CustomListAdapter;
@@ -29,12 +33,14 @@ public class deliveryTabs extends AppCompatActivity {
     private static final String TAG = "deliveryTabs";
     private CustomListAdapter adapter;
     private ListView listView;
-    private int imageId = R.drawable.box;
-    private String[] categories = {"Descending Alphabetical", "Ascending Alphabetical", "Oldest", "Newest"};
+    private int imageId = R.drawable.newpackage;
+    private String[] categories = {"Filter","Newest", "Oldest"};
     private ArrayList<Delivery> deliveries = new ArrayList<>();
     private ArrayList<String> nameList = new ArrayList<>();
     private boolean showOngoing = true;
     private boolean showCompleted = true;
+    private Button goBack;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +49,16 @@ public class deliveryTabs extends AppCompatActivity {
         Log.d(TAG, "onCreate: Starting.");
 
         listView = findViewById(R.id.listView);
-        listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
+        adapter = new CustomListAdapter(this, deliveries, nameList, imageId); 
+        listView.setAdapter(adapter);
+        //listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
+
+        goBack = (Button) findViewById(R.id.alldeliBack);
+        goBack.setOnClickListener(view1 -> {
+            Intent intent = new Intent(this, HomeScreen.class);
+            startActivity(intent);
+        });
+
 
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, categories));
@@ -55,16 +70,13 @@ public class deliveryTabs extends AppCompatActivity {
                 if (i >= 0 && i < categories.length) {
                     switch (i) {
                         case 0:
-                            updateList(Delivery.byName);
+                            listView.setAdapter(adapter);
                             break;
                         case 1:
-                            updateList(Delivery.byNameReverse);
+                            updateList(Delivery.byNewest);
                             break;
                         case 2:
                             updateList(Delivery.byOldest);
-                            break;
-                        case 3:
-                            updateList(Delivery.byNewest);
                             break;
                     }
                 }
@@ -75,12 +87,25 @@ public class deliveryTabs extends AppCompatActivity {
 
             }
         });
+
+        searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
     }
 
     //sorts deliveries with comparator
     private void updateList(Comparator<Delivery> comparator) {
         deliveries.sort(comparator);
-        updateNameList(deliveries);
         adapter = new CustomListAdapter(this, deliveries, nameList, imageId);
         listView.setAdapter(adapter);
     }
@@ -107,16 +132,8 @@ public class deliveryTabs extends AppCompatActivity {
                 deliveriesCopy.add(delivery);
             }
         }
-        updateNameList(deliveriesCopy);
         adapter = new CustomListAdapter(this, deliveriesCopy, nameList, imageId);
         listView.setAdapter(adapter);
-    }
-
-    private void updateNameList(ArrayList<Delivery> updatedDeliveries) {
-        nameList.clear();
-        for (Delivery delivery : updatedDeliveries) {
-            //nameList.add(delivery.getCustomerID());
-        }
     }
 }
 

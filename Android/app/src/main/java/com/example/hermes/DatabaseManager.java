@@ -13,8 +13,8 @@ import io.realm.mongodb.mongo.MongoDatabase;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
-import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.User;
@@ -31,6 +31,7 @@ public class DatabaseManager {
     private String appid = "hermesapp-mrlcy";
     private static App app;
     private static User user;
+    private static Account account = new Account("","","","","","");
 
     private DatabaseManager(){
         app =  new App(new AppConfiguration.Builder(appid).build());
@@ -52,6 +53,25 @@ public class DatabaseManager {
             accounts = database.getCollection("accounts");
             deliveries = database.getCollection("deliveries");
             reviews = database.getCollection("reviews");
+
+            Document queryFilter = new Document().append("userId", app.currentUser().getId());
+            accounts.findOne(queryFilter).getAsync(result -> {
+                if(result.isSuccess()) {
+                    Document doc = result.get();
+                    if(doc!=null) {
+                        account.setFirstName(doc.getString("firstName"));
+                        account.setLastName(doc.getString("lastName"));
+                        account.setAddress(doc.getString("address"));
+                        account.setPostalCode(doc.getString("postal"));
+                        account.setTown(doc.getString("town"));
+                        account.setDOB(doc.getString("dob"));
+                    }
+                    //return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), doc.getString("postal"), doc.getString("town"), doc.getString("dob)"));
+                    Log.v("Data", "success");
+                }else{
+                    Log.v("Data", "fail");
+                }
+            });
         }
         return manager;
     }
@@ -61,29 +81,33 @@ public class DatabaseManager {
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
+//        Document queryFilter = new Document().append("userId", app.currentUser().getId());
+//        accounts.deleteOne(queryFilter).getAsync(result -> {
+//            if(result.isSuccess()){
+//                Log.v("Delete", "success");
+//            }else{
+//                Log.v("Delete", "fail");
+//            }
+//        });
         Document doc = new Document("userId", app.currentUser().getId())
                 .append("firstName", account.getFirstName())
                 .append("lastName", account.getLastName())
                 .append("address", account.getAddress())
                 .append("dob", account.getDOB())
-                .append("email", account.getEmail())
-                .append("password", account.getPassword());
+                .append("postal", account.getPostalCode())
+                .append("town", account.getTown());
         accounts.insertOne(doc).getAsync(result -> {
             if (result.isSuccess()) {
-                Log.v("success", "success");
+                Log.v("Insertion", "success");
             } else {
-                Log.v("fail", "fail");
+                Log.v("Insertion", "fail");
             }
         }); //adds the document to the database
     }
 
     public Account loadAccount(){
-        Document queryFilter = new Document().append("userId", app.currentUser().getId());
-        Document doc = accounts.findOne(queryFilter).get();
 
-        //TODO add postalcode and town properly;
-        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), "", "", doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
-        //return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
+        return account;
     }
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
@@ -102,7 +126,7 @@ public class DatabaseManager {
         }); //adds the document to the database
     }
 
-    public void storeFeedback(Feedback feedback){
+    public void storeFeedback(FeedBack feedback){
         Document doc = new Document("userId", app.currentUser().getId())
                 .append("Rating", feedback.getRate())
                 .append("Message", feedback.getText());
@@ -115,11 +139,13 @@ public class DatabaseManager {
         }); //adds the document to the database
     }
 
-    public Delivery loadDelivery(int deliveryID){
+   /* public Delivery loadDelivery(int deliveryID){
         Document queryFilter = new Document().append("ID", deliveryID);
         Document doc = deliveries.findOne(queryFilter).get();
         return new Delivery();
     }
+
+    */
 
     public ArrayList<Delivery> allDeliveries() {
 
