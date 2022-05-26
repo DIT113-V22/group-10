@@ -141,68 +141,6 @@ public class deliveryTabs extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void addDeliveries() {
-        Delivery delivery1 = new Delivery("Emrik");
-        Delivery delivery2 = new Delivery("Erik");
-        Delivery delivery3 = new Delivery("Amin");
-        Delivery delivery4 = new Delivery("");
-        Delivery delivery5 = new Delivery("nihiliss");
-        Delivery delivery6 = new Delivery("Julia");
-        Delivery delivery7 = new Delivery("Yasamin");
-        Delivery delivery8 = new Delivery("Daniel");
-        Delivery delivery9 = new Delivery("Sven");
-        Delivery delivery10 = new Delivery("Björn");
-        try {
-            delivery1.setDate("20221104 13:45:00");
-            delivery1.addItem("pain killer");
-            delivery1.setDone(true);
-            deliveries.add(delivery1);
-            delivery2.setDate("20110912 08:23:55");
-            delivery2.addItem("covid");
-            delivery2.setDone(true);
-            deliveries.add(delivery2);
-            delivery3.setDate("20222104 13:45:00");
-            delivery3.addItem("pain");
-            delivery3.setDone(true);
-            deliveries.add(delivery3);
-            delivery4.setDate("20221120 09:15:02");
-            delivery4.addItem("health");
-            delivery4.setDone(true);
-            deliveries.add(delivery4);
-            delivery5.setDate("20110612 08:23:55");
-            delivery5.addItem("amin");
-            delivery5.setDone(true);
-            deliveries.add(delivery5);
-            delivery6.setDate("20220113 12:11:56");
-            delivery6.addItem("patrick");
-            delivery6.setDone(false);
-            deliveries.add(delivery6);
-            delivery7.setDate("20220113 00:11:56");
-            delivery7.addItem("omg");
-            delivery7.setDone(false);
-            deliveries.add(delivery7);
-            delivery8.setDate("19800627 16:00:17");
-            delivery8.addItem("death");
-            delivery8.setDone(false);
-            deliveries.add(delivery8);
-            delivery9.setDate("20240520 09:35:08");
-            delivery9.addItem("hospital");
-            delivery9.setDone(false);
-            deliveries.add(delivery9);
-            delivery10.setDate("20220512 23:13:44");
-            delivery10.addItem("nothing");
-            delivery10.setDone(false);
-            deliveries.add(delivery10);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateNameList(ArrayList<Delivery> updatedDeliveries) {
-        nameList.clear();
-        for (Delivery delivery : updatedDeliveries) {
-            nameList.add(delivery.itemList());
-        }
     }
 }
 

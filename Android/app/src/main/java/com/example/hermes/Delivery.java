@@ -13,15 +13,13 @@ import java.util.Locale;
 
 public class Delivery {
     private int ID;
-    private Date date;
-    private String customerID; //Change later to customer object
+    private String date;
+    private String time;
     private boolean isReady;
     private boolean isDone;
     private ArrayList<String> items;
 
-    public Delivery(String customerID){
-        this.customerID = customerID;
-        Date date = new Date();
+    public Delivery(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.date = date;
         }
@@ -31,22 +29,13 @@ public class Delivery {
         this.items= new ArrayList<>();
     }
 
-    public Delivery(String customerID, String date) throws ParseException {
-
-        this.customerID = customerID;
-        Date d = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(date);
-        this.date = d;
-        this.ID = idGenerator(customerID, d);
+   public Delivery(String customerID, String date, String time){
+        this.date = date;
+        this.time = time;
+        this.ID=idGenerator();
+        this.isReady=false;
+        this.isDone=false;
         this.items= new ArrayList<>();
-    }
-
-    public String getCustomerID(){
-        return customerID;
-    }
-
-    public void setCustomerID(String ID){
-        if (customerID == null)
-            this.customerID = ID;
     }
 
     public String getDate(){

@@ -15,7 +15,7 @@ public class JsonManager {
     public void writeDelivery(Delivery delivery, String filePath) throws JSONException {
 
         JSONObject jsonDeliveryDetails = new JSONObject();
-        jsonDeliveryDetails.put("customerID", delivery.getCustomerID());
+        jsonDeliveryDetails.put("time", delivery.getTime());
         jsonDeliveryDetails.put("date", delivery.getDate());
         jsonDeliveryDetails.put("time", delivery.getTime());
 

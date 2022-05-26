@@ -52,7 +52,8 @@
     <string name="third_fragment_label">third_fragment_label</string>
 
     <string name="id">Id</string>
-
+    <string name="title_activity_create_account_sv">create_account_sv</string>
+    <string name="title_activity_test_swedish">test_swedish</string>
 
 
 

@@ -1,5 +1,16 @@
 package com.example.hermes;
 
+import android.content.Context;
+import android.util.Log;
+
+import io.realm.mongodb.mongo.iterable.FindIterable;
+
+import io.realm.mongodb.RealmResultTask;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
+import io.realm.mongodb.mongo.MongoDatabase;
+
 import org.bson.Document;
 
 import java.util.ArrayList;
@@ -20,6 +31,7 @@ public class DatabaseManager {
     private static MongoDatabase database;
     private static MongoCollection<Document> accounts;
     private static MongoCollection<Document> deliveries;
+    private static MongoCollection<Document> reviews;
     private static MongoClient client;
 
     private String appid = "hermesapp-mrlcy";
@@ -27,22 +39,6 @@ public class DatabaseManager {
     private static User user;
 
     private DatabaseManager(){
-        /*
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
-        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-        MongoClientSettings clientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .codecRegistry(codecRegistry)
-                .build();
-
-        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
-            database = mongoClient.getDatabase("database");
-            accounts = database.getCollection("accounts", Account.class);
-            deliveries = database.getCollection("deliveries", Delivery.class);
-        }
-
-         */
         app =  new App(new AppConfiguration.Builder(appid).build());
     }
 
@@ -61,6 +57,7 @@ public class DatabaseManager {
             database = client.getDatabase("database");
             accounts = database.getCollection("accounts");
             deliveries = database.getCollection("deliveries");
+            reviews = database.getCollection("reviews");
         }
         return manager;
     }
@@ -77,25 +74,51 @@ public class DatabaseManager {
                 .append("dob", account.getDOB())
                 .append("email", account.getEmail())
                 .append("password", account.getPassword());
-        accounts.insertOne(doc); //adds the document to the database
+        accounts.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
     }
 
     public Account loadAccount(){
         Document queryFilter = new Document().append("userId", app.currentUser().getId());
         Document doc = accounts.findOne(queryFilter).get();
-        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
+
+        //TODO add postalcode and town properly;
+        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), "", "", doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
         //return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
     }
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
-                .append("ID", delivery.getID())
-                //.append("date", delivery.getDate())
-                //.append("time", delivery.getTime())
+                .append("date", delivery.getDate())
+                .append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
                 .append("isDone", delivery.getDone())
                 .append("Items",delivery.getItems());
-        deliveries.insertOne(doc); //adds the document to the database
+        deliveries.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
+    }
+
+    public void storeFeedback(Feedback feedback){
+        Document doc = new Document("userId", app.currentUser().getId())
+                .append("Rating", feedback.getRating())
+                .append("Message", feedback.getMessage());
+        reviews.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
     }
 
    /* public Delivery loadDelivery(int deliveryID){

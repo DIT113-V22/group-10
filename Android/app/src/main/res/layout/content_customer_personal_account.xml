@@ -27,7 +27,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName14" />
+                app:layout_constraintTop_toBottomOf="@+id/password" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -37,7 +37,7 @@
                 android:text="Date of birth"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextTextPersonName13" />
+                app:layout_constraintTop_toBottomOf="@id/fullname" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -47,10 +47,10 @@
                 android:text="Street address"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+                app:layout_constraintTop_toBottomOf="@+id/DOB" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName13"
+            <TextView
+                android:id="@+id/fullname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -85,7 +85,7 @@
                 android:text="Town"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName16" />
+                app:layout_constraintTop_toBottomOf="@+id/postalcode" />
 
             <TextView
                 android:id="@+id/textView25"
@@ -95,7 +95,7 @@
                 android:text="Password"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName15" />
+                app:layout_constraintTop_toBottomOf="@+id/town" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -108,11 +108,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName5"
+            <TextView
+                android:id="@+id/DOB"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginTop="8dp"
                 android:background="#66FFFFFF"
                 android:drawableLeft="@drawable/ic_baseline_calendar_month_24"
                 android:drawablePadding="20dp"
@@ -123,12 +124,13 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName14"
+            <TextView
+                android:id="@+id/password"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -147,11 +149,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName15"
+            <TextView
+                android:id="@+id/town"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginTop="256dp"
                 android:background="#66FFFFFF"
                 android:drawableLeft="@drawable/ic_baseline_map_24"
                 android:drawablePadding="20dp"
@@ -162,11 +165,12 @@
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName16"
+            <TextView
+                android:id="@+id/postalcode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -184,8 +188,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonName17"
+            <TextView
+                android:id="@+id/address"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -210,7 +214,7 @@
                 android:text="Postal code"
                 android:textColor="#FFFFFF"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName17" />
+                app:layout_constraintTop_toBottomOf="@+id/address" />
 
             <TextView
                 android:id="@+id/textView14"
