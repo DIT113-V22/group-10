@@ -26,8 +26,6 @@ public class FeedBackView extends AppCompatActivity {
     private String comment;
     private int rateNo;
 
-
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.feedback);
@@ -43,7 +41,7 @@ public class FeedBackView extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent home = new Intent(view.getContext(), HomeFragment.class);
+                Intent home = new Intent(view.getContext(), HomeScreen.class);
                 startActivity(home);
             }
         });

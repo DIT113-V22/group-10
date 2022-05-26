@@ -15,10 +15,15 @@ import org.bson.Document;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.FindIterable;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class DatabaseManager {
 
@@ -116,11 +121,13 @@ public class DatabaseManager {
         }); //adds the document to the database
     }
 
-    public Delivery loadDelivery(int deliveryID){
+   /* public Delivery loadDelivery(int deliveryID){
         Document queryFilter = new Document().append("ID", deliveryID);
         Document doc = deliveries.findOne(queryFilter).get();
         return new Delivery();
     }
+
+    */
 
     public ArrayList<Delivery> allDeliveries() {
 
