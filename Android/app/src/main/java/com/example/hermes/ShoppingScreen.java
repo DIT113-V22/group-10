@@ -31,7 +31,7 @@ public class ShoppingScreen extends AppCompatActivity {
         String Date= date.getText().toString();
         String Time=time.getText().toString();
         String Id = id.getText().toString();
-        Delivery delivery= new Delivery("1", Date,Time);
+        Delivery delivery= new Delivery();
 
         addRapidTest.setOnClickListener(new View.OnClickListener() {
             @Override

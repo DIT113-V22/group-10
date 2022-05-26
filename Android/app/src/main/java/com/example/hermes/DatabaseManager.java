@@ -1,6 +1,5 @@
 package com.example.hermes;
 
-import android.content.Context;
 import android.util.Log;
 
 import io.realm.mongodb.mongo.iterable.FindIterable;
@@ -105,8 +104,8 @@ public class DatabaseManager {
 
     public void storeFeedback(Feedback feedback){
         Document doc = new Document("userId", app.currentUser().getId())
-                .append("Rating", feedback.getRating())
-                .append("Message", feedback.getMessage());
+                .append("Rating", feedback.getRate())
+                .append("Message", feedback.getText());
         reviews.insertOne(doc).getAsync(result -> {
             if (result.isSuccess()) {
                 Log.v("success", "success");

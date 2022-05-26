@@ -46,6 +46,7 @@
     <string name="title_activity_change_personal_information">ChangePersonalInformation</string>
     <string name="tab_text_1">Ongoing</string>
     <string name="tab_text_2">Done</string>
+<<<<<<< HEAD
     <string name="title_activity_home_screen">HomeScreen</string>
     <string name="title_activity_save_updates">SaveUpdates</string>
 
@@ -54,4 +55,8 @@
     <string name="title_activity_test_swedish">test_swedish</string>
 
 
+=======
+    <string name="ongoing">Ongoing</string>
+    <string name="completed">completed</string>
+>>>>>>> 9c7f07688390be0962e2fbb317946c6705ddc585
 </resources>
