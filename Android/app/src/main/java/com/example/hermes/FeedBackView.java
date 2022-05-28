@@ -68,9 +68,9 @@ public class FeedBackView extends AppCompatActivity {
         comment = textView.getText().toString();
         FeedBack mFeedBack = new FeedBack(comment, rateNo);
 
-        // and here we'll save the created feedback in our db.
-
-
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        manager.storeFeedback(mFeedBack);
+        
         Intent home = new Intent(this, HomeFragment.class);
         startActivity(home);
     }

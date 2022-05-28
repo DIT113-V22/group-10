@@ -83,20 +83,6 @@ public class DatabaseManager {
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
-//        Document doc = new Document("userId", app.currentUser().getId())
-//                .append("firstName", account.getFirstName())
-//                .append("lastName", account.getLastName())
-//                .append("address", account.getAddress())
-//                .append("dob", account.getDOB())
-//                .append("postal", account.getPostalCode())
-//                .append("town", account.getTown());
-//        accounts.insertOne(doc).getAsync(result -> {
-//            if (result.isSuccess()) {
-//                Log.v("Insertion", "success");
-//            } else {
-//                Log.v("Insertion", "fail");
-//            }
-//        }); //adds the document to the database
         Document queryFilter = new Document().append("userId", app.currentUser().getId());
         RealmResultTask<MongoCursor<Document>> findTask = accounts.find(queryFilter).iterator();
         findTask.getAsync(task ->{
@@ -144,49 +130,6 @@ public class DatabaseManager {
         return account;
     }
 
-    public void updateAccount(Account account){
-        Document queryFilter = new Document().append("userId", app.currentUser().getId());
-        RealmResultTask<MongoCursor<Document>> findTask = accounts.find(queryFilter).iterator();
-        findTask.getAsync(task ->{
-            if(task.isSuccess()){
-                MongoCursor<Document> results = task.get();
-                if(results.hasNext()){
-                    Document result = results.next();
-                    result.append("firstName", account.getFirstName())
-                            .append("lastName", account.getLastName())
-                            .append("address", account.getAddress())
-                            .append("dob", account.getDOB())
-                            .append("postal", account.getPostalCode())
-                            .append("town", account.getTown());
-                    accounts.updateOne(queryFilter,result).getAsync(updateResult ->{
-                        if(updateResult.isSuccess()){
-                            Log.v("Update", "success");
-                        } else{
-                            Log.v("Update", "fail: " + updateResult.getError().toString());
-                        }
-                    });
-                } else{
-                    Document doc = new Document("userId", app.currentUser().getId())
-                            .append("firstName", account.getFirstName())
-                            .append("lastName", account.getLastName())
-                            .append("address", account.getAddress())
-                            .append("dob", account.getDOB())
-                            .append("postal", account.getPostalCode())
-                            .append("town", account.getTown());
-                    accounts.insertOne(doc).getAsync(result -> {
-                        if (result.isSuccess()) {
-                            Log.v("Insertion", "success");
-                        } else {
-                            Log.v("Insertion", "fail");
-                        }
-                    }); //adds the document to the database
-                }
-            } else{
-                Log.v("Update", "failed:" + task.getError().toString());
-            }
-        });
-    }
-
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
                 .append("date", delivery.getDate())
@@ -215,14 +158,6 @@ public class DatabaseManager {
             }
         }); //adds the document to the database
     }
-
-   /* public Delivery loadDelivery(int deliveryID){
-        Document queryFilter = new Document().append("ID", deliveryID);
-        Document doc = deliveries.findOne(queryFilter).get();
-        return new Delivery();
-    }
-
-    */
 
     public ArrayList<Delivery> allDeliveries() {
 
