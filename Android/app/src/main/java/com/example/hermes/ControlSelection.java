@@ -1,13 +1,16 @@
 package com.example.hermes;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+
 public class ControlSelection extends AppCompatActivity {
+
+    private Button backB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +21,15 @@ public class ControlSelection extends AppCompatActivity {
 
         Button controlButton = findViewById(R.id.buttonControl);
         controlButton.setOnClickListener(view -> selectButtons());
+
+        Intent homeIntent = new Intent(this, HomeScreen.class);
+        backB = findViewById(R.id.buttonControlBack);
+        backB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(homeIntent);
+            }
+        });
     }
     public void selectButtons() {
         Intent buttonControlIntent = new Intent(this, CarControl.class);

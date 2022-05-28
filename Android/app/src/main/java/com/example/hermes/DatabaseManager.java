@@ -1,34 +1,20 @@
 package com.example.hermes;
 
-import static com.mongodb.client.model.Filters.eq;
-
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
-import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
-
-import android.content.Context;
-
-import com.mongodb.ConnectionString;
-import com.mongodb.MongoClientSettings;
-
-import io.realm.mongodb.mongo.iterable.FindIterable;
-
-import io.realm.mongodb.RealmResultTask;
-import io.realm.mongodb.mongo.MongoClient;
-import com.mongodb.client.MongoClients;
-import io.realm.mongodb.mongo.MongoCollection;
-import io.realm.mongodb.mongo.iterable.MongoCursor;
-import io.realm.mongodb.mongo.MongoDatabase;
+import android.util.Log;
 
 import org.bson.Document;
-import org.bson.codecs.configuration.CodecRegistry;
-import org.bson.codecs.pojo.PojoCodecProvider;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
-import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class DatabaseManager {
 
@@ -36,32 +22,21 @@ public class DatabaseManager {
     private static MongoDatabase database;
     private static MongoCollection<Document> accounts;
     private static MongoCollection<Document> deliveries;
+    private static MongoCollection<Document> reviews;
     private static MongoClient client;
 
     private String appid = "hermesapp-mrlcy";
     private static App app;
+    private static User user;
+
+    private static Account account = new Account("","","","","","");
+    private static ArrayList<Delivery> currentDeliveries = new ArrayList<>();
 
     private DatabaseManager(){
-        /*
-        ConnectionString connectionString = new ConnectionString("mongodb+srv://hermesApp:hermesApp@hermescluster.x7czk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
-        CodecRegistry pojoCodecRegistry = fromProviders(PojoCodecProvider.builder().automatic(true).build());
-        CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
-        MongoClientSettings clientSettings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .codecRegistry(codecRegistry)
-                .build();
-
-        try (MongoClient mongoClient = MongoClients.create(clientSettings)) {
-            database = mongoClient.getDatabase("database");
-            accounts = database.getCollection("accounts", Account.class);
-            deliveries = database.getCollection("deliveries", Delivery.class);
-        }
-
-         */
         app =  new App(new AppConfiguration.Builder(appid).build());
     }
 
-    public static DatabaseManager getDatabaseManager(){ // implemented using the singleton pattern
+    public static DatabaseManager getDatabaseManager()  { // implemented using the singleton pattern
         if (manager == null){
             synchronized(DatabaseManager.class){
                 if (manager == null){
@@ -69,12 +44,59 @@ public class DatabaseManager {
                 }
             }
         }
-        User user = app.currentUser();
-/*        client = user.getMongoClient("mongodb-atlas");
-        database = client.getDatabase("database");
-        accounts = database.getCollection("accounts");
-        @
- */
+
+        user = app.currentUser();
+        if(user != null) {
+            client = user.getMongoClient("mongodb-atlas");
+            database = client.getDatabase("database");
+            accounts = database.getCollection("accounts");
+            deliveries = database.getCollection("deliveries");
+            reviews = database.getCollection("reviews");
+
+            Document queryFilter = new Document().append("userId", app.currentUser().getId());
+            accounts.findOne(queryFilter).getAsync(result -> {
+                if(result.isSuccess()) {
+                    Document doc = result.get();
+                    if(doc!=null) {
+                        account.setFirstName(doc.getString("firstName"));
+                        account.setLastName(doc.getString("lastName"));
+                        account.setAddress(doc.getString("address"));
+                        account.setPostalCode(doc.getString("postal"));
+                        account.setTown(doc.getString("town"));
+                        account.setDOB(doc.getString("dob"));
+                    }
+                    //return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), doc.getString("postal"), doc.getString("town"), doc.getString("dob)"));
+                    Log.v("Data", "success");
+                }else{
+                    Log.v("Data", "fail");
+                }
+            });
+
+            RealmResultTask<MongoCursor<Document>> resultTask = deliveries.find(queryFilter).iterator();
+            resultTask.getAsync(task -> {
+                if(task.isSuccess()){
+                    currentDeliveries = new ArrayList<>();
+                    MongoCursor<Document> results = task.get();
+                    int counter = 0;
+                    while(results.hasNext()){
+                        Document doc = results.next();
+                        currentDeliveries.add(new Delivery());
+                        try {
+                            currentDeliveries.get(counter).setDate(doc.getString("dateTime"));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        currentDeliveries.get(counter).setDone(doc.getBoolean("isDone"));
+                        currentDeliveries.get(counter).setReady(doc.getBoolean("isReady"));
+                        currentDeliveries.get(counter).setItems((ArrayList<String>) doc.get("Items"));
+                        counter++;
+                    }
+                    Log.v("Delivery read", "success");
+                } else {
+                    Log.v("Delivery read", "fail " + task.getError().toString());
+                }
+            });
+        }
         return manager;
     }
 
@@ -83,54 +105,137 @@ public class DatabaseManager {
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
-        Document doc = new Document("userId", app.currentUser().getId())
-                .append("firstName", account.getFirstName())
-                .append("lastName", account.getLastName())
-                .append("address", account.getAddress())
-                .append("dob", account.getDOB())
-                .append("email", account.getEmail())
-                .append("password", account.getPassword());
-        accounts.insertOne(doc); //adds the document to the database
+        Document queryFilter = new Document().append("userId", app.currentUser().getId());
+        RealmResultTask<MongoCursor<Document>> findTask = accounts.find(queryFilter).iterator();
+        findTask.getAsync(task ->{
+            if(task.isSuccess()){
+                MongoCursor<Document> results = task.get();
+                if(results.hasNext()){
+                    Document result = results.next();
+                    result.append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.updateOne(queryFilter,result).getAsync(updateResult ->{
+                        if(updateResult.isSuccess()){
+                            Log.v("Update", "success");
+                        } else{
+                            Log.v("Update", "fail: " + updateResult.getError().toString());
+                        }
+                    });
+                } else{
+                    Document doc = new Document("userId", app.currentUser().getId())
+                            .append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.insertOne(doc).getAsync(result -> {
+                        if (result.isSuccess()) {
+                            Log.v("Insertion", "success");
+                        } else {
+                            Log.v("Insertion", "fail");
+                        }
+                    }); //adds the document to the database
+                }
+            } else{
+                Log.v("Update", "failed:" + task.getError().toString());
+            }
+        });
     }
 
     public Account loadAccount(){
-        Document queryFilter = new Document().append("userId", app.currentUser().getId());
-        Document doc = accounts.findOne(queryFilter).get();
-        return new Account(doc.getString("firstName"), doc.getString("lastName"), doc.getString("address"), doc.getString("email"), doc.getString("dob)"), doc.getString("password"));
-        //return accounts.find(eq("email", email)).first(); //retrieves the account with the given accountID
+        return account;
     }
 
-    public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
+    public boolean storeDelivery(Delivery delivery){      //Stores the created delivery in the database
+        if(this.getCurrentDelivery() == null) {
+            Document doc = new Document("userId", app.currentUser().getId())
+                    .append("dateTime", delivery.getFormatedDate())
+                    //.append("time", delivery.getTime())
+                    .append("isReady", delivery.getReady())
+                    .append("isDone", delivery.getDone())
+                    .append("Items", delivery.getItems());
+            deliveries.insertOne(doc).getAsync(result -> {
+                if (result.isSuccess()) {
+                    Log.v("success", "success");
+                } else {
+                    Log.v("fail", "fail");
+                }
+            }); //adds the document to the database
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void updateCurrentDelivery(){
+        Document queryFilter = new Document().append("userId", app.currentUser().getId())
+                .append("isDone", false);
+        RealmResultTask<MongoCursor<Document>> findTask = deliveries.find(queryFilter).iterator();
+        findTask.getAsync(task ->{
+            if(task.isSuccess()){
+                MongoCursor<Document> results = task.get();
+                if(results.hasNext()){
+                    Document result = results.next();
+                    result.append("isDone", true);
+                    result.append("isReady", true);
+                    deliveries.updateOne(queryFilter,result).getAsync(updateResult ->{
+                        if(updateResult.isSuccess()){
+                            Log.v("Update", "success");
+                        } else{
+                            Log.v("Update", "fail: " + updateResult.getError().toString());
+                        }
+                    });
+                }
+            } else{
+                Log.v("Update", "failed:" + task.getError().toString());
+            }
+        });
+    }
+
+    public void storeFeedback(FeedBack feedback){
         Document doc = new Document("userId", app.currentUser().getId())
-                .append("ID", delivery.getID())
-                .append("date", delivery.getDate())
-                .append("time", delivery.getTime())
-                .append("isReady", delivery.getReady())
-                .append("isDone", delivery.getDone());
-        deliveries.insertOne(doc); //adds the document to the database
-    }
-
-    public Delivery loadDelivery(int deliveryID){
-        Document queryFilter = new Document().append("ID", deliveryID);
-        Document doc = deliveries.findOne(queryFilter).get();
-        return new Delivery(doc.getString("ID"));
+                .append("Rating", feedback.getRate())
+                .append("Message", feedback.getText());
+        reviews.insertOne(doc).getAsync(result -> {
+            if (result.isSuccess()) {
+                Log.v("success", "success");
+            } else {
+                Log.v("fail", "fail");
+            }
+        }); //adds the document to the database
     }
 
     public ArrayList<Delivery> allDeliveries() {
+        System.out.println("lenght" + currentDeliveries.size());
+        return currentDeliveries;
+    }
 
-        ArrayList<Delivery> result = new ArrayList<>();
-        FindIterable<Document> iterable = deliveries.find();
-        RealmResultTask<MongoCursor<Document>> cursor = iterable.iterator();
-        /*
-        try {
-            while(cursor.hasNext()) {
-                Delivery delivery = cursor.next();
-                result.add(delivery); //add the delivery object to the array
+    public ArrayList<Delivery> searchDeliveries(String item){
+        ArrayList<Delivery> results = new ArrayList<Delivery>();
+        for(Delivery delivery : currentDeliveries){
+            if(delivery.getItems().contains(item)){
+                results.add(delivery);
             }
-        } finally {
-            cursor.close();
         }
-         */
-        return result;
+        return results;
+    }
+
+    public Delivery getCurrentDelivery(){
+        for(Delivery delivery : currentDeliveries){
+            System.out.println(delivery.getDone());
+            if(!delivery.getDone()){
+                return delivery;
+            }
+        }
+        return null;
+    }
+
+    public void updateUser(){
+        user = app.currentUser();
     }
 }

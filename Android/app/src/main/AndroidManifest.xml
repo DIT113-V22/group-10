@@ -15,9 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".register_account_svenska"
+            android:exported="false" />
+        <activity
+            android:name=".SaveUpdates"
+            android:exported="false"
+            android:label="@string/title_activity_save_updates"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".HomeScreen"
+            android:exported="false"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".Thanks"
+            android:exported="false"
+            android:label="Thanks"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
             android:name=".ChangePersonalInformation"
             android:exported="false"
             android:label="@string/title_activity_change_personal_information"
+            android:theme="@style/Theme.Hermes.NoActionBar" />
+        <activity
+            android:name=".ShoppingScreen"
+            android:exported="false"
+            android:label="Shopping"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".Settings"
@@ -33,7 +56,7 @@
             android:name=".deliveryTabs"
             android:exported="false"
             android:label="deliveryTabs"
-            android:theme="@style/Theme.Hermes.NoActionBar"/>
+            android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".RegisterAccount"
             android:exported="false"
@@ -52,6 +75,11 @@
             android:label="@string/title_activity_joystick"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
+            android:name=".FeedBackView"
+            android:exported="false"
+            android:label="FeedBackView"
+            android:theme="@style/Theme.Hermes.NoActionBar"/>
+        <activity
             android:name=".CarControl"
             android:exported="false"
             android:label="@string/title_activity_car_control"
@@ -59,7 +87,7 @@
         <activity
             android:name=".TermsandConditions"
             android:exported="false"
-            android:label="termsAndConditions"/>
+            android:label="termsAndConditions" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -72,6 +100,7 @@
         </activity>
 
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -8,17 +8,17 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/ShoppingB"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#00FFFFFF"
         android:onClick="createAccount"
-        android:text="Forgot password?"
+        android:text="Forgot your password?"
         android:textColor="#737D84"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.978"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 
@@ -53,7 +53,7 @@
         android:drawableLeft="@drawable/ic_baseline_lock_24"
         android:drawablePadding="20dp"
         android:ems="10"
-        android:hint=" password"
+        android:hint="password"
         android:inputType="textPassword"
         android:padding="18dp"
         android:textColor="#FFFFFF"
@@ -73,10 +73,10 @@
 
 
         android:onClick="login"
-        android:text="Login"
+        android:text="Sign in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button8" />
+        app:layout_constraintTop_toBottomOf="@+id/ShoppingB" />
 
     <Button
         android:id="@+id/button3"
@@ -118,14 +118,34 @@
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="220dp"
+        android:layout_width="194dp"
         android:layout_height="56dp"
-        android:layout_margin="10dp"
-        android:text="Invalid email or password. Please check your credentials and try again"
+        android:layout_marginTop="10dp"
+        android:text="Invalid email address or password. Please check your credentials and try again."
         android:textColor="#D10000"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintEnd_toStartOf="@+id/ShoppingB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="42dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/flag_sweden"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Svenska"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+        app:layout_constraintStart_toStartOf="@+id/imageButton4"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

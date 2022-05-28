@@ -46,7 +46,7 @@
                 android:layout_marginBottom="100dp"
                 android:backgroundTint="#3A95DD"
                 android:onClick="createAccount"
-                android:text="CREATE ACCOUNT"
+                android:text="Create account"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="60dp"
                 android:layout_weight="1"
-                android:text="Fill out your details, for an easy delivery experience"
+                android:text="Fill out your details for an easy delivery experience"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
@@ -119,21 +119,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginTop="8dp"
                 android:background="#4D3A95DD"
                 android:drawableLeft="@drawable/ic_baseline_house_24"
                 android:drawablePadding="20dp"
                 android:ems="10"
-                android:hint="Street adress"
+                android:hint="Home address"
                 android:inputType="textPostalAddress"
                 android:padding="18dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.476"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/firstname"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_marginHorizontal="10dp"
@@ -167,7 +169,7 @@
                 android:textColorHint="#FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+                app:layout_constraintTop_toBottomOf="@+id/firstname" />
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -175,9 +177,9 @@
                 android:layout_height="31dp"
                 android:layout_marginEnd="8dp"
                 android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName2"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName2"
+                app:layout_constraintBottom_toBottomOf="@+id/firstname"
+                app:layout_constraintEnd_toEndOf="@+id/firstname"
+                app:layout_constraintTop_toTopOf="@+id/firstname"
                 app:srcCompat="@drawable/error_red" />
 
             <ImageView
@@ -240,7 +242,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Please enter a name"
+                android:text="Please enter a valid first name"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
                 android:visibility="invisible"
@@ -253,7 +255,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Please enter a last name"
+                android:text="Please enter a valid last name"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
                 android:visibility="invisible"
@@ -279,7 +281,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Please enter an address"
+                android:text="Please enter a valid home address"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
                 android:visibility="invisible"
@@ -292,7 +294,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Please enter a postal code"
+                android:text="Please enter a valid postal code"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
                 android:visibility="invisible"
@@ -305,13 +307,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:text="Please enter a town"
+                android:text="Please enter a valid town"
                 android:textColor="#FF0000"
                 android:textStyle="italic"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+
+            <ImageView
+                android:id="@+id/imageView16"
+                android:layout_width="59dp"
+                android:layout_height="53dp"
+                android:onClick="goBack"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_arrow_left_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

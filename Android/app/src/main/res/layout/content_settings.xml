@@ -26,10 +26,11 @@
         android:layout_height="51dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="80dp"
-        android:text="Night mode"
+        android:text="@string/night_mode"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:onClick="darkTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -78,14 +79,26 @@
         app:srcCompat="@drawable/hermes_lego_no_background_small" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/rapidTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:onClick="changeAccountDetails"
         android:text="change personal information"
+        app:cornerRadius="20dp"
         app:iconTint="#CDA8A8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+
+    <ImageView
+        android:id="@+id/imageView15"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
+        android:onClick="goBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_left_24" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

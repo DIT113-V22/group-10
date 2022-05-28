@@ -19,19 +19,18 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class ExampleUnitTest {
-
-    JsonManager jManager = new JsonManager();
+    
     ArrayList<Delivery> deliveries = new ArrayList<>();
-    Delivery delivery1 = new Delivery("Emrik");
-    Delivery delivery2 = new Delivery("Erik");
-    Delivery delivery3 = new Delivery("Amin");
-    Delivery delivery4 = new Delivery("nihiliss");
-    Delivery delivery5 = new Delivery("Julia");
-    Delivery delivery6 = new Delivery("Yasamin");
-    Delivery delivery7 = new Delivery("Daniel");
-    Delivery delivery8 = new Delivery("Sven");
-    Delivery delivery9 = new Delivery("Karl");
-    Delivery delivery10 = new Delivery("Björn");
+    Delivery delivery1 = new Delivery();
+    Delivery delivery2 = new Delivery();
+    Delivery delivery3 = new Delivery();
+    Delivery delivery4 = new Delivery();
+    Delivery delivery5 = new Delivery();
+    Delivery delivery6 = new Delivery();
+    Delivery delivery7 = new Delivery();
+    Delivery delivery8 = new Delivery();
+    Delivery delivery9 = new Delivery();
+    Delivery delivery10 = new Delivery();
 
     @Before
     public void setUp() throws ParseException {
@@ -63,44 +62,11 @@ public class ExampleUnitTest {
     }
 
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
-
-    @Test
-    public void gettingJsonObject(){
-        JSONObject actualObject = jManager.readJsonObject("src/main/java/com/example/hermes/data/test.Json");
-        JSONObject expectedObject = createExpectedObject();
-
-        assertEquals(expectedObject.toString(), actualObject.toString());
-    }
-
-    @Test
-    public void writeJson() throws JSONException {
-        jManager.writeDelivery(delivery1, "src/main/java/com/example/hermes/data/test.Json");
-        JSONObject jsonObject = jManager.readJsonObject("src/main/java/com/example/hermes/data/test.Json");
-        JSONArray array = (JSONArray) jsonObject.get("deliveries");
-        JSONObject expectedObject = createExpectedObject();
-
-        try (FileWriter file = new FileWriter("src/main/java/com/example/hermes/data/test.Json")){
-            file.write(expectedObject.toJSONString());
-            file.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assertEquals(array.get(0), array.get(1));
-    }
-
-    @Test
     public void sortDeliveries(){
         ArrayList<Delivery> oldest = new ArrayList<>(deliveries);
         oldest.sort(Delivery.byOldest);
         ArrayList<Delivery> newest = new ArrayList<>(deliveries);
         newest.sort(Delivery.byNewest);
-        ArrayList<Delivery> a_z = new ArrayList<>(deliveries);
-        a_z.sort(Delivery.byName);
-        ArrayList<Delivery> z_a = new ArrayList<>(deliveries);
-        z_a.sort(Delivery.byNameReverse);
 
         ArrayList<Delivery> expectedOldest = new ArrayList<>();
         expectedOldest.add(deliveries.get(7));
@@ -149,22 +115,5 @@ public class ExampleUnitTest {
 
         assertEquals(expectedOldest, oldest);
         assertEquals(expectedNewest, newest);
-        assertEquals(expectedByName, a_z);
-        assertEquals(expectedByReverseName, z_a);
-    }
-
-    private JSONObject createExpectedObject(){
-        JSONObject expectedObject = new JSONObject();
-        JSONObject deliveryDetails = new JSONObject();
-        JSONObject delivery = new JSONObject();
-        JSONArray array = new JSONArray();
-
-        deliveryDetails.put("date", "2022 Nov 04");
-        deliveryDetails.put("customerID", "Emrik");
-        deliveryDetails.put("time", "13:45:00");
-        delivery.put("delivery", deliveryDetails);
-        array.add(delivery);
-        expectedObject.put("deliveries", array);
-        return expectedObject;
     }
 }

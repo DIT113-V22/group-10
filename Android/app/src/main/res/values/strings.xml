@@ -46,6 +46,13 @@
     <string name="title_activity_change_personal_information">ChangePersonalInformation</string>
     <string name="tab_text_1">Ongoing</string>
     <string name="tab_text_2">Done</string>
-    <string name="ongoing">Ongoing</string>
-    <string name="completed">completed</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="title_activity_save_updates">SaveUpdates</string>
+    <string name="third_fragment_label">third_fragment_label</string>
+
+    <string name="id">Id</string>
+    <string name="title_activity_create_account_sv">create_account_sv</string>
+    <string name="title_activity_test_swedish">test_swedish</string>
+    <string name="night_mode">Night mode</string>
+
 </resources>

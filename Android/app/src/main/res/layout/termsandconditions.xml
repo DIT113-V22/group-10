@@ -7,13 +7,47 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="152dp"
-        android:layout_marginEnd="195dp"
-        android:text="hello everyone"
+        android:layout_width="388dp"
+        android:layout_height="294dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginEnd="12dp"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae enim quis nisl vehicula tincidunt et ac diam. Integer sollicitudin imperdiet nulla, sed venenatis felis egestas non. Quisque fringilla diam in aliquet scelerisque. Etiam vel libero nibh. Fusce id cursus dolor, et eleifend mi. Pellentesque vel sagittis elit. Nullam a leo in dolor aliquet posuere eu nec dui. Curabitur consectetur laoreet mi, sit amet sagittis libero ultrices at. Maecenas nec suscipit elit, a feugiat libero."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView36"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/termsBackB"
+        android:layout_width="255dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="86dp"
+        android:layout_marginBottom="27dp"
+        android:text="Thanks for reading."
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="378dp"
+        android:layout_height="261dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="29dp"
+        android:text="Etiam porta hendrerit justo a cursus. Curabitur sed volutpat sapien. Fusce sodales nunc et feugiat maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi pretium fermentum luctus. Morbi rhoncus eget lectus nec ullamcorper. Sed commodo, justo vitae gravida lacinia, risus diam mattis lacus, at scelerisque diam metus ut nisi."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/termsBackB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
