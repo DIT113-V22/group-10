@@ -1,30 +1,19 @@
 package com.example.hermes;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.provider.ContactsContract;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.hermes.databinding.ActivityCreateAccountDetailsBinding;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CreateAccountDetails extends AppCompatActivity {
+public class CreateAccountDetailsCz extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityCreateAccountDetailsBinding binding;
     private ImageView nameWarning;
     private TextView nameWarningText;
     private ImageView lastNameWarning;
@@ -47,17 +36,9 @@ public class CreateAccountDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityCreateAccountDetailsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_create_account_details_cz);
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_create_account_details);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 
     public boolean validateName(String name){
         Pattern checkPattern = Pattern.compile("[a-zA-Z]");
@@ -189,13 +170,13 @@ public class CreateAccountDetails extends AppCompatActivity {
             DatabaseManager manager = DatabaseManager.getDatabaseManager();
             manager.storeAccount(account);
 
-            Intent intent = new Intent(this, HomeScreen.class);
+            Intent intent = new Intent(this, HomeScreenCz.class);
             startActivity(intent);
         }
     }
 
     public void goBack(View view){
-        Intent intent = new Intent(this, RegisterAccount.class);
+        Intent intent = new Intent(this, RegisterAccountCz.class);
         startActivity(intent);
     }
 }

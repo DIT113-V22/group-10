@@ -15,6 +15,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".SaveUpdatesCz"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePersonalInformationCz"
+            android:exported="false" />
+        <activity
+            android:name=".ControlSelectionCz"
+            android:exported="false" />
+        <activity
+            android:name=".TermsAndConditionsCz"
+            android:exported="false" />
+        <activity
+            android:name=".FeedBackViewCz"
+            android:exported="false" />
+        <activity
+            android:name=".ThanksCz"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingScreenCz"
+            android:exported="false" />
+        <activity
+            android:name=".HomeScreenCz"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountDetailsCz"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterAccountCz"
+            android:exported="false" />
+        <activity
             android:name=".SettingsCz"
             android:exported="false" />
         <activity

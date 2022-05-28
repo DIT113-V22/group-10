@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context=".TermsAndConditionsCz">
 
     <TextView
         android:id="@+id/textView"
@@ -12,7 +14,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="66dp"
         android:layout_marginEnd="10dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vitae enim quis nisl vehicula tincidunt et ac diam. Integer sollicitudin imperdiet nulla, sed venenatis felis egestas non. Quisque fringilla diam in aliquet scelerisque. Etiam vel libero nibh. Fusce id cursus dolor, et eleifend mi. Pellentesque vel sagittis elit. Nullam a leo in dolor aliquet posuere eu nec dui. Curabitur consectetur laoreet mi, sit amet sagittis libero ultrices at. Maecenas nec suscipit elit, a feugiat libero."
+        android:text="Tak zaprvé, jenom aby bylo jasno, ty co to nechtěli překládat jsou líný kundy. Ale tohle stejně nikdo nebude číst, a i kdyby, tak tomu neporozumí. Jestli jo, ať se přihlásí, dlužím mu pivo."
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView36"
@@ -27,7 +30,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:layout_marginBottom="27dp"
-        android:text="Thanks for reading."
+        android:text="Souhlasím"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +43,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="29dp"
-        android:text="Etiam porta hendrerit justo a cursus. Curabitur sed volutpat sapien. Fusce sodales nunc et feugiat maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi pretium fermentum luctus. Morbi rhoncus eget lectus nec ullamcorper. Sed commodo, justo vitae gravida lacinia, risus diam mattis lacus, at scelerisque diam metus ut nisi."
+        android:text="Kliknutím na tlačítko &quot;souhlasím&quot; dobrovolně a bez keců přenechávám svou duši, jakožto i všechen svůj chlast, tomu frajerovi s velkým ptákem, co tohle přeložil."
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/termsBackB"

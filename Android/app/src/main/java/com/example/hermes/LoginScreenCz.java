@@ -29,7 +29,7 @@ public class LoginScreenCz extends AppCompatActivity {
     }
 
     public void createAccount(View view){
-        Intent intent = new Intent(this, RegisterAccount.class);
+        Intent intent = new Intent(this, RegisterAccountCz.class);
         startActivity(intent);
     }
 
@@ -40,7 +40,7 @@ public class LoginScreenCz extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.loginPassword);
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HomeScreenCz.class);
         Credentials credentials = Credentials.emailPassword(email.getText().toString(), password.getText().toString());
         app.loginAsync(credentials, new App.Callback<User>() {
             @Override

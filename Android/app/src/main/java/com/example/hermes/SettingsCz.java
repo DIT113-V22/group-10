@@ -15,11 +15,11 @@ public class SettingsCz extends AppCompatActivity {
     }
 
     public void changeAccountDetails(View view){
-        Intent intent = new Intent(this, ChangePersonalInformation.class);
+        Intent intent = new Intent(this, ChangePersonalInformationCz.class);
         startActivity(intent);
     }
     public void goBack(View view){
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HomeScreenCz.class);
         startActivity(intent);
     }
     public void changeLanguage(View view){
