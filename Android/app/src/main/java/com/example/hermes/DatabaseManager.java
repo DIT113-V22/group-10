@@ -93,8 +93,6 @@ public class DatabaseManager {
                         currentDeliveries.get(counter).setDone(doc.getBoolean("isDone"));
                         currentDeliveries.get(counter).setReady(doc.getBoolean("isReady"));
                         currentDeliveries.get(counter).setItems((ArrayList<String>) doc.get("Items"));
-                        System.out.println("Counter" + counter);
-                        System.out.println(currentDeliveries.get(counter).itemList());
                         counter++;
                     }
                     Log.v("Delivery read", "success");
@@ -189,6 +187,16 @@ public class DatabaseManager {
 
     public ArrayList<Delivery> allDeliveries() {
         return currentDeliveries;
+    }
+
+    public ArrayList<Delivery> searchDeliveries(String item){
+        ArrayList<Delivery> results = new ArrayList<Delivery>();
+        for(Delivery delivery : currentDeliveries){
+            if(delivery.getItems().contains(item)){
+                results.add(delivery);
+            }
+        }
+        return results;
     }
 
     public void updateUser(){
