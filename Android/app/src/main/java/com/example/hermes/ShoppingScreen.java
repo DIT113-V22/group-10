@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ShoppingScreen extends AppCompatActivity {
 
-    //private DatabaseManager db = DatabaseManager.getDatabaseManager();
+    private DatabaseManager db = DatabaseManager.getDatabaseManager();
     private Button goBack;
     private int count1 = 0;
     private int count2 = 0;
@@ -37,7 +37,7 @@ public class ShoppingScreen extends AppCompatActivity {
         EditText date = findViewById(R.id.editTextDate2);
         EditText time = findViewById(R.id.editTextTime);
         String Date= date.getText().toString();
-        String Time=time.getText().toString();
+        String Time= time.getText().toString();
         String Id = id.getText().toString();
 
         Delivery delivery = new Delivery();
@@ -91,7 +91,7 @@ public class ShoppingScreen extends AppCompatActivity {
         submitDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 //db.storeDelivery(delivery);
+                 db.storeDelivery(delivery);
                 startActivity(intent);
             }
         });

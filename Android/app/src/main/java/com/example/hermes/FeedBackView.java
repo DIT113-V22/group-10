@@ -70,7 +70,7 @@ public class FeedBackView extends AppCompatActivity {
 
         DatabaseManager manager = DatabaseManager.getDatabaseManager();
         manager.storeFeedback(mFeedBack);
-        
+
         Intent home = new Intent(this, HomeFragment.class);
         startActivity(home);
     }
