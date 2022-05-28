@@ -4,22 +4,60 @@ on: [push, pull_request]
 
 jobs:
   build:
-
+  
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: 'gradle'
-        
-    - name: Build with Gradle
-      run: |
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'gradle'
+          
+      - name: Build with Gradle
+        run: |
           cd Android
-          ./gradlew build   
- 
+          ./gradlew build --stacktrace
+          
+  run-unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Clone Repo
+        uses: actions/checkout@v2
+      - name: Run unit tests
+        run: |
+          cd Android
+          ./gradlew test --info
+          
+  run-instrumented-tests:
+    runs-on: macos-latest
+    steps:
+      - name: Clone Repo
+        uses: actions/checkout@v2
+      - name: make gradlew available
+        run: |
+            cd Android
+            chmod +x gradlew
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      - name: Run instrumented tests for Android UI
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          profile: Nexus 6
+          api-level: 29
+          arch: x86_64
+          working-directory: ./Android
+          script: ./gradlew connectedCheck
+
+
       
           
