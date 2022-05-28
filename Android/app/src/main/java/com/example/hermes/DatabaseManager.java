@@ -76,10 +76,10 @@ public class DatabaseManager {
                 }
             });
 
-            currentDeliveries = new ArrayList<>();
             RealmResultTask<MongoCursor<Document>> resultTask = deliveries.find(queryFilter).iterator();
             resultTask.getAsync(task -> {
                 if(task.isSuccess()){
+                    currentDeliveries = new ArrayList<>();
                     MongoCursor<Document> results = task.get();
                     int counter = 0;
                     while(results.hasNext()){
@@ -230,6 +230,7 @@ public class DatabaseManager {
 
     public Delivery getCurrentDelivery(){
         for(Delivery delivery : currentDeliveries){
+            System.out.println(delivery.getDone());
             if(!delivery.getDone()){
                 return delivery;
             }

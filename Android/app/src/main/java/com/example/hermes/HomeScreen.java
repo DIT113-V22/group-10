@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -23,6 +24,7 @@ public class HomeScreen extends AppCompatActivity {
     private Button termsAndConditions;
     private Button shopping;
     private Button feedback;
+    private TextView currentDelivery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,12 +65,17 @@ public class HomeScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
+        currentDelivery = findViewById(R.id.textView35);
+        Delivery delivery = db.getCurrentDelivery();
+        if(delivery != null){
+            currentDelivery.setText(delivery.itemList());
+        } else {
+            currentDelivery.setText("No current delivery");
+        }
     }
 
 
     public void start(View view) {
-        //Intent intent = new Intent(this, CarControl.class);
-        //startActivity(intent);
 
         DatabaseManager manager = DatabaseManager.getDatabaseManager();
         manager.updateCurrentDelivery();

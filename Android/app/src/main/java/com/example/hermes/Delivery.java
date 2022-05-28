@@ -77,7 +77,7 @@ public class Delivery {
     public String itemList(){
         String result = "";
         for(String item : items){
-            result += item + ",";
+            result += item + ", ";
         }
         return result;
     }
