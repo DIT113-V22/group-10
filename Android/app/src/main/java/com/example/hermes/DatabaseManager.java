@@ -12,6 +12,7 @@ import io.realm.mongodb.mongo.MongoDatabase;
 
 import org.bson.Document;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -74,6 +75,33 @@ public class DatabaseManager {
                     Log.v("Data", "fail");
                 }
             });
+
+            currentDeliveries = new ArrayList<>();
+            RealmResultTask<MongoCursor<Document>> resultTask = deliveries.find(queryFilter).iterator();
+            resultTask.getAsync(task -> {
+                if(task.isSuccess()){
+                    MongoCursor<Document> results = task.get();
+                    int counter = 0;
+                    while(results.hasNext()){
+                        Document doc = results.next();
+                        currentDeliveries.add(new Delivery());
+                        try {
+                            currentDeliveries.get(counter).setDate(doc.getString("dateTime"));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        currentDeliveries.get(counter).setDone(doc.getBoolean("isDone"));
+                        currentDeliveries.get(counter).setReady(doc.getBoolean("isReady"));
+                        currentDeliveries.get(counter).setItems((ArrayList<String>) doc.get("Items"));
+                        System.out.println("Counter" + counter);
+                        System.out.println(currentDeliveries.get(counter).itemList());
+                        counter++;
+                    }
+                    Log.v("Delivery read", "success");
+                } else {
+                    Log.v("Delivery read", "fail " + task.getError().toString());
+                }
+            });
         }
         return manager;
     }
@@ -132,11 +160,11 @@ public class DatabaseManager {
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         Document doc = new Document("userId", app.currentUser().getId())
-                .append("date", delivery.getDate())
-                .append("time", delivery.getTime())
+                .append("dateTime", delivery.getDate() + "_" + delivery.getTime())
+                //.append("time", delivery.getTime())
                 .append("isReady", delivery.getReady())
                 .append("isDone", delivery.getDone())
-                .append("Items",delivery.getItems());
+                .append("Items", delivery.getItems());
         deliveries.insertOne(doc).getAsync(result -> {
             if (result.isSuccess()) {
                 Log.v("success", "success");
@@ -160,21 +188,7 @@ public class DatabaseManager {
     }
 
     public ArrayList<Delivery> allDeliveries() {
-
-        ArrayList<Delivery> result = new ArrayList<>();
-        FindIterable<Document> iterable = deliveries.find();
-        RealmResultTask<MongoCursor<Document>> cursor = iterable.iterator();
-        /*
-        try {
-            while(cursor.hasNext()) {
-                Delivery delivery = cursor.next();
-                result.add(delivery); //add the delivery object to the array
-            }
-        } finally {
-            cursor.close();
-        }
-         */
-        return result;
+        return currentDeliveries;
     }
 
     public void updateUser(){

@@ -101,7 +101,5 @@ public class ShoppingScreen extends AppCompatActivity {
             Intent intentBack = new Intent(this, HomeScreen.class);
             startActivity(intentBack);
         });
-
-
     }
 }

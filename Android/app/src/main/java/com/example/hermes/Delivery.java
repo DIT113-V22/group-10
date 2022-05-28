@@ -12,18 +12,16 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Delivery {
-    private int ID;
     private Date date;
-    private String time;
     private boolean isReady;
     private boolean isDone;
     private ArrayList<String> items;
 
     public Delivery(){
         Date date = new Date();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             this.date = date;
-        }
+        //}
         this.isReady = false;
         this.isDone = false;
         this.items= new ArrayList<>();
@@ -44,19 +42,18 @@ public class Delivery {
         return split[3];
     }
 
-    public void setDate(String yyyymmdd_hhmmss) throws ParseException {
-        date = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(yyyymmdd_hhmmss);
+    public String getDateTime(){
+        return date.toString();
     }
 
-    public int getID() { return ID; }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setDate(String yyyymmdd_hhmmss) throws ParseException {
+        date = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(yyyymmdd_hhmmss);
     }
 
     public void addItem(String ItemName){
         items.add(ItemName);
     }
+
     public ArrayList <String> getItems(){
         return  items;
     }
@@ -67,21 +64,22 @@ public class Delivery {
 
     public boolean getDone() { return this.isDone; }
 
+    public void setItems(ArrayList<String> items){
+        this.items = items;
+    }
+
     public void setDone(boolean value) { this.isDone = value; }
 
     public int idGenerator(String customerID, Date date){
         return customerID.hashCode() * date.hashCode();
     }
+
     public String itemList(){
         String result = "";
         for(String item : items){
             result += item + ",";
         }
         return result;
-    }
-
-    public int getId(){
-        return this.ID;
     }
 
     @NonNull

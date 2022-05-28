@@ -25,17 +25,14 @@ import java.util.Comparator;
 
 public class deliveryTabs extends AppCompatActivity {
 
-    /*
-    Uncomment when database works
     public static DatabaseManager db = DatabaseManager.getDatabaseManager();
-    public static ArrayList<Delivery> deliveries = db.allDeliveries();
-     */
+    public ArrayList<Delivery> deliveries = db.allDeliveries();
+
     private static final String TAG = "deliveryTabs";
     private CustomListAdapter adapter;
     private ListView listView;
     private int imageId = R.drawable.newpackage;
-    private String[] categories = {"Filter","Newest", "Oldest"};
-    private ArrayList<Delivery> deliveries = new ArrayList<>();
+    private String[] categories = {"Filter", "Newest", "Oldest"};
     private ArrayList<String> nameList = new ArrayList<>();
     private boolean showOngoing = true;
     private boolean showCompleted = true;
