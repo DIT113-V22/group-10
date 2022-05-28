@@ -60,7 +60,7 @@ public class SaveUpdates<firstName> extends AppCompatActivity {
         Account account = new Account(firstName.getText().toString(), lastName.getText().toString(), street.getText().toString(), postal.getText().toString(), town.getText().toString(), dob.getText().toString());
         DatabaseManager manager = DatabaseManager.getDatabaseManager();
         manager.storeAccount(account);
-        Intent intent = new Intent(this, ChangePersonalInformation.class);
+        Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
     }
 

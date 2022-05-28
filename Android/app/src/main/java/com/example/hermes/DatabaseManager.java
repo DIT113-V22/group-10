@@ -31,7 +31,9 @@ public class DatabaseManager {
     private String appid = "hermesapp-mrlcy";
     private static App app;
     private static User user;
+
     private static Account account = new Account("","","","","","");
+    private static ArrayList<Delivery> currentDeliveries = new ArrayList<>();
 
     private DatabaseManager(){
         app =  new App(new AppConfiguration.Builder(appid).build());
@@ -81,33 +83,108 @@ public class DatabaseManager {
     }
 
     public void storeAccount(Account account){      //Stores the created account in the database
-//        Document queryFilter = new Document().append("userId", app.currentUser().getId());
-//        accounts.deleteOne(queryFilter).getAsync(result -> {
-//            if(result.isSuccess()){
-//                Log.v("Delete", "success");
-//            }else{
-//                Log.v("Delete", "fail");
+//        Document doc = new Document("userId", app.currentUser().getId())
+//                .append("firstName", account.getFirstName())
+//                .append("lastName", account.getLastName())
+//                .append("address", account.getAddress())
+//                .append("dob", account.getDOB())
+//                .append("postal", account.getPostalCode())
+//                .append("town", account.getTown());
+//        accounts.insertOne(doc).getAsync(result -> {
+//            if (result.isSuccess()) {
+//                Log.v("Insertion", "success");
+//            } else {
+//                Log.v("Insertion", "fail");
 //            }
-//        });
-        Document doc = new Document("userId", app.currentUser().getId())
-                .append("firstName", account.getFirstName())
-                .append("lastName", account.getLastName())
-                .append("address", account.getAddress())
-                .append("dob", account.getDOB())
-                .append("postal", account.getPostalCode())
-                .append("town", account.getTown());
-        accounts.insertOne(doc).getAsync(result -> {
-            if (result.isSuccess()) {
-                Log.v("Insertion", "success");
-            } else {
-                Log.v("Insertion", "fail");
+//        }); //adds the document to the database
+        Document queryFilter = new Document().append("userId", app.currentUser().getId());
+        RealmResultTask<MongoCursor<Document>> findTask = accounts.find(queryFilter).iterator();
+        findTask.getAsync(task ->{
+            if(task.isSuccess()){
+                MongoCursor<Document> results = task.get();
+                if(results.hasNext()){
+                    Document result = results.next();
+                    result.append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.updateOne(queryFilter,result).getAsync(updateResult ->{
+                        if(updateResult.isSuccess()){
+                            Log.v("Update", "success");
+                        } else{
+                            Log.v("Update", "fail: " + updateResult.getError().toString());
+                        }
+                    });
+                } else{
+                    Document doc = new Document("userId", app.currentUser().getId())
+                            .append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.insertOne(doc).getAsync(result -> {
+                        if (result.isSuccess()) {
+                            Log.v("Insertion", "success");
+                        } else {
+                            Log.v("Insertion", "fail");
+                        }
+                    }); //adds the document to the database
+                }
+            } else{
+                Log.v("Update", "failed:" + task.getError().toString());
             }
-        }); //adds the document to the database
+        });
+
     }
 
     public Account loadAccount(){
-
         return account;
+    }
+
+    public void updateAccount(Account account){
+        Document queryFilter = new Document().append("userId", app.currentUser().getId());
+        RealmResultTask<MongoCursor<Document>> findTask = accounts.find(queryFilter).iterator();
+        findTask.getAsync(task ->{
+            if(task.isSuccess()){
+                MongoCursor<Document> results = task.get();
+                if(results.hasNext()){
+                    Document result = results.next();
+                    result.append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.updateOne(queryFilter,result).getAsync(updateResult ->{
+                        if(updateResult.isSuccess()){
+                            Log.v("Update", "success");
+                        } else{
+                            Log.v("Update", "fail: " + updateResult.getError().toString());
+                        }
+                    });
+                } else{
+                    Document doc = new Document("userId", app.currentUser().getId())
+                            .append("firstName", account.getFirstName())
+                            .append("lastName", account.getLastName())
+                            .append("address", account.getAddress())
+                            .append("dob", account.getDOB())
+                            .append("postal", account.getPostalCode())
+                            .append("town", account.getTown());
+                    accounts.insertOne(doc).getAsync(result -> {
+                        if (result.isSuccess()) {
+                            Log.v("Insertion", "success");
+                        } else {
+                            Log.v("Insertion", "fail");
+                        }
+                    }); //adds the document to the database
+                }
+            } else{
+                Log.v("Update", "failed:" + task.getError().toString());
+            }
+        });
     }
 
     public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
