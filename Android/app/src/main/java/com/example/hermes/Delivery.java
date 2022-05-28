@@ -4,6 +4,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +36,11 @@ public class Delivery {
     public String getDate(){
         String[] split = date.toString().split(" ");
         return split[5] + " " + split[1] + " " + split[2];
+    }
+    
+    public String getFormatedDate(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA);
+        return dateFormat.format(this.date);
     }
 
     public String getTime() {
