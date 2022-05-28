@@ -14,6 +14,7 @@ public class ShoppingScreen extends AppCompatActivity {
 
     private DatabaseManager db = DatabaseManager.getDatabaseManager();
     private Button goBack;
+    private TextView warning;
     private int count1 = 0;
     private int count2 = 0;
     private int count3 = 0;
@@ -33,12 +34,12 @@ public class ShoppingScreen extends AppCompatActivity {
         Button addPainKiller = findViewById(R.id.painKiller);
         Button addMulti= findViewById(R.id.multivitamin);
         Button submitDelivery = findViewById(R.id.submitOrder);
-        EditText id = findViewById(R.id.editTextTextPassword4);
-        EditText date = findViewById(R.id.editTextDate2);
-        EditText time = findViewById(R.id.editTextTime);
-        String Date= date.getText().toString();
-        String Time= time.getText().toString();
-        String Id = id.getText().toString();
+//        EditText id = findViewById(R.id.editTextTextPassword4);
+//        EditText date = findViewById(R.id.editTextDate2);
+//        EditText time = findViewById(R.id.editTextTime);
+//        String Date= date.getText().toString();
+//        String Time= time.getText().toString();
+//        String Id = id.getText().toString();
 
         Delivery delivery = new Delivery();
 
@@ -91,8 +92,13 @@ public class ShoppingScreen extends AppCompatActivity {
         submitDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 db.storeDelivery(delivery);
-                startActivity(intent);
+                warning = findViewById(R.id.onlyOneOrderWarning);
+                if(db.storeDelivery(delivery)){
+                    warning.setVisibility(View.INVISIBLE);
+                    startActivity(intent);
+                } else {
+                    warning.setVisibility(View.VISIBLE);
+                }
             }
         });
 

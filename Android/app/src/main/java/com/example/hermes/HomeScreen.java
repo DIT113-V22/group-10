@@ -70,6 +70,9 @@ public class HomeScreen extends AppCompatActivity {
         //Intent intent = new Intent(this, CarControl.class);
         //startActivity(intent);
 
+        DatabaseManager manager = DatabaseManager.getDatabaseManager();
+        manager.updateCurrentDelivery();
+
         Intent intent = new Intent(this, ControlSelection.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);

@@ -149,27 +149,56 @@ public class DatabaseManager {
                 Log.v("Update", "failed:" + task.getError().toString());
             }
         });
-
     }
 
     public Account loadAccount(){
         return account;
     }
 
-    public void storeDelivery(Delivery delivery){      //Stores the created delivery in the database
-        Document doc = new Document("userId", app.currentUser().getId())
-                .append("dateTime", delivery.getDate() + "_" + delivery.getTime())
-                //.append("time", delivery.getTime())
-                .append("isReady", delivery.getReady())
-                .append("isDone", delivery.getDone())
-                .append("Items", delivery.getItems());
-        deliveries.insertOne(doc).getAsync(result -> {
-            if (result.isSuccess()) {
-                Log.v("success", "success");
-            } else {
-                Log.v("fail", "fail");
+    public boolean storeDelivery(Delivery delivery){      //Stores the created delivery in the database
+        if(this.getCurrentDelivery() == null) {
+            Document doc = new Document("userId", app.currentUser().getId())
+                    .append("dateTime", delivery.getDate() + " " + delivery.getTime())
+                    //.append("time", delivery.getTime())
+                    .append("isReady", delivery.getReady())
+                    .append("isDone", delivery.getDone())
+                    .append("Items", delivery.getItems());
+            deliveries.insertOne(doc).getAsync(result -> {
+                if (result.isSuccess()) {
+                    Log.v("success", "success");
+                } else {
+                    Log.v("fail", "fail");
+                }
+            }); //adds the document to the database
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void updateCurrentDelivery(){
+        Document queryFilter = new Document().append("userId", app.currentUser().getId())
+                .append("isDone", false);
+        RealmResultTask<MongoCursor<Document>> findTask = deliveries.find(queryFilter).iterator();
+        findTask.getAsync(task ->{
+            if(task.isSuccess()){
+                MongoCursor<Document> results = task.get();
+                if(results.hasNext()){
+                    Document result = results.next();
+                    result.append("isDone", true);
+                    result.append("isReady", true);
+                    deliveries.updateOne(queryFilter,result).getAsync(updateResult ->{
+                        if(updateResult.isSuccess()){
+                            Log.v("Update", "success");
+                        } else{
+                            Log.v("Update", "fail: " + updateResult.getError().toString());
+                        }
+                    });
+                }
+            } else{
+                Log.v("Update", "failed:" + task.getError().toString());
             }
-        }); //adds the document to the database
+        });
     }
 
     public void storeFeedback(FeedBack feedback){
@@ -197,6 +226,15 @@ public class DatabaseManager {
             }
         }
         return results;
+    }
+
+    public Delivery getCurrentDelivery(){
+        for(Delivery delivery : currentDeliveries){
+            if(!delivery.getDone()){
+                return delivery;
+            }
+        }
+        return null;
     }
 
     public void updateUser(){
