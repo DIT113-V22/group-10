@@ -6,7 +6,6 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class HomeScreen extends AppCompatActivity {
         currentDelivery = findViewById(R.id.textView35);
         Delivery delivery = db.getCurrentDelivery();
         if(delivery != null){
-            currentDelivery.setText(delivery.itemList());
+            currentDelivery.setText(delivery.getDate());
         } else {
             currentDelivery.setText("No current delivery");
         }

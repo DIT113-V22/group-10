@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +58,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 TextView text = findViewById(R.id.counter2);
                 text.setText(Integer.toString(count2) + "X");
 
-                delivery.addItem("Gelofen"+"\n");
+                delivery.addItem("Medical Mask"+"\n");
             }
         });
         addSanitiser.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +67,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count3++;
                 TextView text = findViewById(R.id.counter3);
                 text.setText(Integer.toString(count3) + "X");
-                delivery.addItem("Alvedon"+"\n");
+                delivery.addItem("Hand Sanitiser"+"\n");
             }
         });
         addPainKiller.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +76,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count4++;
                 TextView text = findViewById(R.id.counter4);
                 text.setText(Integer.toString(count4) + "X");
-                delivery.addItem("Spray"+"\n");
+                delivery.addItem("Pain Killer"+"\n");
             }
         });
         addMulti.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +85,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count5++;
                 TextView text = findViewById(R.id.counter5);
                 text.setText(Integer.toString(count5) + "X");
-                delivery.addItem("Syrup"+"\n");
+                delivery.addItem("Multivitamin"+"\n");
             }
         });
         submitDelivery.setOnClickListener(new View.OnClickListener() {
