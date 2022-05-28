@@ -31,13 +31,13 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LoginTest {
+public class LoginV2Test {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void loginTest() {
+    public void loginV2Test() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.loginEmail),
                         childAtPosition(
@@ -61,7 +61,7 @@ public class LoginTest {
         appCompatEditText2.perform(replaceText("Hello.123"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.loginButton), withText("Login"),
+                allOf(withId(R.id.loginButton), withText("Sign in"),
                         childAtPosition(
                                 allOf(withId(R.id.include),
                                         childAtPosition(

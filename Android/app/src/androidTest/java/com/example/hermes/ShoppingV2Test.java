@@ -1,10 +1,10 @@
 package com.example.hermes;
 
 
+import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -26,85 +26,91 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import io.realm.Realm;
+
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ShoppingTest {
+public class ShoppingV2Test {
 
+    @Before
+    public void setupDatabase() {
+        Realm.init(getApplicationContext());
+    }
     @Rule
     public ActivityTestRule<ShoppingScreen> mActivityTestRule = new ActivityTestRule<>(ShoppingScreen.class);
 
     @Test
-    public void shoppingTest() {
+    public void shoppingV2Test() {
 
-
-        ViewInteraction materialButton5 = onView(
+        ViewInteraction materialButton3 = onView(
                 allOf(withId(R.id.rapidTest), withText("Add"),
                         childAtPosition(
                                 allOf(withId(R.id.constraintLayout),
                                         childAtPosition(
                                                 withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-                                                10)),
+                                                4)),
                                 0),
                         isDisplayed()));
-        materialButton5.perform(click());
+        materialButton3.perform(click());
 
-        ViewInteraction materialButton6 = onView(
+        ViewInteraction materialButton4 = onView(
                 allOf(withId(R.id.mask), withText("Add"),
                         childAtPosition(
                                 allOf(withId(R.id.constraintLayout2),
                                         childAtPosition(
                                                 withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-                                                9)),
+                                                3)),
+                                0),
+                        isDisplayed()));
+        materialButton4.perform(click());
+
+        ViewInteraction materialButton5 = onView(
+                allOf(withId(R.id.sanitiser), withText("Add"),
+                        childAtPosition(
+                                allOf(withId(R.id.constraintLayout3),
+                                        childAtPosition(
+                                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                                5)),
+                                0),
+                        isDisplayed()));
+        materialButton5.perform(click());
+
+        ViewInteraction materialButton6 = onView(
+                allOf(withId(R.id.painKiller), withText("Add"),
+                        childAtPosition(
+                                allOf(withId(R.id.constraintLayout4),
+                                        childAtPosition(
+                                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
+                                                6)),
                                 0),
                         isDisplayed()));
         materialButton6.perform(click());
 
         ViewInteraction materialButton7 = onView(
-                allOf(withId(R.id.painKiller), withText("Add"),
+                allOf(withId(R.id.multivitamin), withText("Add"),
                         childAtPosition(
-                                allOf(withId(R.id.constraintLayout4),
+                                allOf(withId(R.id.constraintLayout5),
                                         childAtPosition(
                                                 withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-                                                12)),
+                                                7)),
                                 0),
                         isDisplayed()));
         materialButton7.perform(click());
 
         ViewInteraction materialButton8 = onView(
-                allOf(withId(R.id.painKiller), withText("Add"),
-                        childAtPosition(
-                                allOf(withId(R.id.constraintLayout4),
-                                        childAtPosition(
-                                                withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-                                                12)),
-                                0),
-                        isDisplayed()));
-        materialButton8.perform(click());
-
-        ViewInteraction materialButton9 = onView(
-                allOf(withId(R.id.multivitamin), withText("Add"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
-                                        13),
-                                0),
-                        isDisplayed()));
-        materialButton9.perform(click());
-
-
-        ViewInteraction materialButton10 = onView(
-                allOf(withId(R.id.submitOrder), withText("Submit Delivery"),
+                allOf(withId(R.id.submitOrder), withText("Submit"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                6),
+                                1),
                         isDisplayed()));
-        materialButton10.check(matches(isClickable()));
+        materialButton8.perform(click());
 
         ViewInteraction frameLayout = onView(
                 allOf(withId(android.R.id.content),
@@ -112,8 +118,6 @@ public class ShoppingTest {
                                 withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class)))),
                         isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
-
-
     }
 
     private static Matcher<View> childAtPosition(
