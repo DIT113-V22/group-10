@@ -73,9 +73,13 @@ public class LoginScreen extends AppCompatActivity {
                 } else {
                     loginFailWarning = (TextView) findViewById(R.id.textView17);
                     loginFailWarning.setVisibility(View.VISIBLE);
-
                 }
             }
         });
+    }
+
+    public void switchLanguage(View view){
+        Intent intent = new Intent(this, LoginScreenCz.class);
+        startActivity(intent);
     }
 }

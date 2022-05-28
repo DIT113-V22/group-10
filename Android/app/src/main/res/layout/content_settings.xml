@@ -40,7 +40,8 @@
         android:layout_height="40dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/flag_sweden"
+        android:background="@drawable/flag_cz"
+        android:onClick="changeLanguage"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
@@ -56,7 +57,7 @@
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="wrap_content"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"

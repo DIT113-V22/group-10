@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".SettingsCz"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreenCz"
+            android:exported="false" />
+        <activity
             android:name=".register_account_svenska"
             android:exported="false" />
         <activity
@@ -78,7 +84,7 @@
             android:name=".FeedBackView"
             android:exported="false"
             android:label="FeedBackView"
-            android:theme="@style/Theme.Hermes.NoActionBar"/>
+            android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".CarControl"
             android:exported="false"
