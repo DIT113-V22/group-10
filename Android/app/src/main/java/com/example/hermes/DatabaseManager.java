@@ -40,7 +40,7 @@ public class DatabaseManager {
         app =  new App(new AppConfiguration.Builder(appid).build());
     }
 
-    public static DatabaseManager getDatabaseManager(){ // implemented using the singleton pattern
+    public static DatabaseManager getDatabaseManager()  { // implemented using the singleton pattern
         if (manager == null){
             synchronized(DatabaseManager.class){
                 if (manager == null){
@@ -158,7 +158,7 @@ public class DatabaseManager {
     public boolean storeDelivery(Delivery delivery){      //Stores the created delivery in the database
         if(this.getCurrentDelivery() == null) {
             Document doc = new Document("userId", app.currentUser().getId())
-                    .append("dateTime", delivery.getDate() + " " + delivery.getTime())
+                    .append("dateTime", delivery.getFormatedDate())
                     //.append("time", delivery.getTime())
                     .append("isReady", delivery.getReady())
                     .append("isDone", delivery.getDone())
