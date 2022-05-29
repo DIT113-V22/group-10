@@ -30,7 +30,7 @@ The goal with the delivery car is to allow customers to get medical orders right
  
 The system consists of two parts, a delivery car and a smartphone application, connecting to each other via mosquitto broker. The app will notify the customer when their order is ready for the final delivery, at which point they will be able to take control of the car through the app, and steer it to their desired delivery point, by using their phone to steer, and navigating through a camera attached to the car. The customer must of course be logged in into the application, to confirm their identity, and prevent miss-delivery of packages. After making deliveries by customers, the app will store the delivery information in a database. The customer's accounts and their feedbacks about the app are also stored in the database. We have used MongoDB database for stroing the data. If you had any questions about the inner works of the database, please check the [Get Started](https://github.com/DIT113-V22/group-10/wiki/Get-Started) on Wiki page.
 ## ![icons8-clapperboard-48](https://user-images.githubusercontent.com/95288826/169866347-6d6882ad-fabd-48d9-8af0-394597e2e177.png) Project demo
-* Demo
+* [Demo](https://youtu.be/Md8BHDQSFDE)
 ## ![icons8-book-stack-64](https://user-images.githubusercontent.com/95288826/169868931-c062e87f-4d79-4a07-a3ec-6e965de978df.png) Documents
 * User Manual
 * [Use case diagram](https://github.com/DIT113-V22/group-10/wiki/Use-Case-Diagram)
