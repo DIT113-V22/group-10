@@ -7,7 +7,7 @@
 
 ## ![icons8-find-50](https://user-images.githubusercontent.com/95288826/169863151-8a7cc546-9110-421c-a58d-f314e9738e14.png) What is Hermes project?
  
-Hermes app is an android app, which enables the users to order a delivery, take control over a delivery car and guide it to their house doors. This leads to a reliable delivering of an order without the need for human contact. The cusotmers shall create an account and login to their accounts to be able to see their deliveries and take control over a delivery car. This way the system will provide security to prevent wrong customers take contorl over a car and ensure that the cargo has been delivered safely, which will then be confirmed by the receiver.
+Hermes app is an android app, which enables the users to order a delivery, take control over a delivery car and guide it to their house doors. This leads to a reliable delivering of an order without the need for human contact. The cusotmers shall create an account and login to their accounts to be able to set deliveries and take control over a delivery car. This way the system will provide security to prevent wrong customers take contorl over a car and ensure that the cargo has been delivered safely.
 
 #### Main functionalities:
 * Create accounts
@@ -16,11 +16,14 @@ Hermes app is an android app, which enables the users to order a delivery, take 
 * Store created accounts in the database
 * Store created deliveries in the database
 * Steer a delivery car via buttons or Joystick control
+* Give obstacle warning message to users when facing an obstacle
+* Stop the car when getting close to an obstacle
 * Preview the ongoing and completed deliver lists
 * Sort the deliveries based on different filters
 * Get feedback about the user's experinece with the app
 * Store feedback(reviews) in the database
 * Allow the users to update their profiles
+* Switch between Cezh and English languages
 
 
 ## ![icons8-help-48](https://user-images.githubusercontent.com/95288826/169860837-2b237f3f-5e56-4449-b92f-fb003000db13.png) Why did we make it
