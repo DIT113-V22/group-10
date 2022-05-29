@@ -23,7 +23,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
@@ -33,7 +32,7 @@ public class SettingV2Test {
     @Rule
     public ActivityTestRule<Settings> mActivityTestRule = new ActivityTestRule<>(Settings.class);
 
-    @Test
+    //@Test
     public void settingV2Test() {
         ViewInteraction button = onView(
                 allOf(withId(R.id.rapidTest), withText("CHANGE PERSONAL INFORMATION"),

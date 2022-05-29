@@ -26,7 +26,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
@@ -36,7 +35,7 @@ public class SwitchControlBTest {
     @Rule
     public ActivityTestRule<CarControl> mActivityTestRule = new ActivityTestRule<>(CarControl.class);
 
-    @Test
+    //@Test
     public void switchControlBTest() {
         ViewInteraction materialButton4 = onView(
                 allOf(withId(R.id.Joystick), withText("Joystick"),

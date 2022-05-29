@@ -26,7 +26,6 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
@@ -36,7 +35,7 @@ public class LoginV2Test {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    @Test
+    //@Test
     public void loginV2Test() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.loginEmail),

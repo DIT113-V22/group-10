@@ -26,7 +26,6 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
@@ -36,7 +35,7 @@ public class FeedbackTest {
     @Rule
     public ActivityTestRule<FeedBackView> mActivityTestRule = new ActivityTestRule<>(FeedBackView.class);
 
-    @Test
+    //@Test
     public void feedbackTest() {
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.commentText),
