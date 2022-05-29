@@ -16,7 +16,6 @@ import io.realm.Realm;
 
 public class ChangePersonalInformation extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivityChangePersonalInformationBinding binding;
     private TextView fullName;
     private TextView DOB;
