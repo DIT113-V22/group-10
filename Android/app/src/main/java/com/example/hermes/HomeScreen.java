@@ -74,7 +74,6 @@ public class HomeScreen extends AppCompatActivity {
         }
     }
 
-
     public void start(View view) {
 
         DatabaseManager manager = DatabaseManager.getDatabaseManager();
