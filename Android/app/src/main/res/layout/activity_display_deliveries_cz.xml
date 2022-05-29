@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DisplayDeliveriesCz">
 
     <Button
         android:id="@+id/alldeliBack"
@@ -31,8 +32,8 @@
 
     <ListView
         android:id="@+id/listView"
-        android:layout_width="413dp"
-        android:layout_height="579dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="152dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,7 +48,7 @@
         android:layout_weight="1"
         android:checked="true"
         android:onClick="filter"
-        android:text="Completed"
+        android:text="Doručené"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/checkBox_ongoing"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
@@ -61,7 +62,7 @@
         android:layout_weight="1"
         android:checked="true"
         android:onClick="filter"
-        android:text="ongoing"
+        android:text="Probíhající"
         app:layout_constraintEnd_toStartOf="@+id/checkbox_completed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />

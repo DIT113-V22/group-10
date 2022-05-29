@@ -2,23 +2,19 @@ package com.example.hermes;
 
 import android.util.Log;
 
-import io.realm.mongodb.mongo.iterable.FindIterable;
-
-import io.realm.mongodb.RealmResultTask;
-import io.realm.mongodb.mongo.MongoClient;
-import io.realm.mongodb.mongo.MongoCollection;
-import io.realm.mongodb.mongo.iterable.MongoCursor;
-import io.realm.mongodb.mongo.MongoDatabase;
-
 import org.bson.Document;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
 
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class DatabaseManager {
 
@@ -215,6 +211,7 @@ public class DatabaseManager {
     }
 
     public ArrayList<Delivery> allDeliveries() {
+        System.out.println("lenght" + currentDeliveries.size());
         return currentDeliveries;
     }
 

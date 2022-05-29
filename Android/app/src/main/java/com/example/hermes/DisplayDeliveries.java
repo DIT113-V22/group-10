@@ -10,20 +10,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hermes.ui.CustomListAdapter;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 // Adapted from https://github.com/mitchtabian/TabFragments <- could be removed?
 
-public class deliveryTabs extends AppCompatActivity {
+public class DisplayDeliveries extends AppCompatActivity {
 
     public static DatabaseManager db = DatabaseManager.getDatabaseManager();
     public ArrayList<Delivery> deliveries = db.allDeliveries();
@@ -37,7 +35,6 @@ public class deliveryTabs extends AppCompatActivity {
     private boolean showOngoing = true;
     private boolean showCompleted = true;
     private Button goBack;
-    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +43,7 @@ public class deliveryTabs extends AppCompatActivity {
         Log.d(TAG, "onCreate: Starting.");
 
         listView = findViewById(R.id.listView);
-        adapter = new CustomListAdapter(this, deliveries, nameList, imageId); 
+        adapter = new CustomListAdapter(this, deliveries, nameList, imageId);
         listView.setAdapter(adapter);
         //listView.setAdapter(new CustomListAdapter(this, deliveries, nameList, imageId));
 
@@ -67,6 +64,7 @@ public class deliveryTabs extends AppCompatActivity {
                 if (i >= 0 && i < categories.length) {
                     switch (i) {
                         case 0:
+                            updateNameList(deliveries);
                             listView.setAdapter(adapter);
                             break;
                         case 1:
@@ -84,25 +82,12 @@ public class deliveryTabs extends AppCompatActivity {
 
             }
         });
-
-        searchView = findViewById(R.id.searchView);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
-                return false;
-            }
-        });
     }
 
     //sorts deliveries with comparator
     private void updateList(Comparator<Delivery> comparator) {
         deliveries.sort(comparator);
+        updateNameList(deliveries);
         adapter = new CustomListAdapter(this, deliveries, nameList, imageId);
         listView.setAdapter(adapter);
     }
@@ -129,8 +114,16 @@ public class deliveryTabs extends AppCompatActivity {
                 deliveriesCopy.add(delivery);
             }
         }
+        updateNameList(deliveriesCopy);
         adapter = new CustomListAdapter(this, deliveriesCopy, nameList, imageId);
         listView.setAdapter(adapter);
+    }
+
+    private void updateNameList(ArrayList<Delivery> updatedDeliveries) {
+        nameList.clear();
+        for (Delivery delivery : updatedDeliveries) {
+            nameList.add(delivery.itemList());
+        }
     }
 }
 

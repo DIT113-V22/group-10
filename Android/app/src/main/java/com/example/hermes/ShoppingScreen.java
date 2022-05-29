@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,8 +51,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count2++;
                 TextView text = findViewById(R.id.counter2);
                 text.setText(Integer.toString(count2) + "X");
-
-                delivery.addItem("Mask");
+                delivery.addItem("Medical Mask");
             }
         });
         addSanitiser.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +60,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count3++;
                 TextView text = findViewById(R.id.counter3);
                 text.setText(Integer.toString(count3) + "X");
-                delivery.addItem("Sataniser");
+                delivery.addItem("Hand Sanitiser");
             }
         });
         addPainKiller.setOnClickListener(new View.OnClickListener() {

@@ -14,8 +14,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.hermes.databinding.ActivityHomeScreenBinding;
-
 public class HomeScreenCz extends AppCompatActivity {
     private Button allDeliveriesB;
     private Button termsAndConditions;
@@ -38,7 +36,7 @@ public class HomeScreenCz extends AppCompatActivity {
 
         allDeliveriesB = (Button) findViewById(R.id.allDeliveriesB);
         allDeliveriesB.setOnClickListener(view1 -> {
-            Intent intent = new Intent(this, deliveryTabs.class);
+            Intent intent = new Intent(this, DisplayDeliveriesCz.class);
             startActivity(intent);
         });
 

@@ -29,7 +29,7 @@ import org.junit.runner.RunWith;
 public class ListViewTest {
 
     @Rule
-    public ActivityTestRule<deliveryTabs> mActivityTestRule = new ActivityTestRule<>(deliveryTabs.class);
+    public ActivityTestRule<DisplayDeliveries> mActivityTestRule = new ActivityTestRule<>(DisplayDeliveries.class);
 
     @Test
     public void listViewTest() {
