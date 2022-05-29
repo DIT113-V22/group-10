@@ -18,7 +18,7 @@ jobs:
       - name: Build with Gradle
         run: |
           cd Android
-          ./gradlew build --stacktrace
+          ./gradlew build 
           
   run-unit-tests:
     runs-on: ubuntu-latest
@@ -52,8 +52,8 @@ jobs:
       - name: Run instrumented tests for Android UI
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          profile: Nexus 6
-          api-level: 29
+          profile: Pixel_3a
+          api-level: 32
           arch: x86_64
           working-directory: ./Android
           script: ./gradlew connectedCheck
