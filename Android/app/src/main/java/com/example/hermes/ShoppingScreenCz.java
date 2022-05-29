@@ -1,15 +1,14 @@
 package com.example.hermes;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-
-public class ShoppingScreen extends AppCompatActivity {
+public class ShoppingScreenCz extends AppCompatActivity {
 
     private DatabaseManager db = DatabaseManager.getDatabaseManager();
     private Button goBack;
@@ -23,9 +22,9 @@ public class ShoppingScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_screen);
+        setContentView(R.layout.activity_shopping_screen_cz);
 
-        Intent intent = new Intent(this, Thanks.class);
+        Intent intent = new Intent(this, ThanksCz.class);
 
         Button addRapidTest =findViewById(R.id.rapidTest);
         Button addMask = findViewById(R.id.mask);
@@ -42,7 +41,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count1++;
                 TextView text = findViewById(R.id.counter1);
                 text.setText(Integer.toString(count1) + "X");
-                delivery.addItem("Rapid Test");
+                delivery.addItem("Robertek velký");
             }
         });
         addMask.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +50,8 @@ public class ShoppingScreen extends AppCompatActivity {
                 count2++;
                 TextView text = findViewById(R.id.counter2);
                 text.setText(Integer.toString(count2) + "X");
-                delivery.addItem("Medical Mask");
+
+                delivery.addItem("Svůdné prádelko");
             }
         });
         addSanitiser.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count3++;
                 TextView text = findViewById(R.id.counter3);
                 text.setText(Integer.toString(count3) + "X");
-                delivery.addItem("Hand Sanitiser");
+                delivery.addItem("Lubrikant");
             }
         });
         addPainKiller.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +69,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count4++;
                 TextView text = findViewById(R.id.counter4);
                 text.setText(Integer.toString(count4) + "X");
-                delivery.addItem("Pain Killer");
+                delivery.addItem("Robertek malý");
             }
         });
         addMulti.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class ShoppingScreen extends AppCompatActivity {
                 count5++;
                 TextView text = findViewById(R.id.counter5);
                 text.setText(Integer.toString(count5) + "X");
-                delivery.addItem("Miltivitamin");
+                delivery.addItem("Robertek nastavitelný");
             }
         });
         submitDelivery.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +96,7 @@ public class ShoppingScreen extends AppCompatActivity {
 
         goBack = (Button) findViewById(R.id.shoppingBack);
         goBack.setOnClickListener(view1 -> {
-            Intent intentBack = new Intent(this, HomeScreen.class);
+            Intent intentBack = new Intent(this, HomeScreenCz.class);
             startActivity(intentBack);
         });
     }

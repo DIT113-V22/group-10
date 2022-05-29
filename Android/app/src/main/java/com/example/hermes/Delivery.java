@@ -76,10 +76,6 @@ public class Delivery {
 
     public void setDone(boolean value) { this.isDone = value; }
 
-    public int idGenerator(String customerID, Date date){
-        return customerID.hashCode() * date.hashCode();
-    }
-
     public String itemList(){
         String result = "";
         for(String item : items){

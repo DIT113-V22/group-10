@@ -21,7 +21,7 @@ import java.util.Comparator;
 
 // Adapted from https://github.com/mitchtabian/TabFragments <- could be removed?
 
-public class deliveryTabs extends AppCompatActivity {
+public class DisplayDeliveries extends AppCompatActivity {
 
     public static DatabaseManager db = DatabaseManager.getDatabaseManager();
     public ArrayList<Delivery> deliveries = db.allDeliveries();
@@ -125,7 +125,5 @@ public class deliveryTabs extends AppCompatActivity {
             nameList.add(delivery.itemList());
         }
     }
-
-
 }
 

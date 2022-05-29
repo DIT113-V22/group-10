@@ -1,5 +1,7 @@
 package com.example.hermes;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,24 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.hermes.databinding.ActivityLoginScreenBinding;
-
 import io.realm.Realm;
 import io.realm.mongodb.App;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 
-
-public class LoginScreen extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityLoginScreenBinding binding;
+public class LoginScreenCz extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
@@ -34,22 +24,12 @@ public class LoginScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Realm.init(this);
         super.onCreate(savedInstanceState);
-
-        binding = ActivityLoginScreenBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login_screen);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+        setContentView(R.layout.activity_login_screen_cz);
     }
 
     public void createAccount(View view){
-        Intent intent = new Intent(this, RegisterAccount.class);
+        Intent intent = new Intent(this, RegisterAccountCz.class);
         startActivity(intent);
     }
 
@@ -60,7 +40,7 @@ public class LoginScreen extends AppCompatActivity {
 
         email = (EditText) findViewById(R.id.loginEmail);
         password = (EditText) findViewById(R.id.loginPassword);
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HomeScreenCz.class);
         Credentials credentials = Credentials.emailPassword(email.getText().toString(), password.getText().toString());
         app.loginAsync(credentials, new App.Callback<User>() {
             @Override
@@ -79,7 +59,7 @@ public class LoginScreen extends AppCompatActivity {
     }
 
     public void switchLanguage(View view){
-        Intent intent = new Intent(this, LoginScreenCz.class);
+        Intent intent = new Intent(this, LoginScreen.class);
         startActivity(intent);
     }
 }

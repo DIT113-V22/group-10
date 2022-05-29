@@ -16,6 +16,45 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hermes">
         <activity
+            android:name=".DisplayDeliveriesCz"
+            android:exported="false" />
+        <activity
+            android:name=".SaveUpdatesCz"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePersonalInformationCz"
+            android:exported="false" />
+        <activity
+            android:name=".ControlSelectionCz"
+            android:exported="false" />
+        <activity
+            android:name=".TermsAndConditionsCz"
+            android:exported="false" />
+        <activity
+            android:name=".FeedBackViewCz"
+            android:exported="false" />
+        <activity
+            android:name=".ThanksCz"
+            android:exported="false" />
+        <activity
+            android:name=".ShoppingScreenCz"
+            android:exported="false" />
+        <activity
+            android:name=".HomeScreenCz"
+            android:exported="false" />
+        <activity
+            android:name=".CreateAccountDetailsCz"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterAccountCz"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsCz"
+            android:exported="false" />
+        <activity
+            android:name=".LoginScreenCz"
+            android:exported="false" />
+        <activity
             android:name=".register_account_svenska"
             android:exported="false" />
         <activity
@@ -54,7 +93,7 @@
             android:label="@string/title_activity_create_account_details"
             android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
-            android:name=".deliveryTabs"
+            android:name=".DisplayDeliveries"
             android:exported="false"
             android:label="deliveryTabs"
             android:theme="@style/Theme.Hermes.NoActionBar" />
@@ -79,7 +118,7 @@
             android:name=".FeedBackView"
             android:exported="false"
             android:label="FeedBackView"
-            android:theme="@style/Theme.Hermes.NoActionBar"/>
+            android:theme="@style/Theme.Hermes.NoActionBar" />
         <activity
             android:name=".CarControl"
             android:exported="false"
