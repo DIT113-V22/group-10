@@ -40,7 +40,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Clone Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       - name: make gradlew available
         run: |
             cd Android
@@ -53,12 +53,11 @@ jobs:
       - name: Run instrumented tests for Android UI
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          profile: Pixel_3a
-          api-level: 32
+          profile: Nexus 6
+          api-level: 29
           arch: x86_64
           working-directory: ./Android
           script: ./gradlew connectedCheck
-
 
       
           
