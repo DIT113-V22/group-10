@@ -34,24 +34,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //if(sp.getBoolean("logged", false)) {
-            Intent intent = new Intent(this, LoginScreen.class);
-            startActivity(intent);
-//        } else {
-//            Intent intent = new Intent(this, HomeScreen.class);
-//            Intent intent2 = new Intent(this, LoginScreen.class);
-//            Credentials credentials = Credentials.emailPassword(sp.getString("email",""), sp.getString("password", ""));
-//            manager.getApp().loginAsync(credentials, new App.Callback<User>() {
-//                @Override
-//                public void onResult(App.Result<User> result) {
-//                    if(result.isSuccess()){
-//                        startActivity(intent);
-//                    } else {
-//                        startActivity(intent2);
-//                    }
-//                }
-//            });
-//        }
+        Intent intent = new Intent(this, LoginScreen.class);
+        startActivity(intent);
+
     }
 
     public void openLogin(View view){
@@ -60,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createAccount(View view){
-        DatabaseManager manager = DatabaseManager.getDatabaseManager();
-        //manager.storeAccount(new Account("n", "n", "n", "n", "n", "n"));
         Intent intent = new Intent(this, RegisterAccount.class);
         startActivity(intent);
     }

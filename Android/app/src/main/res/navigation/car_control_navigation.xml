@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.hermes.FirstFragment"
+        android:name="com.example.hermes.CarControlFragment1"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first"/>
+        tools:layout="@layout/fragment_car_control_1"/>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.hermes.SecondFragment"
+        android:name="com.example.hermes.CarControlFragment2"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second"/>
+        tools:layout="@layout/fragment_car_control_2"/>
 </navigation>

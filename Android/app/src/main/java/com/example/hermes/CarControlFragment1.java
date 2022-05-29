@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.hermes.databinding.FragmentFirst2Binding;
+import com.example.hermes.databinding.FragmentCarControl1Binding;
 
-public class First2Fragment extends Fragment {
+public class CarControlFragment1 extends Fragment {
 
-    private FragmentFirst2Binding binding;
+    private FragmentCarControl1Binding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class First2Fragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirst2Binding.inflate(inflater, container, false);
+        binding = FragmentCarControl1Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -32,8 +32,6 @@ public class First2Fragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(First2Fragment.this)
-                        .navigate(R.id.action_First2Fragment_to_Second2Fragment);
             }
         });
     }

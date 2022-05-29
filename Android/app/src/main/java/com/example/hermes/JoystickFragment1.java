@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.hermes.databinding.FragmentSecond7Binding;
+import com.example.hermes.databinding.FragmentJoystick1Binding;
 
-public class Second7Fragment extends Fragment {
+public class JoystickFragment1 extends Fragment {
 
-    private FragmentSecond7Binding binding;
+    private FragmentJoystick1Binding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class Second7Fragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecond7Binding.inflate(inflater, container, false);
+        binding = FragmentJoystick1Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,11 +29,11 @@ public class Second7Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Second7Fragment.this)
-                        .navigate(R.id.action_Second7Fragment_to_First7Fragment);
+                NavHostFragment.findNavController(JoystickFragment1.this)
+                        .navigate(R.id.action_First2Fragment_to_Second2Fragment);
             }
         });
     }

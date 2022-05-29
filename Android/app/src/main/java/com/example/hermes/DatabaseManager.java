@@ -215,15 +215,6 @@ public class DatabaseManager {
         return currentDeliveries;
     }
 
-    public ArrayList<Delivery> searchDeliveries(String item){
-        ArrayList<Delivery> results = new ArrayList<Delivery>();
-        for(Delivery delivery : currentDeliveries){
-            if(delivery.getItems().contains(item)){
-                results.add(delivery);
-            }
-        }
-        return results;
-    }
 
     public Delivery getCurrentDelivery(){
         for(Delivery delivery : currentDeliveries){

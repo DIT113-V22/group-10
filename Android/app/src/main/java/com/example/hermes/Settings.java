@@ -15,7 +15,6 @@ import com.example.hermes.databinding.ActivitySettingsBinding;
 
 public class Settings extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
     private ActivitySettingsBinding binding;
 
     @Override

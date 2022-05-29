@@ -19,7 +19,6 @@ import com.example.hermes.ui.CustomListAdapter;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-// Adapted from https://github.com/mitchtabian/TabFragments <- could be removed?
 
 public class DisplayDeliveries extends AppCompatActivity {
 

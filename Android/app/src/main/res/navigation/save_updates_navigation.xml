@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/First8Fragment"
-        android:name="com.example.hermes.First8Fragment"
+        android:name="com.example.hermes.SaveUpdatesFragment1"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first8">
+        tools:layout="@layout/fragment_save_updates_1">
 
         <action
             android:id="@+id/action_First8Fragment_to_Second8Fragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/Second8Fragment"
-        android:name="com.example.hermes.Second8Fragment"
+        android:name="com.example.hermes.SaveUpdatesFragment2"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second8">
+        tools:layout="@layout/fragment_save_updates_2">
 
         <action
             android:id="@+id/action_Second8Fragment_to_First8Fragment"

@@ -20,18 +20,12 @@ public class Delivery {
 
     public Delivery(){
         Date date = new Date();
-        //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            this.date = date;
-        //}
+        this.date = date;
         this.isReady = false;
         this.isDone = false;
         this.items= new ArrayList<>();
     }
 
-    public Delivery(String date) throws ParseException {
-        Date d = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA).parse(date);
-        this.date = d;
-    }
 
     public String getDate(){
         String[] split = date.toString().split(" ");
@@ -41,15 +35,6 @@ public class Delivery {
     public String getFormatedDate(){
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd HH:mm:ss", Locale.CHINA);
         return dateFormat.format(this.date);
-    }
-
-    public String getTime() {
-        String[] split = date.toString().split(" ");
-        return split[3];
-    }
-
-    public String getDateTime(){
-        return date.toString();
     }
 
     public void setDate(String yyyymmdd_hhmmss) throws ParseException {
