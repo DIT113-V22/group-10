@@ -2,15 +2,15 @@ package com.example.hermes;
 
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,32 +30,23 @@ import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class FeedbackTest {
+public class SwitchControlBTest {
 
     @Rule
-    public ActivityTestRule<FeedBackView> mActivityTestRule = new ActivityTestRule<>(FeedBackView.class);
+    public ActivityTestRule<CarControl> mActivityTestRule = new ActivityTestRule<>(CarControl.class);
 
     //@Test
-    public void feedbackTest() {
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.commentText),
+    public void switchControlBTest() {
+        ViewInteraction materialButton4 = onView(
+                allOf(withId(R.id.Joystick), withText("Joystick"),
                         childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
-                                6),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("It was very nice!"), closeSoftKeyboard());
-
-        ViewInteraction materialButton3 = onView(
-                allOf(withId(R.id.submit), withText("Submit"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0),
+                                allOf(withId(R.id.frameLayout),
+                                        childAtPosition(
+                                                withClassName(is("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                                                2)),
                                 5),
                         isDisplayed()));
-        materialButton3.check(matches(isClickable()));
+        materialButton4.perform(click());
 
         ViewInteraction frameLayout = onView(
                 allOf(withId(android.R.id.content),

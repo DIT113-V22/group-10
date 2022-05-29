@@ -2,14 +2,12 @@ package com.example.hermes;
 
 
 import static androidx.test.espresso.Espresso.onView;
-import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,36 +23,28 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SettingTest {
+public class SettingV2Test {
 
     @Rule
-    public ActivityTestRule<HomeScreen> mActivityTestRule = new ActivityTestRule<>(HomeScreen.class);
+    public ActivityTestRule<Settings> mActivityTestRule = new ActivityTestRule<>(Settings.class);
 
-    @Test
-    public void settingTest() {
-
-        ViewInteraction appCompatImageButton = onView(
-                allOf(withId(R.id.imageButton),
-                        childAtPosition(
-                                allOf(withId(R.id.settingsButton),
-                                        childAtPosition(
-                                                withClassName(is("androidx.coordinatorlayout.widget.CoordinatorLayout")),
-                                                1)),
-                                0),
+    //@Test
+    public void settingV2Test() {
+        ViewInteraction button = onView(
+                allOf(withId(R.id.rapidTest), withText("CHANGE PERSONAL INFORMATION"),
+                        withParent(withParent(IsInstanceOf.<View>instanceOf(android.view.ViewGroup.class))),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        button.check(matches(isDisplayed()));
 
-        ViewInteraction frameLayout = onView(
-                allOf(withId(android.R.id.content),
-                        withParent(allOf(withId(androidx.appcompat.R.id.action_bar_root),
-                                withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class)))),
-                        isDisplayed()));
-        frameLayout.check(matches(isDisplayed()));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(
