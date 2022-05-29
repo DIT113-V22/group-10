@@ -74,6 +74,12 @@ public class LoginV2Test {
         ViewInteraction frameLayout = onView(
                 allOf(withId(android.R.id.content), isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(

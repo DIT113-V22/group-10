@@ -54,6 +54,12 @@ public class ControlSelectionTest {
                                 withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class)))),
                         isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(
@@ -74,4 +80,5 @@ public class ControlSelectionTest {
             }
         };
     }
+
 }
