@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.hermes.databinding.FragmentSecond8Binding;
+import com.example.hermes.databinding.FragmentCarControl1Binding;
 
-public class Second8Fragment extends Fragment {
+public class CarControlFragment1 extends Fragment {
 
-    private FragmentSecond8Binding binding;
+    private FragmentCarControl1Binding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class Second8Fragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentSecond8Binding.inflate(inflater, container, false);
+        binding = FragmentCarControl1Binding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -29,11 +29,9 @@ public class Second8Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(Second8Fragment.this)
-                        .navigate(R.id.action_Second8Fragment_to_First8Fragment);
             }
         });
     }

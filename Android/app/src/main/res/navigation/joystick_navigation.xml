@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/First2Fragment"
-        android:name="com.example.hermes.First2Fragment"
+        android:name="com.example.hermes.JoystickFragment1"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first2">
+        tools:layout="@layout/fragment_joystick_1">
 
         <action
             android:id="@+id/action_First2Fragment_to_Second2Fragment"
@@ -17,9 +17,9 @@
     </fragment>
     <fragment
         android:id="@+id/Second2Fragment"
-        android:name="com.example.hermes.Second2Fragment"
+        android:name="com.example.hermes.JoystickFragment2"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second2">
+        tools:layout="@layout/fragment_joystick_2">
 
         <action
             android:id="@+id/action_Second2Fragment_to_First2Fragment"
