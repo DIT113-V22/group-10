@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_background"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    tools:context=".SettingsCz">
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Settings"
+        android:text="Nastavení"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="51dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="80dp"
-        android:text="@string/night_mode"
+        android:text="Noční mód"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -40,7 +40,6 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/flag_cz"
-        android:onClick="changeLanguage"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
@@ -51,6 +50,7 @@
         android:layout_marginStart="52dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/flag_uk"
+        android:onClick="changeLanguage"
         app:layout_constraintStart_toEndOf="@+id/imageButton2"
         app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
@@ -61,7 +61,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="30dp"
         android:elegantTextHeight="false"
-        android:text="Language"
+        android:text="Jazyk"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:onClick="changeAccountDetails"
-        android:text="change personal information"
+        android:text="Změnit osobní informace"
         app:cornerRadius="20dp"
         app:iconTint="#CDA8A8"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,6 +99,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_left_24" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

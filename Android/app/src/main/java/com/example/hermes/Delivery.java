@@ -61,7 +61,6 @@ public class Delivery {
 
     public void setDone(boolean value) { this.isDone = value; }
 
-
     public String itemList(){
         String result = "";
         for(String item : items){

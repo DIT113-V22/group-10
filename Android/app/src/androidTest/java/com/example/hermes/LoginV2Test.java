@@ -26,18 +26,17 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LoginTest {
+public class LoginV2Test {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    @Test
-    public void loginTest() {
+    //@Test
+    public void loginV2Test() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.loginEmail),
                         childAtPosition(
@@ -47,7 +46,7 @@ public class LoginTest {
                                                 1)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("amin2@hermes.com"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("test@test.com"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.loginPassword),
@@ -58,10 +57,10 @@ public class LoginTest {
                                                 1)),
                                 2),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("Hello.123456"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("Hello.123"), closeSoftKeyboard());
 
         ViewInteraction materialButton = onView(
-                allOf(withId(R.id.loginButton), withText("Login"),
+                allOf(withId(R.id.loginButton), withText("Sign in"),
                         childAtPosition(
                                 allOf(withId(R.id.include),
                                         childAtPosition(
@@ -74,6 +73,12 @@ public class LoginTest {
         ViewInteraction frameLayout = onView(
                 allOf(withId(android.R.id.content), isDisplayed()));
         frameLayout.check(matches(isDisplayed()));
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(

@@ -1,23 +1,25 @@
 package com.example.hermes;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class ThanksCz extends AppCompatActivity {
 
-public class Thanks extends AppCompatActivity {
-
-    private static final String TAG = "Thanks";
+    private static final String TAG = "Ďekujeme";
     private Button finish;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.thanking_layout);
+        setContentView(R.layout.activity_thanks_cz);
+
         Log.d(TAG, "onCreate: Starting.");
-        Intent intent = new Intent(this, HomeScreen.class);
+        Intent intent = new Intent(this, HomeScreenCz.class);
 
         finish = findViewById(R.id.finishOrder);
         finish.setOnClickListener(new View.OnClickListener() {

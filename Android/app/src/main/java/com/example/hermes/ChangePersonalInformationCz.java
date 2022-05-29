@@ -1,20 +1,17 @@
 package com.example.hermes;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.hermes.databinding.ActivityChangePersonalInformationBinding;
 
 import io.realm.Realm;
 
-public class ChangePersonalInformation extends AppCompatActivity {
+public class ChangePersonalInformationCz extends AppCompatActivity {
 
     private ActivityChangePersonalInformationBinding binding;
     private TextView fullName;
@@ -27,9 +24,8 @@ public class ChangePersonalInformation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_change_personal_information_cz);
 
-        binding = ActivityChangePersonalInformationBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
         Realm.init(this);
         DatabaseManager databaseManager = DatabaseManager.getDatabaseManager();
         Account account = databaseManager.loadAccount();
@@ -47,19 +43,15 @@ public class ChangePersonalInformation extends AppCompatActivity {
         postalCode.setText(account.getPostalCode());
         town.setText(account.getTown());
         password.setText("********");
-
-
-
     }
+
     public void savePersonalInformation(View view){
-        Intent intent = new Intent(this, SaveUpdates.class);
+        Intent intent = new Intent(this, SaveUpdatesCz.class);
         startActivity(intent);
     }
 
     public void goBack(View view){
-        Intent intent = new Intent(this, Settings.class);
+        Intent intent = new Intent(this, SettingsCz.class);
         startActivity(intent);
     }
-
 }
-

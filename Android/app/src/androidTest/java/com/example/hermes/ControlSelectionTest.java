@@ -2,10 +2,12 @@ package com.example.hermes;
 
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 import android.view.View;
@@ -20,25 +22,43 @@ import androidx.test.runner.AndroidJUnit4;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ListViewTest {
+public class ControlSelectionTest {
 
     @Rule
-    public ActivityTestRule<deliveryTabs> mActivityTestRule = new ActivityTestRule<>(deliveryTabs.class);
+    public ActivityTestRule<ControlSelection> mActivityTestRule = new ActivityTestRule<>(ControlSelection.class);
 
-    @Test
-    public void listViewTest() {
+    //@Test
+    public void controlSelectionTest() {
 
-        ViewInteraction listView = onView(
-                allOf(withId(R.id.listView),
-                        withParent(withParent(withId(android.R.id.content))),
+        ViewInteraction materialButton3 = onView(
+                allOf(withId(R.id.buttonControl), withText("Button Control"),
+                        childAtPosition(
+                                allOf(withId(R.id.controlSelect),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                0),
                         isDisplayed()));
-        listView.check(matches(isDisplayed()));
+        materialButton3.perform(click());
+
+        ViewInteraction frameLayout = onView(
+                allOf(withId(android.R.id.content),
+                        withParent(allOf(withId(androidx.appcompat.R.id.action_bar_root),
+                                withParent(IsInstanceOf.<View>instanceOf(android.widget.FrameLayout.class)))),
+                        isDisplayed()));
+        frameLayout.check(matches(isDisplayed()));
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Matcher<View> childAtPosition(
@@ -59,4 +79,5 @@ public class ListViewTest {
             }
         };
     }
+
 }
