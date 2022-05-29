@@ -34,8 +34,6 @@ public class Joystick extends AbstractSteering{
         setCamera(Joystick_camera);
         setTextView(joystickTextView);
         initialiseMqttClient(getApplicationContext());
-       // binding = ActivityJoystickBinding.inflate(getLayoutInflater());
-       // setContentView(binding.getRoot());
         MqttConnect(Joystick_camera);
         joystick =  findViewById(R.id.joystickView);
 

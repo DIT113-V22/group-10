@@ -33,12 +33,6 @@ public class ShoppingScreen extends AppCompatActivity {
         Button addPainKiller = findViewById(R.id.painKiller);
         Button addMulti= findViewById(R.id.multivitamin);
         Button submitDelivery = findViewById(R.id.submitOrder);
-//        EditText id = findViewById(R.id.editTextTextPassword4);
-//        EditText date = findViewById(R.id.editTextDate2);
-//        EditText time = findViewById(R.id.editTextTime);
-//        String Date= date.getText().toString();
-//        String Time= time.getText().toString();
-//        String Id = id.getText().toString();
 
         Delivery delivery = new Delivery();
 
